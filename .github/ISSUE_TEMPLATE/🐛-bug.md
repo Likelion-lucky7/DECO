@@ -2,7 +2,7 @@
 name: "\U0001F41B Bug"
 about: Bug 작업 사항을 입력해주세요.
 title: "[Bug]"
-labels: "\U0001F41E BugFix"
+labels: ''
 assignees: ''
 
 ---

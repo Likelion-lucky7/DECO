@@ -2,7 +2,7 @@
 name: "\U0001F383 Feature"
 about: Feature 작업 사항을 입력해주세요.
 title: "[Feature]"
-labels: "\U0001F5A5️ Feature"
+labels: ''
 assignees: ''
 
 ---
