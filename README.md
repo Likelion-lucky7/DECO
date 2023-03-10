@@ -11,9 +11,6 @@
 <div>
  코드를 질문하고 프로젝트를 논의하며 개발경력을 장식(DECO)하시는건 어떤가요?
 </div>
- <img src="![02_main](https://user-images.githubusercontent.com/107671084/224224131-f6f0e99c-0c00-4a09-abfb-8c091abe7d0c.jpg)
-" />
-
 
 # :sparkling_heart: Team member
 <table>
@@ -38,6 +35,11 @@
 </tr>
 </tbody>
 </table>
+
+# 📐 와이어 프레임
+![image](https://user-images.githubusercontent.com/107671084/224226193-c5c9a7a0-e2ae-4f45-b8d1-16d03e535819.png)
+
+ 
  
  # 🔧 기술 스택
 <div>
