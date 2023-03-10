@@ -1,7 +1,7 @@
 ---
 name: "\U0001F4CB Others"
 about: 그 외 작업 사항을 입력해주세요.
-title: ''
+title: "[]"
 labels: ''
 assignees: ''
 
