@@ -1,0 +1,15 @@
+@import url('../styles/normalize.module.css');
+@import url('../styles/reset.module.css');
+
+
+.layout {
+  width: auto;
+  /* margin: 0 auto; */
+  background-color: aqua;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: red;
+}
