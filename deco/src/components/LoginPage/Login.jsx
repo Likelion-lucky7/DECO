@@ -1,14 +1,13 @@
-import React from 'react'
-import WelcomeLogo from '@/components/Common/WelcomeLogo';
-import styles from './Login.module.css'
+import React from "react";
+import WelcomeInfo from "@/components/Common/WelcomeInfo";
+import styles from "./Login.module.css";
 
 const Login = () => {
   return (
     <div className={styles.layout}>
-      login
-      <WelcomeLogo />
+      <WelcomeInfo />
     </div>
-  )
-}
+  );
+};
 
 export default Login;

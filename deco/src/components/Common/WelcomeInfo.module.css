@@ -1,0 +1,19 @@
+.layout {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.title {
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.accent_primary {
+  color: #364fc7;
+}
+
+.accent_third {
+  color: #91a7ff;
+}
