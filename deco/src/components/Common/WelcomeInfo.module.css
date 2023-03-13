@@ -1,13 +1,6 @@
 .layout {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-}
-
-.title {
-  margin-top: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
 }
 
 .accent_primary {
@@ -16,4 +9,25 @@
 
 .accent_third {
   color: #91a7ff;
+}
+
+.logo {
+  display: block;
+  margin: auto;
+}
+
+.title {
+  margin-top: 2.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.subtitle {
+  color: #6b6b6b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  text-align: center;
+  padding-bottom: 4.625rem;
 }
