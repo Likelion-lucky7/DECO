@@ -9,8 +9,8 @@ assignees: ''
 
 ## 🌸 작업 브랜치
 ```
-ex) feature/이슈번호-페이지
-ex) feature/13-login
+ex) 페이지#이슈번호
+ex) login#23
 예시는 지우고 작성해주세요!
 ```
    
