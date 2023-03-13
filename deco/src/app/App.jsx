@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router";
-import LoginPage from "../pages/LoginPage";
 import SignUpPage from '../pages/SignUpPage';
 import MainPage from "../pages/MainPage";
 import QuestionPage from "../pages/QuestionPage";
 import CommunityPage from "../pages/CommunityPage";
 import SideProjectPage from "../pages/SideProjectPage";
 import NotFoundPage from "../pages/NotFoundPage";
-import NavBar from '../components/NavBar';
+import NavBar from '@/components/Common/NavBar';
 import styles from './App.module.css';
+import LoginPage from '@/pages/LoginPage';
 
 function App() {
   const [count, setCount] = useState(0);
