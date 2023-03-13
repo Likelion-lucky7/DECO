@@ -1,39 +1,34 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
   },
-  "extends": [
+  extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier",
+    "eslint-config-prettier",
   ],
-  "overrides": [
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+  overrides: [],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
-    "ecmaVersion": "latest",
-    "sourceType": "module"
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "jsx-a11y",
-  ],
-  "rules": {
-    'no-unused-vars': 'warn',
-    'react/prop-types': 'off',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': [
-      'warn',
+  plugins: ["react", "react-hooks", "jsx-a11y"],
+  rules: {
+    "no-unused-vars": "warn",
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "warn",
       {
-        additionalHooks: 'useRecoilCallback', // recoil 쓰면 추가
+        additionalHooks: "useRecoilCallback", // recoil 쓰면 추가
       },
     ],
     "jsx-a11y/anchor-has-content": [
@@ -49,12 +44,12 @@ module.exports = {
       },
     ],
     // 자식이 없는 구성 요소에 대해 추가 닫는 태그를 허용하지 않음
-    'react/self-closing-comp': [
-      'warn',
+    "react/self-closing-comp": [
+      "warn",
       {
         component: true, // 컴포넌트 허용하지 않음 <Component></Component> -> 안됨
-        html: false  // html 허용함 <div></div>
-      }
+        html: false, // html 허용함 <div></div>
+      },
     ],
-  }
-}
+  },
+};
