@@ -1,4 +1,16 @@
-.layout {
+.container {
   display: flex;
   flex-flow: column nowrap;
+}
+
+.info {
+  margin-top: 1.4375rem;
+  text-align: center;
+  color: #6b6b6b;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+.toSignUp {
+  color: #91a7ff;
 }
