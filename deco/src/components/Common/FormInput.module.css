@@ -1,0 +1,23 @@
+.layout {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.input {
+  width: 21.875rem;
+  height: 3.125rem;
+  border-radius: 5px;
+  border: 1px solid #a6a6a6;
+  color: #333333;
+  padding-left: 0.625rem;
+  margin-top: 5px;
+}
+
+.label {
+  display: inline-block;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+}
