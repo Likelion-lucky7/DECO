@@ -21,24 +21,22 @@ function App() {
 
   return (
     <div className={styles.layout}>
-      <div className={styles.container}>
-        <NavBar />
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/" element={<MainPage />} />
-          <Route path="/question" element={<QuestionPage />} />
-          <Route path="/question/:id" element={<QuestionDetail />} />
-          <Route path="/question/write" element={<QuestionWrite />} />
-          <Route path="/community" element={<CommunityPage />} />
-          <Route path="/community/:id" element={<CommunityDetail />} />
-          <Route path="/community/write" element={<CommunityWrite />} />
-          <Route path="/sideproject" element={<SideProjectPage />} />
-          <Route path="/sideproject/:id" element={<SideProjectDetail />} />
-          <Route path="/sideproject/wrtie" element={<SideProjectWrite />} />
-          <Route path="/*" element={<NotFoundPage />} />
-        </Routes>
-      </div>
+      <NavBar />
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/question" element={<QuestionPage />} />
+        <Route path="/question/:id" element={<QuestionDetail />} />
+        <Route path="/question/write" element={<QuestionWrite />} />
+        <Route path="/community" element={<CommunityPage />} />
+        <Route path="/community/:id" element={<CommunityDetail />} />
+        <Route path="/community/write" element={<CommunityWrite />} />
+        <Route path="/sideproject" element={<SideProjectPage />} />
+        <Route path="/sideproject/:id" element={<SideProjectDetail />} />
+        <Route path="/sideproject/wrtie" element={<SideProjectWrite />} />
+        <Route path="/*" element={<NotFoundPage />} />
+      </Routes>
     </div>
   );
 }
