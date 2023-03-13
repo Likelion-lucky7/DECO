@@ -3,7 +3,7 @@ import classes from "./FormInput.module.css";
 
 const FormInput = (label, type, ...restProps) => {
   return (
-    <div className={classes.layout}>
+    <div className={classes.container}>
       <label htmlFor="id" className={classes.label}>
         아이디
       </label>
