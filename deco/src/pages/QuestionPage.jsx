@@ -1,8 +1,9 @@
+import QuestionList from '@/components/QuestionPage/QuestionList';
 import React from 'react'
 
 const QuestionPage = () => {
   return (
-    <div>QuestionPage</div>
+    <QuestionList />
   )
 }
 
