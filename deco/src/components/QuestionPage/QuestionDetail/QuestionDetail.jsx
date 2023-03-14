@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
-import { ReactComponent as Like } from "../../assets/DECO_Like.svg";
-import emptyPicture from "../../assets/empty_picture.png";
+import { ReactComponent as Like } from "../../../assets/DECO_Like.svg";
+import emptyPicture from "../../../assets/empty_picture.png";
 
 const { container, topic, profileImege, nickName, like, tagBox } = styles;
 
