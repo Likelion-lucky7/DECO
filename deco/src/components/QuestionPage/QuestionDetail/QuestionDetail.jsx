@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
 import QuestionAnswer from "@/components/QuestionPage/QuestionAnswer/QuestionAnswer";
-import { ReactComponent as Like } from "../../../assets/DECO_Like.svg";
-import emptyPicture from "../../../assets/empty_picture.png";
+import Like from "@/assets/likeActivate.png";
+import emptyPicture from "@/assets/empty_picture.png";
 
 const { container, topic, profileImege, nickName, like, tagBox } = styles;
 
@@ -35,7 +35,7 @@ const DetailPage = () => {
         <span>#React</span>
         <span>#React</span>
       </div>
-      <Like className={like} />
+      <img src={Like} alt="likeButton" className={like} />
       <QuestionAnswer />
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./QuestionDetail.module.css";
-import { ReactComponent as LogOut_Like } from "../../../assets/DECO_LogOut_Like.svg";
+import { ReactComponent as LogOut_Like } from "@/assets/likeDisable.png";
 import emptyPicture from "../../../assets/empty_picture.png";
 
 const { container, topic, profileImege, nickName, like, tagBox } = styles;
