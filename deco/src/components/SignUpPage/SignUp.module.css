@@ -7,12 +7,29 @@
   margin-bottom: 120px;
 }
 
-.info {
-  margin-top: 1.4375em;
+.profile {
+  margin: 0 auto;
+  padding-bottom: 25px;
+}
+
+.profile_info {
   text-align: center;
-  color: #6b6b6b;
+  padding-bottom: 25px;
+}
+
+.profile_form {
+  margin-bottom: 20px;
+  border: none;
+  background-color: var(--secondary);
+  color: white;
+}
+
+.info {
+  margin-top: 23px;
+  text-align: center;
+  color: var(--gray-500);
   font-weight: 400;
-  font-size: 0.875em;
+  font-size: 14px;
 }
 
 .toSignUp {

@@ -18,7 +18,7 @@ const Login = () => {
           label="비밀번호"
           placeholder="비밀번호 입력"
         />
-        <SubmitButton />
+        <SubmitButton props="로그인" />
       </form>
 
       <p className={classes.info}>
