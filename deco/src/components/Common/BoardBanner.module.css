@@ -5,18 +5,42 @@
   background-color: var(--secondary);
   display: flex;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .mainBanner {
-  margin: 1.875rem 0 1.875rem 25.3125rem;
+  margin: 1.875rem 0 1.875rem 24.375rem;
 }
 
 .mainBanner h2 {
   font-size: 1.75rem;
   font-weight: 600;
   color: var(--white);
+  margin-bottom: 17px;
+  line-height: 2.1181rem;
 }
 
-.writeButton {
+.mainBanner p {
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.21rem;
+}
 
+.write {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 24.375rem 2rem 0;
+  width: 131px;
+  height: 66px;
+  background-color: var(--white);
+  border-radius: 8px;
+  border: none;
+  font-size: var(--text-md);
+  line-height: 21.78px;
+}
+
+.write svg{
+  margin-right: 6px;
 }
