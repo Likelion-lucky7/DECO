@@ -16,16 +16,16 @@
   --gray-900: #151515;
   --info-error: #f03f40;
 
-  /* 12px /
+  /* 12px */
   --text-xs: 0.75rem;
-  / 14px /
+  /* 14px */
   --text-sm: 0.875rem;
-  / 16px /
+  /* 16px */
   --text-base: 1rem;
-  / 18px /
+  /* 18px */
   --text-md: 1.125rem;
-  / 20px /
+  /* 20px */
   --text-lg: 1.25rem;
-  / 24px */
+  /* 24px */
   --text-xl: 1.5rem;
 }
