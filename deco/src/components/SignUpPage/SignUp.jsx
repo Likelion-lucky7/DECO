@@ -1,4 +1,3 @@
-import React from "react";
 import WelcomeInfo from "@/components/Common/WelcomeInfo/WelcomeInfo";
 import FormInput from "@/components/Common/FormInput/FormInput";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
@@ -10,14 +9,18 @@ const SignUp = () => {
     <div className={classes.container}>
       <WelcomeInfo subtitle="DECO의 일원이 되어주세요 !" />
 
-      <Profile className={classes.profile} />
+      <Profile className={classes.profile} alt="프로필 이미지" />
       <p className={classes.profile_info}>이미지를 설정해주세요 !</p>
 
       <form className={classes.form}>
-        {/* <label htmlFor="file">파일</label> */}
+        <label htmlFor="file" className={classes.profile_label}>
+          파일 업로드
+        </label>
+
         <input
+          id="file"
           type="file"
-          accept="image/*"
+          accept="image/jpg, image/png, image/jpeg"
           name="profile"
           className={classes.profile_form}
         />
@@ -36,6 +39,7 @@ const SignUp = () => {
           placeholder="이메일 입력"
         />
         <FormInput name="nickname" label="닉네임" placeholder="닉네임 입력" />
+
         <SubmitButton props="회원가입" />
       </form>
     </div>
