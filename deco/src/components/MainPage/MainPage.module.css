@@ -1,0 +1,10 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.mainBanner {
+  /* background-color: skyblue; */
+  width: 100%;
+  padding: 160px 0;
+}
