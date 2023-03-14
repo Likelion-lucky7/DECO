@@ -6,6 +6,8 @@ const SideProjectList = () => {
   return (
     <div className={styles.container}>
     <SideProjectCard />
+    <SideProjectCard />
+    <SideProjectCard />
     </div>
   )
 }
