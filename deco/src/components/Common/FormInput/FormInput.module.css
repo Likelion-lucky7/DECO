@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.input {
+  width: 21.875em;
+  height: 3.125em;
+  border-radius: 5px;
+  border: 1px solid var(--gray-300);
+  color: #333333;
+  padding-left: 15px;
+  margin-top: 10px;
+}
+
+.input::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray-300);
+}
+
+.label {
+  display: flex;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+}
