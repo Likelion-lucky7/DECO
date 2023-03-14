@@ -1,9 +1,9 @@
-import classes from "./SubmitButton.module.css";
+import styles from "./SubmitButton.module.css";
 
 const SubmitButton = ({ props }) => {
   return (
-    <div className={classes.container}>
-      <button className={classes.button}>{props}</button>
+    <div className={styles.container}>
+      <button className={styles.button}>{props}</button>
     </div>
   );
 };

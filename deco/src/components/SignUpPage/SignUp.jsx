@@ -1,21 +1,21 @@
 import WelcomeInfo from "@/components/Common/WelcomeInfo/WelcomeInfo";
 import FormInput from "@/components/Common/FormInput/FormInput";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
-import classes from "./SignUp.module.css";
+import styles from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
 import { ReactComponent as FileUpload } from "../../assets/file_upload.svg";
 
 const SignUp = () => {
   return (
-    <div className={classes.container}>
+    <div className={styles.container}>
       <WelcomeInfo subtitle="DECO의 일원이 되어주세요 !" />
 
-      <Profile className={classes.profile} alt="프로필 이미지" />
-      <p className={classes.profile_info}>이미지를 설정해주세요 !</p>
+      <Profile className={styles.profile} alt="프로필 이미지" />
+      <p className={styles.profile_info}>이미지를 설정해주세요 !</p>
 
-      <form className={classes.form}>
-        <label htmlFor="file" className={classes.profile_label}>
-          <FileUpload className={classes.profile_image} /> 파일 업로드
+      <form className={styles.form}>
+        <label htmlFor="file" className={styles.profile_label}>
+          <FileUpload className={styles.profile_image} /> 파일 업로드
         </label>
 
         <input
@@ -23,7 +23,7 @@ const SignUp = () => {
           type="file"
           accept="image/jpg, image/png, image/jpeg"
           name="profile"
-          className={classes.profile_form}
+          className={styles.profile_form}
         />
 
         <FormInput name="id" label="아이디" placeholder="아이디 입력" />
