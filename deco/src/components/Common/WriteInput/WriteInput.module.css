@@ -3,6 +3,7 @@
   flex-flow: column nowrap;
   justify-content: center;
   margin-top: 30px;
+  position: relative;
 }
 
 .title {
@@ -13,6 +14,14 @@
   border-radius: 5px;
   color: #333333;
   padding-left: 17px;
+}
+
+.totalNumber {
+  position: absolute;
+  right: 17px;
+  top: 17px;
+  color: var(--gray-400);
+  font-size: 14px;
 }
 
 .content {

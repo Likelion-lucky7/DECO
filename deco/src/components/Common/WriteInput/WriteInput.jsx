@@ -12,6 +12,7 @@ const WriteInput = () => {
         placeholder="제목을 입력해주세요."
         className={styles.title}
       />
+      <span className={styles.totalNumber}>0 / 100</span>
 
       <textarea
         name="content"
