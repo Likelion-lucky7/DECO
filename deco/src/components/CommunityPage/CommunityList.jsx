@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import BoardBanner from "../Common/BoardBanner";
 
 const CommunityList = () => {
-  return (
-    <div>CommunityList</div>
-  )
-}
+  return <BoardBanner />;
+};
 
 export default CommunityList;
