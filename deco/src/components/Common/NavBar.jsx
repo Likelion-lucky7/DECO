@@ -16,7 +16,7 @@ const NavBar = () => {
           <div className={styles.container}>
             <ul className={styles.navigation}>
               <li className={styles.question}>
-                <Link to="/about">묻고 답하기</Link>
+                <Link to="/">묻고 답하기</Link>
               </li>
               <li className={styles.community}>
                 <Link to="/">커뮤니티</Link>
@@ -28,10 +28,10 @@ const NavBar = () => {
 
             <ul className={styles.account}>
               <li className={styles.login}>
-                <a href="#">로그인</a>
+                <Link to="/">로그인</Link>
               </li>
               <li className={styles.join}>
-                <a href="#">회원가입</a>
+                <Link to="/">회원가입</Link>
               </li>
             </ul>
           </div>
