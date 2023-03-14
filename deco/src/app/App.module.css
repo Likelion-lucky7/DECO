@@ -1,6 +1,6 @@
-@import url('../styles/normalize.module.css');
-@import url('../styles/reset.module.css');
-@import url('../styles/theme.module.css');
+@import url("../styles/normalize.module.css");
+@import url("../styles/reset.module.css");
+@import url("../styles/theme.module.css");
 
 .layout {
   width: auto;
