@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./ShortcutButton.module.css";
 
-const SubmitButton = () => {
+const SubmitButton = ({ to, ...restProps }) => {
   return (
     <div className={styles.container}>
-      <button className={styles.button}>바로가기</button>
+      <Link to={to} className={styles.button} {...restProps}>
+        바로가기
+      </Link>
     </div>
   );
 };
