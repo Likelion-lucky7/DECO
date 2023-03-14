@@ -1,0 +1,104 @@
+.container{
+  position: relative;
+  padding: 20px;
+  display: inline-block;
+  width: 533px;
+  border: 1px solid var(--gray-400);
+  border-radius: 5px;
+  margin-bottom: 30px;
+  height: 190px;
+}
+
+/* 짝수와 홀수를 기준으로 카드 정렬 */
+.container:nth-child(odd){
+  margin-left:20px;
+}
+.container:nth-child(even){
+  float: right;
+  margin-right: 20px;
+}
+/* 타이틀 css */
+.title{
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.description{
+  margin-top: 20px;
+  font-size: 14px;
+  height: 40px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  
+}
+.skiltag{
+  display: flex;
+  margin-bottom: 20px;
+}
+.user{
+  display: flex;
+  border-top: 1px solid var(--gray-300);
+  padding-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.user p{
+  margin-left: 7px;
+}
+/* 모집중인 분야 css */
+.field{
+  position: absolute;
+  display:flex;
+  top: 20px;
+}
+
+.field li{
+  font-size: 12px;
+  color: white;
+  width: content;
+  padding: 1px 3px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+.field li:nth-child(6n-5){
+  background-color: var(--primary);
+}
+.field li:nth-child(6n-4){
+  background-color: var(--secondary);
+}
+.field li:nth-child(6n-3){
+  background-color: lightskyblue;
+}
+.field li:nth-child(6n-2){
+  background-color: lightsalmon;
+}
+.field li:nth-child(6n-1){
+  background-color: lightslategray;
+}
+.field li:nth-child(6n){
+  background-color: lightseagreen;
+}
+.date {
+  display: flex;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 12px;
+  color: var(--gray-300);
+}
+.date p:nth-child(2n-1)::after{
+  content: "|";
+  margin: 0 2px;
+}
+
+.like{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 14px;
+  font-weight: 400;
+}

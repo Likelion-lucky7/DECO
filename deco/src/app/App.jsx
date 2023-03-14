@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className={styles.layout}>
-      <div className={styles.container}>
+      {/* <div className={styles.container}> */}
         <NavBar />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
@@ -38,7 +38,7 @@ function App() {
           <Route path="/sideproject/wrtie" element={<SideProjectWrite />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
