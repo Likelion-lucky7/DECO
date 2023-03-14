@@ -19,7 +19,6 @@
 }
 /* 타이틀 css */
 .title{
-  /* margin-top: 30px; */
   width: 486px;
   margin-top: 44px;
   font-size: 16px;
@@ -32,7 +31,8 @@
   margin-top: 17px;
   width: 486px;
   font-size: 14px;
-  height: 39px;
+  line-height: 20px;
+  height: 40px;
   overflow:hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -43,7 +43,7 @@
 .skiltag{
   display: flex;
   margin-top: 29px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 .skiltag li {
   width: 20px;
@@ -53,7 +53,7 @@
 .user{
   display: flex;
   border-top: 1px solid var(--gray-300);
-  padding-top: 20px;
+  padding-top: 16px;
   font-size: 14px;
   font-weight: 500;
 }
@@ -95,21 +95,22 @@
 }
 .date {
   display: flex;
+  justify-content: center;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 23px;
+  right: 23px;
   font-size: 12px;
   color: var(--gray-300);
 }
 .date p:nth-child(2n-1)::after{
   content: "|";
-  margin: 0 2px;
+  margin: 0 4px;
 }
 
 .like{
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 23px;
+  right: 23px;
   font-size: 14px;
   font-weight: 400;
 }
