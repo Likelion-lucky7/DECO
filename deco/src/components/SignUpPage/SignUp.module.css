@@ -14,7 +14,10 @@
 
 .profile_info {
   text-align: center;
-  padding-bottom: 25px;
+  padding-bottom: 23px;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .profile_form {
@@ -32,10 +35,15 @@
   width: 185px;
   height: 44px;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.profile_image {
+  padding-right: 10px;
 }
 
 .form {

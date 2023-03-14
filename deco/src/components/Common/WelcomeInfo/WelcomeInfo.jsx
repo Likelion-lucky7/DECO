@@ -1,5 +1,5 @@
 import classes from "./WelcomeInfo.module.css";
-import { ReactComponent as Logo } from "../../../assets/DECO_Logo.svg";
+import { ReactComponent as Logo } from "../../../assets/logo_big.svg";
 
 const WelcomeLogo = ({ subtitle }) => {
   return (

@@ -3,6 +3,7 @@ import FormInput from "@/components/Common/FormInput/FormInput";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import classes from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
+import { ReactComponent as FileUpload } from "../../assets/file_upload.svg";
 
 const SignUp = () => {
   return (
@@ -14,7 +15,7 @@ const SignUp = () => {
 
       <form className={classes.form}>
         <label htmlFor="file" className={classes.profile_label}>
-          파일 업로드
+          <FileUpload className={classes.profile_image} /> 파일 업로드
         </label>
 
         <input
