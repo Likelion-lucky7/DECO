@@ -1,14 +1,14 @@
-@import url('../styles/normalize.module.css');
-@import url('../styles/reset.module.css');
-
+@import url("../styles/normalize.module.css");
+@import url("../styles/reset.module.css");
+@import url("../styles/theme.module.css");
 
 .layout {
   width: auto;
   min-width: 1200px;
 }
 
-.container {
+/* .container {
   width: 1200px;
   min-width: 1000px;
   margin: 0 auto;
-}
+} */
