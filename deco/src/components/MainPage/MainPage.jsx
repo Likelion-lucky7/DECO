@@ -5,8 +5,10 @@ import styles from "./MainPage.module.css";
 const MainPage = () => {
   return (
     <div className={styles.container}>
-      <MainImage className={styles.mainBanner} />
-      <ShortcutList />
+      <div className={styles.inner}>
+        <MainImage className={styles.mainBanner} />
+        <ShortcutList />
+      </div>
     </div>
   );
 };
