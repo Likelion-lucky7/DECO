@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-flow: column nowrap;
-  width: 1140px;
+  width: 1200px;
   min-width: 62.5%;
   margin: 0 auto;
 }

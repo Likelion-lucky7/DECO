@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 1200px;
+  min-width: 62.5%;
+  margin: 0 auto;
+}
