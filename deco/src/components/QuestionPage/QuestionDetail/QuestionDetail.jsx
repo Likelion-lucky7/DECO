@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
+import QuestionAnswer from "@/components/QuestionPage/QuestionAnswer/QuestionAnswer";
 import { ReactComponent as Like } from "../../../assets/DECO_Like.svg";
 import emptyPicture from "../../../assets/empty_picture.png";
 
@@ -35,6 +36,7 @@ const DetailPage = () => {
         <span>#React</span>
       </div>
       <Like className={like} />
+      <QuestionAnswer />
     </div>
   );
 };
