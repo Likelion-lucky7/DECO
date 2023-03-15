@@ -3,20 +3,38 @@
   min-width: 1000px;
   margin: 0 auto;
 }
-
+.a11yhidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.titleBox {
+  position: relative;
+}
 .titleInput {
   margin-top: 45px;
-  width: 1069px;
+  width: 1024px;
   height: 53px;
   border: 1px solid #888888;
   border-radius: 8px;
-  padding: 0px 33px;
+  padding: 0px 78px 0 33px;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
 }
 .titleInput::placeholder {
   color: #a6a6a6;
+}
+
+.titleCount {
+  position: absolute;
+  top: 60%;
+  right: 90px;
+  color: #888888;
+  width: 45px;
+  height: 35px;
 }
 
 .description {
@@ -39,11 +57,7 @@
 .descriptionInput::placeholder {
   color: #a6a6a6;
 }
-.descriptionInput:focus {
-  outline: none;
-}
 .inputButton {
-  color: transparent;
   display: inline-block;
   width: auto;
   margin: 57px 0 0 0;
@@ -74,9 +88,6 @@ input[type="date"] {
     16px center / 25px auto;
   padding-left: 16px;
 }
-input:focus {
-  outline: none;
-}
 
 input[type="date"]::-webkit-clear-button,
 input[type="date"]::-webkit-inner-spin-button {
@@ -102,7 +113,6 @@ input[type="date"]:valid::before {
   display: none;
 }
 
-/* 날짜 */
 .dateInput {
   width: 291px;
   height: 53px;
@@ -111,9 +121,17 @@ input[type="date"]:valid::before {
   border-radius: 8px;
 }
 
-.dropButton {
-  position: relative;
-  display: inline-block;
+select::-ms-expand {
+  display: none;
+}
+.member {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.member {
   width: 92px;
   height: 53px;
   background: #ffffff url("../../assets/sideproject/down_arrow_icon.png")
@@ -124,36 +142,14 @@ input[type="date"]:valid::before {
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  text-indent: -15px;
 }
-
-.dropdownContent {
-  display: none;
-  position: absolute;
-  width: 92px;
-  z-index: 1;
-  background-color: #ffffff;
-
-  border: 1px solid #888888;
-  border-radius: 8px;
- 
-}
-
-.dropdownContent a {
-  color: black;
-  text-decoration: none;
+.member option {
   display: block;
   font-weight: 700;
   font-size: 16px;
   height: 40px;
-  line-height: 40px; 
+  line-height: 40px;
   text-align: center;
-  /* text-indent: 30px; */
-}
-
-.dropdown:hover .dropdownContent {
-  display: block;
-
 }
 
 input[type="checkbox"],
@@ -198,6 +194,6 @@ input[type="radio"]:checked + label {
   background: url("../../assets/sideproject/등록버튼.png") no-repeat 50% 20%;
 }
 
-.submitButton:hover{
+.submitButton:hover {
   background: url("../../assets/sideproject/등록버튼.png") no-repeat 50% 80%;
 }
