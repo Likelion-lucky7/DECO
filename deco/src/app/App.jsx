@@ -11,7 +11,8 @@ import styles from "./App.module.css";
 import LoginPage from "@/pages/LoginPage";
 import QuestionDetail from "@/components/QuestionPage/QuestionDetail";
 import CommunityDetail from "@/components/CommunityPage/CommunityDetail";
-import SideProjectDetail from "@/components/SideProjectPage/SideProjectDetail";
+// import SideProjectDetail from "@/components/SideProjectPage/SideProjectDetail";
+import SideProjectDetailPage from "@/pages/SideProjectDetailPage";
 import QuestionWrite from "@/components/QuestionPage/QuestionWrite";
 import CommunityWrite from "@/components/CommunityPage/CommunityWrite";
 import SideProjectWrite from "@/components/SideProjectPage/SideProjectWrite";
@@ -33,7 +34,8 @@ function App() {
         <Route path="/community/:id" element={<CommunityDetail />} />
         <Route path="/community/write" element={<CommunityWrite />} />
         <Route path="/sideproject" element={<SideProjectPage />} />
-        <Route path="/sideproject/:id" element={<SideProjectDetail />} />
+        {/* <Route path="/sideproject/:id" element={<SideProjectDetail />} /> */}
+        <Route path="/sideproject/:id" element={<SideProjectDetailPage />} />
         <Route path="/sideproject/write" element={<SideProjectWrite />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
