@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
 import QuestionAnswer from "@/components/QuestionPage/QuestionAnswer/QuestionAnswer";
+import AnswerEditor from "../AnswerEditor/AnswerEditor";
 import Like from "@/assets/likeActivate.png";
 import emptyPicture from "@/assets/empty_picture.png";
 
@@ -37,6 +38,7 @@ const DetailPage = () => {
       </div>
       <img src={Like} alt="likeButton" className={like} />
       <QuestionAnswer />
+      <AnswerEditor />
     </div>
   );
 };
