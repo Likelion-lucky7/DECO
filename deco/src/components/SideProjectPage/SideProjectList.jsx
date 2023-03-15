@@ -1,6 +1,8 @@
 import React from "react";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
+import SideProjectCard from "./SideProjectCard";
+import styles from "./SideProjectList.module.css";
 
 const SideProjectList = () => {
   return (
@@ -12,6 +14,11 @@ const SideProjectList = () => {
         path="/sideproject/write"
       />
       <Category category1="프론트엔드" category2="백엔드" />
+      <div className={styles.container}>
+        <SideProjectCard />
+        <SideProjectCard />
+        <SideProjectCard />
+      </div>
     </>
   );
 };
