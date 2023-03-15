@@ -1,48 +1,82 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SideProjectDetail.module.css";
 import Tag from "@/components/SideProjectPage/Tag";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const SideProjectDetail = () => {
-
+  let id = useParams();
+  let [props, setProps] = useState("");
+  const getData = async () => {
+    let response = await axios.get(`http://localhost:3001/contents/${id.id}`);
+    let data = response.data;
+    setProps(data);
+  };
+  let {
+    title,
+    description,
+    user,
+    date,
+    period,
+    status,
+    skill,
+    member,
+    role,
+    uploadImage,
+  } = props;
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className={styles.container}>
       <div className={styles.contentBox}>
+        {/* < A11yHidden as="h1" value="게시글 상세페이지" /> */}
         <h1 className={styles.a11yhidden}>게시글 상세페이지</h1>
         <ul>
           <li>
-            <h2 className={styles.title}>타이틀</h2>
+            <h2 className={styles.title}>{title}</h2>
           </li>
           <li className={styles.userBox}>
-            <img src="" alt="" />
-            <h2>닉네임</h2>
-            <p>이메일</p>
+            <img src={user?.image} alt="" />
+            <h2>{user?.nickname}</h2>
+            <p>{user?.email}</p>
           </li>
           <li className={styles.descriptionBox}>
             <h2>프로젝트 소개</h2>
-            <p className={styles.description}>글내용입니다. 글내용입니다</p>
+            <p className={styles.description}>{description}</p>
           </li>
           <li className={styles.imageBox}>
             <h2 className={styles.a11yhidden}>이미지</h2>
-            <img src="" alt="" />
+            {uploadImage?.map((item, index) => {
+              return <img key={index} src={item} alt="하하" />;
+            })}
           </li>
           <li className={styles.dateBox}>
             <h2>모집 마감</h2>
+            <Tag item={date} />
           </li>
           <li className={styles.memberBox}>
             <h2>모집 인원</h2>
+            <Tag item={member} />
           </li>
           <li className={styles.roleBox}>
             <h2>모집역할</h2>
+            {role?.map((item, index) => {
+              return <Tag key={index} item={item} />;
+            })}
           </li>
           <li className={styles.periodBox}>
             <h2>목표기간</h2>
+            <Tag item={period} />
           </li>
           <li className={styles.statusBox}>
             <h2>진행현황</h2>
+            <Tag item={status} />
           </li>
           <li className={styles.skillBox}>
             <h2>사용기술</h2>
+            
           </li>
         </ul>
         <div className={styles.like}>
@@ -55,4 +89,4 @@ const SideProjectDetail = () => {
   );
 };
 
-export default SideProjectDetail;
+export default SideProjectDetail
