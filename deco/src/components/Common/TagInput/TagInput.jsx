@@ -1,13 +1,23 @@
 import { bool, string } from "prop-types";
 import styles from "./TagInput.module.css";
 
-const TagInput = () => {
+const TagInput = ({ isQuestion }) => {
   return (
-    <input
-      type="text"
-      placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 5개까지)"
-      className={styles.tag}
-    />
+    <div>
+      {isQuestion ? (
+        <input
+          type="text"
+          placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 5개까지)"
+          className={styles.tag_question}
+        />
+      ) : (
+        <input
+          type="text"
+          placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 5개까지)"
+          className={styles.tag}
+        />
+      )}
+    </div>
   );
 };
 

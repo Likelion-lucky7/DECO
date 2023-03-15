@@ -33,8 +33,8 @@ const QuestionWrite = () => {
           <option value="skill">기술</option>
           <option value="career">커리어</option>
         </select>
-        <WriteInput />
-        <TagInput />
+        <WriteInput isQuestion={true} />
+        <TagInput isQuestion={true} />
         <FileUpload isSignUp={false} />
       </div>
     </div>
