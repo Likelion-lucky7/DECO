@@ -1,0 +1,12 @@
+.container {
+  background: #f1f3f5;
+}
+.inner {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.mainBanner {
+  width: 100%;
+  padding: 10rem 0;
+}
