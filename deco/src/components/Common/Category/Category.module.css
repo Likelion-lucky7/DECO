@@ -1,0 +1,16 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 31px 0;
+  border-bottom: 1px solid var(--gray-300);
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  width: 375px;
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-md);
+  font-weight: 600;
+}

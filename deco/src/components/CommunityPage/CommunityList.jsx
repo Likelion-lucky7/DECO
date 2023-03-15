@@ -1,5 +1,5 @@
 import React from "react";
-import BoardBanner from "../Common/BoardBanner";
+import BoardBanner from "../Common/BoardBanner/BoardBanner";
 
 const CommunityList = () => {
   return (

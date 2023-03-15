@@ -1,15 +1,19 @@
 .container {
-  max-width: 100%;
-  min-width: 62.5%;
+  width: 100%;
   height: 130px;
   background-color: var(--secondary);
+}
+
+.inner {
+  box-sizing: border-box;
+  width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  box-sizing: border-box;
 }
 
 .mainBanner {
-  margin: 1.875rem 0 1.875rem 24.375rem;
+  margin: 1.875rem 0;
 }
 
 .mainBanner h2 {
@@ -31,7 +35,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 24.375rem 2rem 0;
+  margin: 2rem 0;
   width: 131px;
   height: 66px;
   background-color: var(--white);

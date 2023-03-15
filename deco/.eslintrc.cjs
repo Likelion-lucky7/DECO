@@ -34,13 +34,13 @@ module.exports = {
     'jsx-a11y/anchor-has-content': [
       'warn',
       {
-        components: ['Link'],
+        // components: ['Link'],
       },
     ],
     'jsx-a11y/anchor-is-valid': [
       'warn',
       {
-        components: ['Link'],
+        // components: ['Link'],
       },
     ],
     // 자식이 없는 구성 요소에 대해 추가 닫는 태그를 허용하지 않음
