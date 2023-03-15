@@ -3,6 +3,10 @@ import styles from "./SideProjectDetail.module.css";
 import Tag from "@/components/SideProjectPage/Tag";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { ReactComponent as ReactIcon } from "@/assets/sideproject/react.svg";
+import { ReactComponent as TypeScriptIcon } from "@/assets/sideproject/ts.svg";
+import { ReactComponent as JavaScriptIcon } from "@/assets/sideproject/js.svg";
+import { ReactComponent as FigmaIcon } from "@/assets/sideproject/figma.svg";
 
 const SideProjectDetail = () => {
   let id = useParams();
@@ -27,6 +31,7 @@ const SideProjectDetail = () => {
   useEffect(() => {
     getData();
   }, []);
+
 
   return (
     <div className={styles.container}>
@@ -76,7 +81,18 @@ const SideProjectDetail = () => {
           </li>
           <li className={styles.skillBox}>
             <h2>사용기술</h2>
-            
+            {skill?.indexOf("js") === -1 ||skill?.indexOf("js")===undefined  ? null : (
+              <JavaScriptIcon className={styles.skillIcon} />
+            )}
+            {skill?.indexOf("ts") === -1 ||skill?.indexOf("ts")===undefined ? null : (
+              <TypeScriptIcon className={styles.skillIcon} />
+            )}
+            {skill?.indexOf("react") === -1||skill?.indexOf("react")===undefined ? null : (
+              <ReactIcon className={styles.skillIcon} />
+            )}
+            {skill?.indexOf("figma") === -1 ||skill?.indexOf("figma")===undefined ? null : (
+              <FigmaIcon className={styles.skillIcon} />
+            )}
           </li>
         </ul>
         <div className={styles.like}>
