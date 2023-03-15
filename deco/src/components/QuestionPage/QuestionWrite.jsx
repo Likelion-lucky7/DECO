@@ -2,6 +2,7 @@ import WriteInput from "@/components/Common/WriteInput/WriteInput";
 import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import TagInput from "@/components/Common/TagInput/TagInput";
 import styles from "./QuestionWrite.module.css";
+import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 
 const QuestionWrite = () => {
   return (
@@ -25,6 +26,7 @@ const QuestionWrite = () => {
           <br /> 👍🏻 다른 사람들이 질문의 내용을 빨리 파악하는데 도움을 줍니다.{" "}
         </p>
       </div>
+
       <div>
         <select name="" id="" className={styles.select}>
           <option value="" defaultValue="토픽 선택">
@@ -33,9 +35,13 @@ const QuestionWrite = () => {
           <option value="skill">기술</option>
           <option value="career">커리어</option>
         </select>
+
         <WriteInput isQuestion={true} />
         <TagInput isQuestion={true} />
-        <FileUpload isSignUp={false} />
+        <div className={styles.rowButton}>
+          <FileUpload isSignUp={false} />
+          <SubmitButton title="등록" writeButton={true} />
+        </div>
       </div>
     </div>
   );

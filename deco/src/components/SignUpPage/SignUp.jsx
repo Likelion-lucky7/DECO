@@ -31,7 +31,7 @@ const SignUp = () => {
         />
         <FormInput name="nickname" label="닉네임" placeholder="닉네임 입력" />
 
-        <SubmitButton props="회원가입" />
+        <SubmitButton title="회원가입" writeButton={false} />
       </form>
     </div>
   );
