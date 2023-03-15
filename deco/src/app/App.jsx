@@ -34,7 +34,7 @@ function App() {
         <Route path="/community/write" element={<CommunityWrite />} />
         <Route path="/sideproject" element={<SideProjectPage />} />
         <Route path="/sideproject/:id" element={<SideProjectDetail />} />
-        <Route path="/sideproject/wrtie" element={<SideProjectWrite />} />
+        <Route path="/sideproject/write" element={<SideProjectWrite />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </div>
