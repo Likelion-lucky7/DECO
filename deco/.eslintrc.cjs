@@ -34,7 +34,7 @@ module.exports = {
     "jsx-a11y/anchor-has-content": [
       "warn",
       {
-        // components: ['Link'],
+        // components: ["Link"],
       },
     ],
     "jsx-a11y/anchor-is-valid": [

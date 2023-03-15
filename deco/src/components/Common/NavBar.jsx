@@ -1,37 +1,37 @@
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { ReactComponent as Logo } from "@/assets/DECO_Logo.svg";
+import A11yHidden from "./A11yHidden/A11yHidden";
 
 const NavBar = () => {
   return (
     <>
       <header className={styles.header}>
         <div className={styles.inner}>
-          <h1>
-            <Link to="/">
-              <Logo className={styles.logo} />
-            </Link>
-          </h1>
+          <A11yHidden as="h1">로고</A11yHidden>
+          <Link to="/">
+            <Logo className={styles.logo} />
+          </Link>
 
           <div className={styles.container}>
             <ul className={styles.navigation}>
               <li className={styles.question}>
-                <Link to="/">묻고 답하기</Link>
+                <Link to="/question">묻고 답하기</Link>
               </li>
               <li className={styles.community}>
-                <Link to="/">커뮤니티</Link>
+                <Link to="/community">커뮤니티</Link>
               </li>
               <li className={styles.sideProject}>
-                <Link to="/">사이드 프로젝트</Link>
+                <Link to="/sideproject">사이드 프로젝트</Link>
               </li>
             </ul>
 
             <ul className={styles.account}>
               <li className={styles.login}>
-                <Link to="/">로그인</Link>
+                <Link to="/login">로그인</Link>
               </li>
               <li className={styles.join}>
-                <Link to="/">회원가입</Link>
+                <Link to="/signup">회원가입</Link>
               </li>
             </ul>
           </div>
