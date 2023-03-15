@@ -1,10 +1,18 @@
 import styles from "./SubmitButton.module.css";
 
-const SubmitButton = ({ props }) => {
+const SubmitButton = ({ writeButton, title }) => {
   return (
-    <div className={styles.container}>
-      <button className={styles.button}>{props}</button>
-    </div>
+    <>
+      {writeButton ? (
+        <div className={styles.container_writeButton}>
+          <button className={styles.button_writeButton}>{title}</button>
+        </div>
+      ) : (
+        <div className={styles.container}>
+          <button className={styles.button}>{title}</button>
+        </div>
+      )}
+    </>
   );
 };
 
