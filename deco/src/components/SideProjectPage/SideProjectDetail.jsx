@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SideProjectDetail.module.css";
+import Tag from "@/components/SideProjectPage/Tag";
 
 const SideProjectDetail = () => {
 

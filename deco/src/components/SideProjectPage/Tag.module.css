@@ -1,0 +1,13 @@
+.container {
+  display:  inline-block;
+  margin-right: 5px;
+  background-color: var(--secondary);
+  width: fit-content;
+  padding:6px 8px;
+  border-radius: 4px;
+  color:white;
+height: 15px;
+font-weight: 600;
+font-size: 12px;
+line-height: 15px
+}
