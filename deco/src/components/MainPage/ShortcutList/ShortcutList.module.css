@@ -1,7 +1,6 @@
 .container {
   width: 1200px;
   margin: 0 auto;
-  /* background-color: red; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -10,26 +9,22 @@
 .listWrap {
   width: 30%;
   text-align: center;
-  padding-bottom: 160px;
-  /* background-color: orange; */
+  padding-bottom: 10rem;
 }
 
 .iconBox {
-  /* background-color: red; */
   width: 100%;
   display: block;
 }
 
 .title {
-  font-size: 24px;
+  font-size: var(--text-xl);
   font-weight: 600;
-  padding-top: 40px;
+  padding-top: 2.5rem;
 }
 
 .description {
-  /* background-color: lime; */
-  padding: 30px 0;
-  white-space: pre-wrap;
-  font-size: 18px;
+  padding: 1.875rem 0;
+  font-size: var(--text-md);
   line-height: 1.6;
 }
