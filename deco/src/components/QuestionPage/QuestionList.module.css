@@ -1,6 +1,4 @@
-.hashTagContainer {
-  margin: 0 auto;
+.hashtagContainer {
+  margin: 0 auto 10px auto;
   width: 379px;
-  display: flex;
-  gap: 6px;
 }

@@ -1,6 +1,7 @@
 import React from "react";
+import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
-import HashTag from "../Common/HashTag/HashTag";
+import Hashtag from "../Common/Hashtag/Hashtag";
 import SearchForm from "../Common/SearchForm/SearchForm";
 import Sort from "../Common/Sort/Sort";
 import styles from "./CommunityList.module.css";
@@ -15,12 +16,13 @@ const CommunityList = () => {
         path="/community/write"
       />
       <SearchForm />
-      <div className={styles.hashTagContainer}>
-        <HashTag content="React" />
-        <HashTag content="JavaScript" />
-        <HashTag content="HTML " />
+      <div className={styles.hashtagContainer}>
+        <Hashtag content="React" />
+        <Hashtag content="JavaScript" />
+        <Hashtag content="HTML " />
       </div>
       <Sort />
+      <Article title="안녕하세요 저희 최종 프로젝트 완료했어요! 어떤가요?" />
     </>
   );
 };

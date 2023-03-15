@@ -1,7 +1,7 @@
 import React from "react";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
-import HashTag from "../Common/HashTag/HashTag";
+import Hashtag from "../Common/Hashtag/Hashtag";
 import SearchForm from "../Common/SearchForm/SearchForm";
 import Sort from "../Common/Sort/Sort";
 import SideProjectCard from "./SideProjectCard";
@@ -18,10 +18,10 @@ const SideProjectList = () => {
       />
       <Category category1="프론트엔드" category2="백엔드" />
       <SearchForm />
-      <div className={styles.hashTagContainer}>
-        <HashTag content="React" />
-        <HashTag content="JavaScript" />
-        <HashTag content="HTML " />
+      <div className={styles.hashtagContainer}>
+        <Hashtag content="React" />
+        <Hashtag content="JavaScript" />
+        <Hashtag content="HTML " />
       </div>
       <Sort />
       <div className={styles.container}>

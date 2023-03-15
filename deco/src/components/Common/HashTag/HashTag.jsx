@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./HashTag.module.css";
+import styles from "./Hashtag.module.css";
 
-const HashTag = ({ contentPath = "/", content = "" }) => {
+const Hashtag = ({ contentPath = "/", content = "" }) => {
   return (
     <Link className={styles.hashtag} to={contentPath}>
       &#35;{content}
@@ -10,4 +10,4 @@ const HashTag = ({ contentPath = "/", content = "" }) => {
   );
 };
 
-export default HashTag;
+export default Hashtag;

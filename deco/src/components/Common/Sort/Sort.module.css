@@ -1,6 +1,6 @@
 .container {
   width: 1200px;
-  margin: 0 auto 31px auto;
+  margin: 0 auto;
   display: flex;
   justify-content: end;
   padding-bottom: 15px;

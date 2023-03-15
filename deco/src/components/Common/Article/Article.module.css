@@ -1,0 +1,67 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 31px 17px 31px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.375rem;
+  font-size: var(--text-sm);
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.userAndDate {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  color: var(--gray-400);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.userInfo svg {
+  width: 36px;
+  height: 36px;
+}
+
+.container h2 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.hashAndAdditionalInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hash {
+  display: flex;
+  align-items: center;
+}
+
+.hash a {
+  display: block;
+}
+
+.AdditionalInfo {
+  display: flex;
+  align-items: center;
+  font-size: var(--text-sm);
+  gap: 5px;
+}
+
+.midpoint {
+  margin: 0 5px;
+}
+
+.AdditionalInfo img{
+  width: 20px;
+  height: 20px;
+}

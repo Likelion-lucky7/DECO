@@ -43,6 +43,7 @@
   border: none;
   font-size: var(--text-md);
   line-height: 21.78px;
+  color: #333333;
 }
 
 .write svg{
