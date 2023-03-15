@@ -2,6 +2,7 @@ import React from "react";
 import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Hashtag from "../Common/Hashtag/Hashtag";
+import Pagination from "../Common/Pagination/Pagination";
 import SearchForm from "../Common/SearchForm/SearchForm";
 import Sort from "../Common/Sort/Sort";
 import styles from "./CommunityList.module.css";
@@ -23,6 +24,7 @@ const CommunityList = () => {
       </div>
       <Sort />
       <Article title="안녕하세요 저희 최종 프로젝트 완료했어요! 어떤가요?" />
+      <Pagination />
     </>
   );
 };

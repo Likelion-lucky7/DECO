@@ -2,6 +2,7 @@ import React from "react";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
 import Hashtag from "../Common/Hashtag/Hashtag";
+import Pagination from "../Common/Pagination/Pagination";
 import SearchForm from "../Common/SearchForm/SearchForm";
 import Sort from "../Common/Sort/Sort";
 import SideProjectCard from "./SideProjectCard";
@@ -29,6 +30,7 @@ const SideProjectList = () => {
         <SideProjectCard />
         <SideProjectCard />
       </div>
+      <Pagination />
     </>
   );
 };

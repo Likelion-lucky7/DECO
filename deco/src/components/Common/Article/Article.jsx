@@ -4,6 +4,7 @@ import Hashtag from "../Hashtag/Hashtag";
 import QuestionCategory from "@/components/QuestionPage/QuestionCategory";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { ReactComponent as LoveIcon } from "@/assets/loveIcon.svg";
+import { Link } from "react-router-dom";
 
 const Article = ({ title = "" }) => {
   return (
@@ -15,7 +16,9 @@ const Article = ({ title = "" }) => {
         </div>
         <div className={styles.date}>작성일 2023.03.11</div>
       </div>
-      <h2>{title}</h2>
+      <h2>
+        <Link to="">{title}</Link>
+      </h2>
       <div className={styles.hashAndAdditionalInfo}>
         <div className={styles.hash}>
           <QuestionCategory categoryName="기술" />

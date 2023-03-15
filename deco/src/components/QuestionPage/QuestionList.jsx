@@ -3,6 +3,7 @@ import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
 import Hashtag from "../Common/Hashtag/Hashtag";
+import Pagination from "../Common/Pagination/Pagination";
 import SearchForm from "../Common/SearchForm/SearchForm";
 import Sort from "../Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
@@ -25,6 +26,7 @@ const QuestionList = () => {
       </div>
       <Sort />
       <Article title="redux와 recoil의 차이가 무엇인가요?" />
+      <Pagination />
     </>
   );
 };
