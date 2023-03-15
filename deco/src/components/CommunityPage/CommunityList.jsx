@@ -1,6 +1,8 @@
 import React from "react";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
+import HashTag from "../Common/HashTag/HashTag";
 import SearchForm from "../Common/SearchForm/SearchForm";
+import styles from "./CommunityList.module.css";
 
 const CommunityList = () => {
   return (
@@ -12,6 +14,11 @@ const CommunityList = () => {
         path="/community/write"
       />
       <SearchForm />
+      <div className={styles.hashTagContainer}>
+        <HashTag content="React" />
+        <HashTag content="JavaScript" />
+        <HashTag content="HTML " />
+      </div>
     </>
   );
 };
