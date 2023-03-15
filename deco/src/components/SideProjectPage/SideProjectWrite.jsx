@@ -5,7 +5,10 @@ import { ReactComponent as JavascriptIcon } from "../../assets/sideproject/js.sv
 import { ReactComponent as TypescriptIcon } from "../../assets/sideproject/ts.svg";
 import { ReactComponent as FigmaIcon } from "../../assets/sideproject/figma.svg";
 const SideProjectWrite = () => {
-
+  let [titleLength, setTitleLength] = useState(0);
+  const titleCount = (e) => {
+    setTitleLength(e.target.value.length);
+  };
   return (
     <form
       onSubmit={(e) => {
@@ -29,9 +32,11 @@ const SideProjectWrite = () => {
                 maxLength="100"
                 required
                 tabIndex="0"
- 
+                onChange={(e) => {
+                  titleCount(e);
+                }}
               />
-              <div className={styles.titleCount}>0/100</div>
+              <div className={styles.titleCount}>{titleLength}/100</div>
             </div>
           </li>
           <li>
