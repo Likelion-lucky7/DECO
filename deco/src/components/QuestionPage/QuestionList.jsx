@@ -1,6 +1,7 @@
 import React from "react";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
+import SearchForm from "../Common/SearchForm/SearchForm";
 
 const QuestionList = () => {
   return (
@@ -12,6 +13,7 @@ const QuestionList = () => {
         path="/question/write"
       />
       <Category category1="기술" category2="커리어" />
+      <SearchForm />
     </>
   );
 };
