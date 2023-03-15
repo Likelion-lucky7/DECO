@@ -3,6 +3,7 @@ import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
 import HashTag from "../Common/HashTag/HashTag";
 import SearchForm from "../Common/SearchForm/SearchForm";
+import Sort from "../Common/Sort/Sort";
 import SideProjectCard from "./SideProjectCard";
 import styles from "./SideProjectList.module.css";
 
@@ -22,6 +23,7 @@ const SideProjectList = () => {
         <HashTag content="JavaScript" />
         <HashTag content="HTML " />
       </div>
+      <Sort />
       <div className={styles.container}>
         <SideProjectCard />
         <SideProjectCard />

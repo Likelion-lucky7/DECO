@@ -3,6 +3,7 @@ import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
 import HashTag from "../Common/HashTag/HashTag";
 import SearchForm from "../Common/SearchForm/SearchForm";
+import Sort from "../Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
@@ -21,6 +22,7 @@ const QuestionList = () => {
         <HashTag content="JavaScript" />
         <HashTag content="HTML " />
       </div>
+      <Sort />
     </>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import HashTag from "../Common/HashTag/HashTag";
 import SearchForm from "../Common/SearchForm/SearchForm";
+import Sort from "../Common/Sort/Sort";
 import styles from "./CommunityList.module.css";
 
 const CommunityList = () => {
@@ -19,6 +20,7 @@ const CommunityList = () => {
         <HashTag content="JavaScript" />
         <HashTag content="HTML " />
       </div>
+      <Sort />
     </>
   );
 };
