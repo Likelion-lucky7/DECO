@@ -1,0 +1,31 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.listWrap {
+  width: 30%;
+  text-align: center;
+  padding-bottom: 10rem;
+}
+
+.iconBox {
+  width: 100%;
+  display: block;
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  padding-top: 2.5rem;
+}
+
+.description {
+  padding: 1.875rem 0;
+  font-size: var(--text-md);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}

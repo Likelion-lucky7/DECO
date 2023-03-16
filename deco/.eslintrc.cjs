@@ -5,40 +5,40 @@ module.exports = {
     node: true,
   },
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-    'plugin:jsx-a11y/recommended',
-    'prettier',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier",
   ],
   overrides: [],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
-  plugins: ['react', 'react-hooks', 'jsx-a11y'],
+  plugins: ["react", "react-hooks", "jsx-a11y"],
   rules: {
-    'no-unused-vars': 'warn',
-    'react/prop-types': 'off',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': [
-      'warn',
+    "no-unused-vars": "warn",
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "warn",
       {
         additionalHooks: "useRecoilCallback", // recoil 쓰면 추가
       },
     ],
-    'jsx-a11y/anchor-has-content': [
-      'warn',
+    "jsx-a11y/anchor-has-content": [
+      "warn",
       {
-        // components: ['Link'],
+        // components: ["Link"],
       },
     ],
-    'jsx-a11y/anchor-is-valid': [
-      'warn',
+    "jsx-a11y/anchor-is-valid": [
+      "warn",
       {
         // components: ['Link'],
       },
