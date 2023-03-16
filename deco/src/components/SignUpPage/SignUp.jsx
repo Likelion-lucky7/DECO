@@ -1,9 +1,9 @@
 import WelcomeInfo from "@/components/Common/WelcomeInfo/WelcomeInfo";
 import FormInput from "@/components/Common/FormInput/FormInput";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
+import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import styles from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
-import { ReactComponent as FileUpload } from "../../assets/file_upload.svg";
 
 const SignUp = () => {
   return (
@@ -14,17 +14,7 @@ const SignUp = () => {
       <p className={styles.profile_info}>이미지를 설정해주세요 !</p>
 
       <form className={styles.form}>
-        <label htmlFor="file" className={styles.profile_label}>
-          <FileUpload className={styles.profile_image} /> 파일 업로드
-        </label>
-
-        <input
-          id="file"
-          type="file"
-          accept="image/jpg, image/png, image/jpeg"
-          name="profile"
-          className={styles.profile_form}
-        />
+        <FileUpload isSignUp={true} />
 
         <FormInput name="id" label="아이디" placeholder="아이디 입력" />
         <FormInput
@@ -41,7 +31,7 @@ const SignUp = () => {
         />
         <FormInput name="nickname" label="닉네임" placeholder="닉네임 입력" />
 
-        <SubmitButton props="회원가입" />
+        <SubmitButton title="회원가입" writeButton={false} />
       </form>
     </div>
   );

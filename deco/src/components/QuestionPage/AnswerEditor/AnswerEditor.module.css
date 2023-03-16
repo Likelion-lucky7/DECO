@@ -1,0 +1,64 @@
+h2{
+  margin-top: 50px;
+}
+
+.editorBox{
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 27px;
+  margin-top: 22px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.nickName {
+  display: inline-block;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  position: relative;
+  bottom: 4px;
+  transform: translateY(-50%);
+}
+
+.profileImege {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-top: 2px;
+  margin-right: 17px;
+}
+
+.answer {
+  margin: 25px 45px 45px 42px;
+}
+
+.buttonWrapper {
+  position: absolute;
+  top: 66px;
+  right: 27px;
+  background-color: var(--white);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 17px;
+  font-size: var(--text-sm);
+  font-weight: 700;
+
+}
+
+.buttonWrapper button {
+  display: flex;
+  border: none;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  background-color: var(--white);
+}
+
+.buttonWrapper button:first-child{
+  margin-bottom: 17px;
+}
+
+.dotThree {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}

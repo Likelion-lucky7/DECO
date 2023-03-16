@@ -1,0 +1,23 @@
+/* isQuestion = false */
+.tag {
+  width: 1170px;
+  height: 50px;
+  border: 1px solid var(--gray-300);
+  border-radius: 5px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  padding-left: 17px;
+  color: #333333;
+}
+
+/* isQuestion = true */
+.tag_question {
+  width: 760px;
+  height: 50px;
+  border: 1px solid var(--gray-300);
+  border-radius: 5px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  padding-left: 17px;
+  color: #333333;
+}

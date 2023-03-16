@@ -9,7 +9,7 @@ import NotFoundPage from "../pages/NotFoundPage";
 import NavBar from "@/components/Common/NavBar";
 import styles from "./App.module.css";
 import LoginPage from "@/pages/LoginPage";
-import QuestionDetail from "@/components/QuestionPage/QuestionDetail";
+import QuestionDetail from "@/components/QuestionPage/QuestionDetail/QuestionDetail";
 import CommunityDetail from "@/components/CommunityPage/CommunityDetail";
 import SideProjectDetail from "@/components/SideProjectPage/SideProjectDetail";
 import QuestionWrite from "@/components/QuestionPage/QuestionWrite";
