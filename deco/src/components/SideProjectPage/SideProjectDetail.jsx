@@ -13,7 +13,7 @@ const SideProjectDetail = () => {
   let [props, setProps] = useState("");
   const getData = async () => {
     let response = await axios.get(`http://localhost:3001/contents/${id.id}`);
-    let data = response.data;
+    let data = await response.data;
     setProps(data);
   };
   let {
