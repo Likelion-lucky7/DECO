@@ -1,10 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
-import QuestionAnswer from "@/components/QuestionPage/QuestionAnswer/QuestionAnswer";
-import AnswerEditor from "../AnswerEditor/AnswerEditor";
 import Like from "@/assets/likeActivate.svg";
 import emptyPicture from "@/assets/empty_picture.png";
+import Comment from "@/components/Common/Comment/Comment";
 
 const {
   container,
@@ -20,7 +19,7 @@ const {
 
 const DetailPage = () => {
   let id = useParams();
-  console.log(id);
+  // console.log(id);
   return (
     <div className={container}>
       <span className={topic}>기술</span>
@@ -49,8 +48,7 @@ const DetailPage = () => {
       <button className={like}>
         <img src={Like} alt="하트" />
       </button>
-      <QuestionAnswer />
-      <AnswerEditor />
+      <Comment />
     </div>
   );
 };

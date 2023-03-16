@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "./QuestionAnswer.module.css";
+import Styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css";
 
 // const [] = Styles;
 
