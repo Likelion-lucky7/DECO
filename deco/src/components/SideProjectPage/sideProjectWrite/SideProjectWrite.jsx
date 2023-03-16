@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import styles from "./SideProjectWrite.module.css";
-import { ReactComponent as ReactIcon } from "../../assets/sideproject/react.svg";
-import { ReactComponent as JavascriptIcon } from "../../assets/sideproject/js.svg";
-import { ReactComponent as TypescriptIcon } from "../../assets/sideproject/ts.svg";
-import { ReactComponent as FigmaIcon } from "../../assets/sideproject/figma.svg";
+import styles from "@/components/SideProjectPage/sideProjectWrite/SideProjectWrite.module.css";
+import { ReactComponent as ReactIcon } from "@/assets/sideproject/react.svg";
+import { ReactComponent as JavascriptIcon } from "@/assets/sideproject/js.svg";
+import { ReactComponent as TypescriptIcon } from "@/assets/sideproject/ts.svg";
+import { ReactComponent as FigmaIcon } from "@/assets/sideproject/figma.svg";
+import FileUpload from "@/components/Common/FileUpload/FileUpload";
+import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 const SideProjectWrite = () => {
   let [titleLength, setTitleLength] = useState(0);
   const titleCount = (e) => {
@@ -29,7 +31,7 @@ const SideProjectWrite = () => {
                 type="text"
                 className={styles.titleInput}
                 placeholder="제목을 입력해주세요."
-                maxLength="100"
+                maxLength="99"
                 required
                 tabIndex="0"
                 onChange={(e) => {
@@ -41,7 +43,6 @@ const SideProjectWrite = () => {
           </li>
           <li>
             <div className={styles.descriptionBox}>
-              <h2 className={styles.description}>프로젝트 소개</h2>
               <textarea
                 id=""
                 cols="30"
@@ -53,10 +54,9 @@ const SideProjectWrite = () => {
             </div>
           </li>
           <li>
-            <label htmlFor="input-file" className={styles.inputButton}>
-              <h2 className={styles.a11yhidden}>업로드</h2>
-            </label>
-            <input type="file" id="input-file" className={styles.uploadInput} />
+          <div htmlFor="input-file" className={styles.inputButton}>
+          <FileUpload isSignUp={false} />
+            </div>
           </li>
           <li>
             <div className={styles.dateBox}>
@@ -80,6 +80,9 @@ const SideProjectWrite = () => {
               <option value="1">1명</option>
               <option value="2">2명</option>
               <option value="3">3명</option>
+              <option value="4">4명</option>
+              <option value="5">5명</option>
+              <option value="6명이상">6명이상</option>
             </select>
           </li>
           <li>
@@ -148,10 +151,9 @@ const SideProjectWrite = () => {
             </div>
           </li>
         </ul>
-
-        <button type="submit" className={styles.submitButton}>
-          등록
-        </button>
+        <div className={styles.submitButton}>
+          <SubmitButton title="등록" writeButton={true} />
+        </div>
       </fieldset>
     </form>
   );

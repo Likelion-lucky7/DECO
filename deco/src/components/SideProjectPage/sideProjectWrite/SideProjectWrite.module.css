@@ -26,6 +26,9 @@
 }
 .titleInput::placeholder {
   color: #a6a6a6;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
 }
 
 .titleCount {
@@ -37,13 +40,6 @@
   height: 35px;
 }
 
-.description {
-  margin: 39px 0;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
-}
-
 .descriptionInput {
   width: 1069px;
   height: 356px;
@@ -53,22 +49,20 @@
   line-height: 24px;
   resize: none;
   border-radius: 8px;
+  margin-top: 23px;
 }
 .descriptionInput::placeholder {
   color: #a6a6a6;
+  font-weight: 500;
+font-size: 20px;
+line-height: 24px;
 }
 .inputButton {
   display: inline-block;
   width: auto;
   margin: 57px 0 0 0;
-  width: 185px;
-  height: 44px;
-  background: url("../../assets/sideproject/uploadButton.png") no-repeat;
-  cursor: pointer;
 }
-.uploadInput {
-  display: none;
-}
+
 .date,
 .people,
 .status,
@@ -82,19 +76,19 @@
   line-height: 29px;
 }
 
-input[type="date"] {
+.container input[type="date"] {
   position: relative;
-  background: url("../../assets/sideproject/calendar_icon.png") no-repeat right
+  background: url("@/assets/sideproject/calendar_icon.png") no-repeat right
     16px center / 25px auto;
   padding-left: 16px;
 }
 
-input[type="date"]::-webkit-clear-button,
-input[type="date"]::-webkit-inner-spin-button {
+.container input[type="date"]::-webkit-clear-button,
+.container input[type="date"]::-webkit-inner-spin-button {
   display: none;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+.container input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   left: 0;
   top: 0;
@@ -105,11 +99,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-input[type="date"]::before {
+.container input[type="date"]::before {
   content: attr(data-placeholder);
   width: 100%;
 }
-input[type="date"]:valid::before {
+.container input[type="date"]:valid::before {
   display: none;
 }
 
@@ -121,7 +115,7 @@ input[type="date"]:valid::before {
   border-radius: 8px;
 }
 
-select::-ms-expand {
+.container select::-ms-expand {
   display: none;
 }
 .member {
@@ -134,7 +128,7 @@ select::-ms-expand {
 .member {
   width: 92px;
   height: 53px;
-  background: #ffffff url("../../assets/sideproject/down_arrow_icon.png")
+  background: #ffffff url("@/assets/sideproject/down_arrow_icon.png")
     no-repeat;
   background-position: 80% 50%;
   border: 1px solid #888888;
@@ -152,19 +146,19 @@ select::-ms-expand {
   text-align: center;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+.container input[type="checkbox"],
+.container input[type="radio"] {
   display: none;
 }
 
-input[type="checkbox"] + label,
-input[type="radio"] + label {
+.container input[type="checkbox"] + label,
+.container input[type="radio"] + label {
   display: inline-block;
   width: auto;
   height: auto;
   text-indent: 28px;
   cursor: pointer;
-  background: url("../../assets/sideproject/nonecheck.png") no-repeat;
+  background: url("@/assets/sideproject/nonecheck.png") no-repeat;
   background-position: 0% 50%;
   width: 142px;
   font-weight: 500;
@@ -172,9 +166,9 @@ input[type="radio"] + label {
   line-height: 19px;
 }
 
-input[type="checkbox"]:checked + label,
-input[type="radio"]:checked + label {
-  background: url("../../assets/sideproject/check.png") no-repeat;
+.container input[type="checkbox"]:checked + label,
+.container input[type="radio"]:checked + label {
+  background: url("@/assets/sideproject/check.png") no-repeat;
   background-position: 0% 50%;
 }
 
@@ -191,9 +185,4 @@ input[type="radio"]:checked + label {
   width: 82px;
   height: 41px;
   border: none;
-  background: url("../../assets/sideproject/등록버튼.png") no-repeat 50% 20%;
-}
-
-.submitButton:hover {
-  background: url("../../assets/sideproject/등록버튼.png") no-repeat 50% 80%;
 }

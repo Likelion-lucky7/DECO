@@ -8,7 +8,7 @@ import CommunityDetail from "@/components/CommunityPage/CommunityDetail";
 import SideProjectDetail from "@/components/SideProjectPage/SideProjectDetail";
 import QuestionWrite from "@/components/QuestionPage/QuestionWrite/QuestionWrite";
 import CommunityWrite from "@/components/CommunityPage/CommunityWrite/CommunityWrite";
-import SideProjectWrite from "@/components/SideProjectPage/SideProjectWrite";
+import SideProjectWrite from "@/components/SideProjectPage/sideProjectWrite/SideProjectWrite";
 import SignUpPage from "@/pages/SignUpPage";
 import MainPage from "@/pages/MainPage";
 import QuestionPage from "@/pages/QuestionPage";
