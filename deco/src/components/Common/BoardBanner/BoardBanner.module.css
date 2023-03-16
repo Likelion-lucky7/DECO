@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+  height: 130px;
+  background-color: var(--secondary);
+}
+
+.inner {
+  box-sizing: border-box;
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainBanner {
+  margin: 1.875rem 0;
+}
+
+.mainBanner h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 17px;
+  line-height: 2.1181rem;
+}
+
+.mainBanner p {
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.21rem;
+}
+
+.write {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  width: 131px;
+  height: 66px;
+  background-color: var(--white);
+  border-radius: 8px;
+  border: none;
+  font-size: var(--text-md);
+  line-height: 21.78px;
+  color: #333333;
+}
+
+.write svg{
+  margin-right: 6px;
+}

@@ -7,6 +7,8 @@ import { ReactComponent as ReactIcon } from "@/assets/sideproject/react.svg";
 import { ReactComponent as TypeScriptIcon } from "@/assets/sideproject/ts.svg";
 import { ReactComponent as JavaScriptIcon } from "@/assets/sideproject/js.svg";
 import { ReactComponent as FigmaIcon } from "@/assets/sideproject/figma.svg";
+import { ReactComponent as LikeActivate } from "@/assets/like_activate.svg";
+import { ReactComponent as Profile } from "@/assets/profile.svg";
 
 const SideProjectDetail = () => {
   let id = useParams();
@@ -36,14 +38,16 @@ const SideProjectDetail = () => {
   return (
     <div className={styles.container}>
       <div className={styles.contentBox}>
-        {/* < A11yHidden as="h1" value="게시글 상세페이지" /> */}
         <h1 className={styles.a11yhidden}>게시글 상세페이지</h1>
         <ul>
           <li>
             <h2 className={styles.title}>{title}</h2>
           </li>
           <li className={styles.userBox}>
+            {user?.image == ""?<Profile className={styles.profile}/>
+            :
             <img src={user?.image} alt="" />
+            }
             <h2>{user?.nickname}</h2>
             <p>{user?.email}</p>
           </li>
@@ -95,9 +99,7 @@ const SideProjectDetail = () => {
             )}
           </li>
         </ul>
-        <div className={styles.like}>
-          <p className={styles.a11yhidden}>좋아요</p>
-        </div>
+        <LikeActivate className={styles.like}/>
       </div>
 
       {/* 답변하기 리스트 렌더링 */}

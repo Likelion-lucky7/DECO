@@ -5,6 +5,7 @@ import { ReactComponent as JavascriptIcon } from "@/assets/sideproject/js.svg";
 import { ReactComponent as TypescriptIcon } from "@/assets/sideproject/ts.svg";
 import { ReactComponent as FigmaIcon } from "@/assets/sideproject/figma.svg";
 import { ReactComponent as Like } from "@/assets/sideproject/like.svg";
+import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { useNavigate } from "react-router-dom";
 
 const SideProjectCard = ({ item }) => {
@@ -58,15 +59,19 @@ const SideProjectCard = ({ item }) => {
         )}
       </ul>
       <div className={styles.user}>
-        <img
+       
+        {user?.image == ""?<Profile className={styles.profile}/>
+            :
+            <img
           alt="유저 프로필 사진입니다"
           width={20}
           src={user?.image}
         />
+            }
         <p>{user?.nickname}</p>
       </div>
       <div className={styles.like}>
-        <Like /> <span>2</span>
+        <Like className={styles.likeIcon}/> <span>2</span>
       </div>
       <div className={styles.date}>
         <p>마감일</p>
@@ -93,6 +98,11 @@ const SideProjectCard = ({ item }) => {
           <li style={{ display: "none" }}></li>
         ) : (
           <li>기획</li>
+        )}
+        {role.indexOf("기타") == -1 ||role.indexOf("기타") == undefined ? (
+          <li style={{ display: "none" }}></li>
+        ) : (
+          <li>기타</li>
         )}
       </ul>
     </div>

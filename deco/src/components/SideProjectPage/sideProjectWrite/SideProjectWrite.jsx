@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styles from "./SideProjectWrite.module.css";
-import { ReactComponent as ReactIcon } from "../../assets/sideproject/react.svg";
-import { ReactComponent as JavascriptIcon } from "../../assets/sideproject/js.svg";
-import { ReactComponent as TypescriptIcon } from "../../assets/sideproject/ts.svg";
-import { ReactComponent as FigmaIcon } from "../../assets/sideproject/figma.svg";
-// import FileUpload from "@/components/Common/FileUpload/FileUpload";
+import styles from "@/components/SideProjectPage/sideProjectWrite/SideProjectWrite.module.css";
+import { ReactComponent as ReactIcon } from "@/assets/sideproject/react.svg";
+import { ReactComponent as JavascriptIcon } from "@/assets/sideproject/js.svg";
+import { ReactComponent as TypescriptIcon } from "@/assets/sideproject/ts.svg";
+import { ReactComponent as FigmaIcon } from "@/assets/sideproject/figma.svg";
+import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 const SideProjectWrite = () => {
   let [titleLength, setTitleLength] = useState(0);
@@ -31,7 +31,7 @@ const SideProjectWrite = () => {
                 type="text"
                 className={styles.titleInput}
                 placeholder="제목을 입력해주세요."
-                maxLength="100"
+                maxLength="99"
                 required
                 tabIndex="0"
                 onChange={(e) => {
@@ -54,11 +54,9 @@ const SideProjectWrite = () => {
             </div>
           </li>
           <li>
-          {/* <FileUpload isSignUp={false} /> */}
-          {/* <label htmlFor="input-file" className={styles.inputButton}>
-              <h2 className={styles.a11yhidden}>업로드</h2>
-            </label>
-            <input type="file" id="input-file" className={styles.uploadInput} /> */}
+          <div htmlFor="input-file" className={styles.inputButton}>
+          <FileUpload isSignUp={false} />
+            </div>
           </li>
           <li>
             <div className={styles.dateBox}>

@@ -1,0 +1,11 @@
+.category {
+  display: inline-block;
+  /* height: 24px; */
+  background-color: #368ac7;
+  color: var(--white);
+  padding: 4px 15px;
+  border-radius: 5px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  margin-right: 6px;
+}

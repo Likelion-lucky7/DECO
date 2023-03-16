@@ -1,0 +1,29 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  position: relative;
+  padding: 0;
+  margin: 31px 0 10px 0;
+  height: 40px;
+}
+
+.inner svg {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.container input {
+  padding: 0 0 0 40px;
+  width: 339px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid var(--gray-300);
+  font-size: var(--text-base);
+  line-height: 40px;
+}

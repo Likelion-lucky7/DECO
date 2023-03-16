@@ -26,6 +26,9 @@
 }
 .titleInput::placeholder {
   color: #a6a6a6;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
 }
 
 .titleCount {
@@ -46,23 +49,20 @@
   line-height: 24px;
   resize: none;
   border-radius: 8px;
-  margin-top:23px
+  margin-top: 23px;
 }
 .descriptionInput::placeholder {
   color: #a6a6a6;
+  font-weight: 500;
+font-size: 20px;
+line-height: 24px;
 }
 .inputButton {
   display: inline-block;
   width: auto;
   margin: 57px 0 0 0;
-  width: 185px;
-  height: 44px;
-  background: url("../../assets/sideproject/uploadButton.png") no-repeat;
-  cursor: pointer;
 }
-.uploadInput {
-  display: none;
-}
+
 .date,
 .people,
 .status,
@@ -78,7 +78,7 @@
 
 .container input[type="date"] {
   position: relative;
-  background: url("../../assets/sideproject/calendar_icon.png") no-repeat right
+  background: url("@/assets/sideproject/calendar_icon.png") no-repeat right
     16px center / 25px auto;
   padding-left: 16px;
 }
@@ -128,7 +128,7 @@
 .member {
   width: 92px;
   height: 53px;
-  background: #ffffff url("../../assets/sideproject/down_arrow_icon.png")
+  background: #ffffff url("@/assets/sideproject/down_arrow_icon.png")
     no-repeat;
   background-position: 80% 50%;
   border: 1px solid #888888;
@@ -158,7 +158,7 @@
   height: auto;
   text-indent: 28px;
   cursor: pointer;
-  background: url("../../assets/sideproject/nonecheck.png") no-repeat;
+  background: url("@/assets/sideproject/nonecheck.png") no-repeat;
   background-position: 0% 50%;
   width: 142px;
   font-weight: 500;
@@ -168,7 +168,7 @@
 
 .container input[type="checkbox"]:checked + label,
 .container input[type="radio"]:checked + label {
-  background: url("../../assets/sideproject/check.png") no-repeat;
+  background: url("@/assets/sideproject/check.png") no-repeat;
   background-position: 0% 50%;
 }
 
@@ -186,4 +186,3 @@
   height: 41px;
   border: none;
 }
-

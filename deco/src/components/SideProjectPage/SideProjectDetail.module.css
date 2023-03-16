@@ -33,7 +33,7 @@ font-weight: 500;
 font-size: 16px;
 line-height: 19px;
 }
-.userBox img{
+.userBox img, .profile{
   width: 75px;
   height: 75px;
   object-fit: cover;
@@ -113,10 +113,5 @@ line-height: 30px;
   left: 540px;
   width: 120px;
 height: 56px;
-  background: url("../../assets/sideproject/like.png") no-repeat;
-  background-position: 50% 77.3%;
-}
-.like:hover{
-  cursor: pointer;
-  background-position: 50% 16%;
+cursor: pointer;
 }
