@@ -1,80 +1,87 @@
 .container {
-    width: 1200px;
-    min-width: 1000px;
-    margin: 0 auto;
+  width: 1200px;
+  min-width: 1000px;
+  margin: 0 auto;
 }
 
 .topic {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 54px;
-  height: 24px;
-  background-color: var(--secondary);
-  color: #ffffff;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: 72px;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 54px;
+height: 24px;
+background-color: var(--secondary);
+color: #ffffff;
+border-radius: 5px;
+font-size: var(--text-xs);
+font-weight: 700;
+margin-top: 72px;
 }
 
-.container h2 {
-  width: 500px;
-  height: 34px;
-  font-size: 28px;
-  font-weight: 700;
-  padding-top: 30px;
-  line-height: 34px;
+.textTitle {
+width: 500px;
+height: 34px;
+font-size: 28px;
+font-weight: 700;
+padding-top: 30px;
+line-height: 34px;
 }
 
 .profileImege {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  margin-top: 32px;
-  margin-right: 13px;
+width: 36px;
+height: 36px;
+border-radius: 50%;
+margin-top: 32px;
+margin-right: 13px;
 }
 
 .nickName {
-  display: inline-block;
-  font-weight: 600;
-  font-size: 14px;
-  position: relative;
-  bottom: 4px;
-  transform: translateY(-50%);
+display: inline-block;
+font-weight: 600;
+font-size: var(--text-xm);
+position: relative;
+bottom: 4px;
+transform: translateY(-50%);
 }
 
-.container p {
-  margin-top: 36px;
-  line-height: 30px;
-  font-size: 14px;
-  font-weight: 400;
+.mainText {
+margin-top: 36px;
+line-height: 30px;
+font-size: var(--text-xm);
+font-weight: 400;
+}
+
+.like img {
+margin-top: 10px;
 }
 
 .like {
-  display: block;
-  margin: 0 auto;
-  margin-top: 49px;
-  width: 120px;
-  height: 56px;
+display: block;
+margin: 0 auto;
+margin-top: 49px;
+width: 120px;
+height: 56px;
+border: 1px solid var(--gray-200);
+background-color: var(--white);
+border-radius: 5px;
 }
 
-.container img{
-  margin-top: 35px;
-  margin-right: 20px;
+.uploadImage{
+margin-top: 35px;
+margin-right: 20px;
 }
 
 .tagBox {
-  margin-top: 35px;
+margin-top: 35px;
 }
 
 .tagBox span {
-  border: 1px solid var(--gray-100);
-  border-radius: 5px;
-  margin-left: 12px;
-  padding: 5px 7px;
-  font-size: 12px;
-  font-weight: 400;
-  text-align: center;
-  color: var(--primary);
+border: 1px solid var(--gray-100);
+border-radius: 5px;
+margin-left: 12px;
+padding: 5px 7px;
+font-size: var(--text-xs);
+font-weight: 400;
+text-align: center;
+color: var(--primary);
 }
