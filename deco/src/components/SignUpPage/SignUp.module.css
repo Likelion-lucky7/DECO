@@ -20,32 +20,6 @@
   font-size: 14px;
 }
 
-.profile_form {
-  margin-bottom: 20px;
-  border: 0;
-  color: white;
-  cursor: pointer;
-  display: none;
-}
-
-.profile_label {
-  background-color: var(--secondary);
-  color: white;
-  border: none;
-  width: 185px;
-  height: 44px;
-  margin: 0 auto;
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.profile_image {
-  padding-right: 10px;
-}
-
 .form {
   display: flex;
   flex-flow: column nowrap;

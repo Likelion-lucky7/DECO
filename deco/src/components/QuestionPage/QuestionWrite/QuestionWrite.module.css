@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 1200px;
+  min-width: 62.5%;
+  margin: 0 auto 120px auto;
+}
+
+.info {
+  display: inline-flex;
+  flex-flow: column nowrap;
+  order: 2;
+  margin-left: 50px;
+  margin-top: 96px;
+}
+
+.infoBox {
+  width: 315px;
+  height: auto;
+  background-color: #ececec;
+  border-radius: 5px;
+  padding: 26px;
+  margin-bottom: 28px;
+  color: #333;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.select {
+  width: 95px;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid var(--gray-300);
+  border-radius: 5px;
+  margin-top: 39px;
+  color: #333;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.rowButton {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
