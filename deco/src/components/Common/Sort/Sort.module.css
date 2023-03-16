@@ -17,7 +17,7 @@
   height: 16px;
 }
 
-.sortNew {
+.container .sortNew {
   border-right: 1px solid var(--gray-300);
   font-size: var(--text-sm);
 }

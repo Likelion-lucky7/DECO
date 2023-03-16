@@ -1,11 +1,5 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router";
-import SignUpPage from "../pages/SignUpPage";
-import MainPage from "../pages/MainPage";
-import QuestionPage from "../pages/QuestionPage";
-import CommunityPage from "../pages/CommunityPage";
-import SideProjectPage from "../pages/SideProjectPage";
-import NotFoundPage from "../pages/NotFoundPage";
 import NavBar from "@/components/Common/NavBar";
 import styles from "./App.module.css";
 import LoginPage from "@/pages/LoginPage";
@@ -15,6 +9,13 @@ import SideProjectDetail from "@/components/SideProjectPage/SideProjectDetail";
 import QuestionWrite from "@/components/QuestionPage/QuestionWrite/QuestionWrite";
 import CommunityWrite from "@/components/CommunityPage/CommunityWrite/CommunityWrite";
 import SideProjectWrite from "@/components/SideProjectPage/SideProjectWrite";
+import SignUpPage from "@/pages/SignUpPage";
+import MainPage from "@/pages/MainPage";
+import QuestionPage from "@/pages/QuestionPage";
+import CommunityPage from "@/pages/CommunityPage";
+import SideProjectPage from "@/pages/SideProjectPage";
+import NotFoundPage from "@/pages/NotFoundPage";
+import LoginPage from "@/pages/LoginPage";
 
 function App() {
   const [count, setCount] = useState(0);
