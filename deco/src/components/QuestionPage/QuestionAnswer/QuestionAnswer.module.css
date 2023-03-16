@@ -2,16 +2,15 @@
   margin-top: 65px;
 }
 
-h2 {
+.answerWrite h2 {
   width: 500px;
-  height: 44px;
   font-size: 24px;
   font-weight: 700;
   padding-top: 30px;
   line-height: 34px;
 }
 
-textarea {
+.answerWrite textarea {
   margin-top: 22px;
   width: 1139px;
   height: 184px;
@@ -21,7 +20,7 @@ textarea {
   padding: 30px;
 }
 
-textarea::placeholder{
+.answerWrite textarea::placeholder{
   font-size: 16px;
   font-weight: 500;
 }

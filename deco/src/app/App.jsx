@@ -12,8 +12,8 @@ import LoginPage from "@/pages/LoginPage";
 import QuestionDetail from "@/components/QuestionPage/QuestionDetail/QuestionDetail";
 import CommunityDetail from "@/components/CommunityPage/CommunityDetail";
 import SideProjectDetail from "@/components/SideProjectPage/SideProjectDetail";
-import QuestionWrite from "@/components/QuestionPage/QuestionWrite";
-import CommunityWrite from "@/components/CommunityPage/CommunityWrite";
+import QuestionWrite from "@/components/QuestionPage/QuestionWrite/QuestionWrite";
+import CommunityWrite from "@/components/CommunityPage/CommunityWrite/CommunityWrite";
 import SideProjectWrite from "@/components/SideProjectPage/SideProjectWrite";
 
 function App() {

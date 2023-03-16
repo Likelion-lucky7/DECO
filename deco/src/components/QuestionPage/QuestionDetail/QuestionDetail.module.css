@@ -18,7 +18,7 @@
   margin-top: 72px;
 }
 
-h2 {
+.container h2 {
   width: 500px;
   height: 34px;
   font-size: 28px;
@@ -44,7 +44,7 @@ h2 {
   transform: translateY(-50%);
 }
 
-p {
+.container p {
   margin-top: 36px;
   line-height: 30px;
   font-size: 14px;
@@ -59,7 +59,7 @@ p {
   height: 56px;
 }
 
-img{
+.container img{
   margin-top: 35px;
   margin-right: 20px;
 }

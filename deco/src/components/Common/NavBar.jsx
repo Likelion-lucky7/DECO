@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
-import { ReactComponent as Logo } from "@/assets/DECO_Logo.svg";
+import { ReactComponent as Logo } from "@/assets/logo_big.svg";
 import A11yHidden from "./A11yHidden/A11yHidden";
 
 const NavBar = () => {
