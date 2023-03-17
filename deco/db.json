@@ -33,5 +33,6 @@
       "status": "초기 모집",
       "skill": ["react", "ts", "js"]
     }
-  ]
+  ],
+  "questionComment": []
 }
