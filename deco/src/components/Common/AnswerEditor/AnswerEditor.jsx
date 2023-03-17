@@ -6,7 +6,6 @@ import styles from "@/components/Common/AnswerEditor/AnswerEditor.module.css";
 const AnswerEditor = () => {
   return (
     <div>
-      <h2 className={styles.title}>답변</h2>
       <div className={styles.editorBox}>
         <img
           src={emptyPicture}
