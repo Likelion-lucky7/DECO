@@ -1,8 +1,16 @@
 import { useId } from "react";
 import styles from "./WriteInput.module.css";
+import { useRecoilState } from "recoil";
+import { titleState } from "@/@store/titleState";
 
-const WriteInput = ({ isQuestion }) => {
+const WriteInput = ({ isQuestion, ...restProps }) => {
   const id = useId();
+
+  const [title, setTitle] = useRecoilState(titleState);
+
+  const onChange = (e) => {
+    setTitle(e.target.value);
+  };
 
   return (
     <div className={styles.container}>
@@ -13,6 +21,8 @@ const WriteInput = ({ isQuestion }) => {
             type="text"
             placeholder="제목을 입력해주세요."
             className={styles.title_question}
+            onChange={onChange}
+            value={title}
           />
           <span className={styles.totalNumber_question}>0 / 100</span>
 

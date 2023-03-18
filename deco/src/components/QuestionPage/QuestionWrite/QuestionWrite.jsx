@@ -3,8 +3,20 @@ import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import TagInput from "@/components/Common/TagInput/TagInput";
 import styles from "./QuestionWrite.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
+// import { useRecoilValue } from "recoil";
+// import { titleState } from "@/@store/titleState";
 
 const QuestionWrite = () => {
+  // const title = useRecoilValue(titleState);
+
+  // const handleTest = () => {
+  //   console.log("title,", title);
+  // };
+
+  // const handleSetTitle = (value) => {
+  //   setTitle(value);
+  // };
+
   return (
     <div className={styles.container}>
       <div className={styles.info}>
@@ -43,6 +55,7 @@ const QuestionWrite = () => {
           <SubmitButton title="등록" writeButton={true} />
         </div>
       </div>
+      {/* <button onClick={handleTest}>클릭</button> */}
     </div>
   );
 };
