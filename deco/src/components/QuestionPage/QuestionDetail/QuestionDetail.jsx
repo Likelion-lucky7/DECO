@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
-import QuestionAnswer from "@/components/QuestionPage/QuestionAnswer/QuestionAnswer";
-import AnswerEditor from "../AnswerEditor/AnswerEditor";
-import Like from "@/assets/likeActivate.svg";
+import Like from "@/assets/heartActivate.svg";
 import emptyPicture from "@/assets/empty_picture.png";
+import Comment from "@/components/Common/Comment/Comment";
 import axios from "axios";
 
 const {
@@ -63,9 +62,9 @@ const DetailPage = () => {
       </div>
       <button className={like}>
         <img src={Like} alt="하트" />
+        <span>좋아요</span>
       </button>
-      <QuestionAnswer />
-      <AnswerEditor />
+      <Comment />
     </div>
   );
 };

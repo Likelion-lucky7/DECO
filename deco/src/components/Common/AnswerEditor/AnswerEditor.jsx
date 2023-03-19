@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import emptyPicture from "@/assets/empty_Picture.png";
 import threeDot from "@/assets/dots_three_icon.png";
-import styles from "@/components/QuestionPage/AnswerEditor/AnswerEditor.module.css";
+import styles from "@/components/Common/AnswerEditor/AnswerEditor.module.css";
 
 const AnswerEditor = () => {
   return (
     <div>
-      <h2 className={styles.title}>답변</h2>
       <div className={styles.editorBox}>
         <img
           src={emptyPicture}

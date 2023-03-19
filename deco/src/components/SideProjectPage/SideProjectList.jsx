@@ -14,7 +14,7 @@ const SideProjectList = () => {
   let [props, setProps] = useState([]);
 
   const getData = async () => {
-    let response = await axios.get(`http://localhost:3001/sideProject`);
+    let response = await axios.get(`http://localhost:3001/sideprojects`);
     let data = await response.data;
     setProps(data);
   };

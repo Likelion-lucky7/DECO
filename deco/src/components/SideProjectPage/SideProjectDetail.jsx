@@ -14,7 +14,7 @@ const SideProjectDetail = () => {
   let id = useParams();
   let [props, setProps] = useState("");
   const getData = async () => {
-    let response = await axios.get(`http://localhost:3001/contents/${id.id}`);
+    let response = await axios.get(`http://localhost:3001/sideprojects/${id.id}`);
     let data = await response.data;
     setProps(data);
   };
