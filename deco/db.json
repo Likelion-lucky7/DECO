@@ -12,18 +12,10 @@
       },
       "date": "2023-06-27",
       "member": "2명",
-      "role": [
-        "프론트엔드",
-        "백엔드",
-        "기획"
-      ],
+      "role": ["프론트엔드", "백엔드", "기획"],
       "period": "2023-06-07",
       "status": "초기 모집",
-      "skill": [
-        "ts",
-        "js",
-        "figma"
-      ]
+      "skill": ["ts", "js", "figma"]
     },
     {
       "id": 2,
@@ -36,33 +28,12 @@
       },
       "date": "2023-06-27",
       "member": "22명",
-      "role": [
-        "프론트엔드",
-        "백엔드",
-        "디자이너",
-        "기획",
-        "기타"
-      ],
+      "role": ["프론트엔드", "백엔드", "디자이너", "기획", "기타"],
       "period": "2023-06-07",
       "status": "초기 모집",
-      "skill": [
-        "react",
-        "ts",
-        "js"
-      ]
+      "skill": ["react", "ts", "js"]
     }
   ],
-  "questionComment": [
-    {
-      "nickname": "",
-      "content": "답변하기 테스트",
-      "id": 1
-    },
-    {
-      "nickname": "",
-      "content": "답변하기 테스트2",
-      "id": 2
-    }
-  ],
+  "questionComment": [],
   "questionPost": []
 }

@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import Styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { commentState } from "@/@store/commentState";
+import { useState } from "react";
 
 /* 텍스트 지우는 함수 */
 function clearText(target) {
@@ -23,13 +24,13 @@ const QuestionAnswer = () => {
 
     await axios
       .post(`http://localhost:3001/questionComment/`, {
-        nickname: "", // 나중에 {nickname} 으로 변경
+        userId: "임시 아이디",
+        nickname: "임시 닉네임", // 나중에 {id}에 맞는 {nickname}을 가져올 수 있게
         content: commentWriteField.value,
       })
       .then((res) => {
         console.log(res);
         clearText(commentWriteField);
-        // window.location.reload(); 자동 리로드
       })
       .then((error) => {
         console.log(error);
