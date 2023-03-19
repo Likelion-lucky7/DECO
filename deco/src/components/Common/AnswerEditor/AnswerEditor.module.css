@@ -1,12 +1,3 @@
-.title {
-  width: 500px;
-  font-size: var(--text-xl);
-  font-weight: 700;
-  padding-top: 30px;
-  line-height: 34px;
-  margin-top: 50px;
-}
-
 .editorBox{
   border: 1px solid var(--gray-400);
   border-radius: 8px;
@@ -26,21 +17,23 @@
 }
 
 .profileImege {
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   margin-top: 2px;
   margin-right: 17px;
 }
 
 .answer {
-  margin: 25px 45px 45px 42px;
+  text-align: justify;
+  margin: 25px 45px 45px 20px;
   line-height: 30px;
   font-size: var(--text-sm);
   font-weight: 400;
 }
 
 .buttonWrapper {
+  display: none;
   position: absolute;
   top: 66px;
   right: 27px;
@@ -66,6 +59,6 @@
 
 .dotThree {
   position: absolute;
-  top: 0px;
-  right: 10px;
+  top: 35px;
+  right: 30px;
 }
