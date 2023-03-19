@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
 import QuestionAnswer from "@/components/QuestionPage/QuestionAnswer/QuestionAnswer";
 import AnswerEditor from "../AnswerEditor/AnswerEditor";
 import Like from "@/assets/likeActivate.svg";
 import emptyPicture from "@/assets/empty_picture.png";
+import axios from "axios";
 
 const {
   container,
@@ -19,14 +20,28 @@ const {
 } = styles;
 
 const DetailPage = () => {
-  let id = useParams();
-  console.log(id);
+  const id = useParams();
+  const [props, setProps] = useState("");
+  const getData = async () => {
+    const response = await axios.get(`http://localhost:3001/question/${id.id}`);
+    const data = await response.data;
+    setProps(data);
+  };
+  const { title, date, user, category, hashTag, like, hits } = props;
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className={container}>
-      <span className={topic}>기술</span>
-      <h2 className={textTitle}>redux와 recoil의 차이가 무엇인가요?</h2>
-      <img src={emptyPicture} className={profileImege} alt="exampleImage1" />
-      <span className={nickName}>닉네임</span>
+      <span className={topic}>{category}</span>
+      <h2 className={textTitle}>{title}</h2>
+      <img
+        src={user?.image || emptyPicture}
+        className={profileImege}
+        alt="exampleImage1"
+      />
+      <span className={nickName}>{user?.nickname}</span>
       <p className={mainText}>
         redux와 recoil이 상태를 관리하기 위한 라이브러리로 알고 있는데 둘의
         차이점 장단점이 궁금합니다.redux와 recoil이 상태를 관리하기 위한

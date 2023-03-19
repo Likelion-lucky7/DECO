@@ -33,5 +33,33 @@
       "status":"초기 모집",
       "skill":["react","ts","js"]
     }
+  ],
+  "question" : [
+    {
+      "id": 1,
+      "title": "redux와 recoil의 차이가 무엇인가요?",
+      "date": "2023.03.11",
+      "user": {
+        "image": "",
+        "nickname": "닉네임"
+      },
+      "category": "기술",
+      "hashTag": ["React","JavaScript"],
+      "like": "3",
+      "hits": "5"
+    },
+    {
+      "id": 2,
+      "title": "redux 어렵나요?",
+      "date": "2023.03.11",
+      "user": {
+        "image": "",
+        "nickname": "닉네임"
+      },
+      "category": "기술",
+      "hashTag": ["TypeScript","JavaScript"],
+      "like": "3",
+      "hits": "5"
+    }
   ]
 }

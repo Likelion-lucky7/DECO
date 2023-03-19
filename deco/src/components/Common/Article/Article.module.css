@@ -30,6 +30,15 @@
   height: 36px;
 }
 
+.userInfo img {
+  width: 36px;
+  height: 36px;
+}
+
+.linkToDetail {
+  cursor: pointer;
+}
+
 .container h2 {
   font-size: var(--text-lg);
   font-weight: 600;
