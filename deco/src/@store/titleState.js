@@ -7,7 +7,7 @@ export const titleState = atom({
 
 export const titleGetState = selector({
   key: "titleGetState",
-  get: async ({ get }) => {
+  get: ({ get }) => {
     const title = get(titleState);
     return title;
   },
