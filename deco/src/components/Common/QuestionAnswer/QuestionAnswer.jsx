@@ -1,6 +1,8 @@
 import axios from "axios";
+import { useRecoilState } from "recoil";
 import Styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
+import { commentState } from "@/@store/commentState";
 
 /* 텍스트 지우는 함수 */
 function clearText(target) {
@@ -8,12 +10,20 @@ function clearText(target) {
 }
 
 const QuestionAnswer = () => {
-  const submitData = async () => {
+  const [comment, setComment] = useRecoilState(commentState);
+
+  function onchangeComment(e) {
+    setComment(e.target.value);
+  }
+
+  const submitData = async (e) => {
     const commentWriteField = document.getElementById("comment");
+
+    e.preventDefault();
 
     await axios
       .post(`http://localhost:3001/questionComment/`, {
-        nickname: "",
+        nickname: "", // 나중에 {nickname} 으로 변경
         content: commentWriteField.value,
       })
       .then((res) => {
@@ -34,6 +44,7 @@ const QuestionAnswer = () => {
         id="comment"
         name="comment"
         placeholder="질문에 대한 답변을 하려면 로그인을 해주세요"
+        onChange={onchangeComment}
       ></textarea>
 
       <div className={Styles.submitButton}>

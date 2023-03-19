@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
-import Like from "@/assets/likeActivate.svg";
+import Like from "@/assets/heartActivate.svg";
 import emptyPicture from "@/assets/empty_picture.png";
 import Comment from "@/components/Common/Comment/Comment";
 
@@ -47,6 +47,7 @@ const DetailPage = () => {
       </div>
       <button className={like}>
         <img src={Like} alt="하트" />
+        <span>좋아요</span>
       </button>
       <Comment />
     </div>
