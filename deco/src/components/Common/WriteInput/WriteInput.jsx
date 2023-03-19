@@ -1,12 +1,13 @@
 import { useId } from "react";
 import styles from "./WriteInput.module.css";
-import { useRecoilState } from "recoil";
-import { titleState } from "@/@store/titleState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { inputCountState, titleState } from "@/@store/titleState";
 
 const WriteInput = ({ isQuestion, ...restProps }) => {
   const id = useId();
 
   const [title, setTitle] = useRecoilState(titleState);
+  const count = useRecoilValue(inputCountState);
 
   const onChange = (e) => {
     setTitle(e.target.value);
@@ -24,7 +25,7 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
             onChange={onChange}
             value={title}
           />
-          <span className={styles.totalNumber_question}>0 / 100</span>
+          <span className={styles.totalNumber_question}>{count} / 100</span>
 
           <textarea
             name="content"
@@ -43,7 +44,7 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
             placeholder="제목을 입력해주세요."
             className={styles.title}
           />
-          <span className={styles.totalNumber}>0 / 100</span>
+          <span className={styles.totalNumber}>{count} / 100</span>
 
           <textarea
             name="content"

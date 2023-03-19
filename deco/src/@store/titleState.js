@@ -7,8 +7,17 @@ export const titleState = atom({
 
 export const titleGetState = selector({
   key: "titleGetState",
-  get: ({ get }) => {
+  get: async ({ get }) => {
     const title = get(titleState);
     return title;
+  },
+});
+
+export const inputCountState = selector({
+  key: "inputCountState",
+  get: ({ get }) => {
+    const title = get(titleState);
+
+    return title.length;
   },
 });
