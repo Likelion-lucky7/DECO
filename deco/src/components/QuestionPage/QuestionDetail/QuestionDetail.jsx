@@ -68,7 +68,7 @@ const DetailPage = () => {
         <img src={Like} alt="하트" />
         <span>좋아요</span>
       </button>
-      <Comment />
+      <Comment id={id.id} />
     </div>
   );
 };
