@@ -12,7 +12,7 @@ function clearText(target) {
 const QuestionAnswer = () => {
   const [comment, setComment] = useRecoilState(commentState);
 
-  function onchangeComment(e) {
+  function onChange(e) {
     setComment(e.target.value);
   }
 
@@ -46,7 +46,7 @@ const QuestionAnswer = () => {
         id="comment"
         name="comment"
         placeholder="질문에 대한 답변을 하려면 로그인을 해주세요"
-        onChange={onchangeComment}
+        onChange={onChange}
       ></textarea>
 
       <div className={Styles.submitButton}>
