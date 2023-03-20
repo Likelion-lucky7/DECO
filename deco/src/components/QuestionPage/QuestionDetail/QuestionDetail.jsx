@@ -19,56 +19,73 @@ const {
 } = styles;
 
 const DetailPage = () => {
+  let [editMode, setEditMode] = useState(false);
+
   let id = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    getData();
+    localStorage.setItem("id","user1")
+    getData("get");
   }, []);
 
+  // 게시글 조회 구현
   const getData = async () => {
     try {
       let response = await axios.get(
-        `http://localhost:3001/questions/${id.id}`,
+        `http://localhost:3001/question/${id.id}`,
       );
       let data = await response.data;
       setData(data);
     } catch (error) {
-      navigate("/*");
+      // navigate("/*");
       console.log("404 Error");
     }
   };
   let [data, setData] = useState([]);
 
-  let { description, title, uploadImage:fileImag, user, topic: category, tag } = data;
+  let {
+    title,
+    content,
+    image,
+    user,
+    category,
+    hashTag,
+    like,
+    hits
+  } = data;
+
+
 
   return (
     <div className={container}>
-      <span className={topic}>{category}</span>
-      <h2 className={textTitle}>{title}</h2>
-      {user?.image === "" ? (
-        <Profile className={profileImege} />
-      ) : (
-        <img src={user?.image} className={profileImege} alt="exampleImage1" />
-      )}
-      <span className={nickName}>{user?.nickname}</span>
-      <p className={mainText}>{description}</p>
-      {fileImag?.map((item, index) => {
-        return (
-          <img
-            key={index}
-            className={uploadImage}
-            src={item}
-            alt="exampleImage2"
-          />
-        );
-      })}
-
-      <div className={tagBox}>
-        {tag?.map((item, index) => {
-          return <span key={index}>#{item}</span>;
-        })}
-      </div>
-      <button className={like}>
+        <div>
+          <span className={topic}>{category}</span>
+          <h2 className={textTitle}>{title}</h2>
+          {user?.image === "" ? (
+            <Profile className={profileImege} />
+          ) : (
+            <img
+              src={user?.image}
+              className={profileImege}
+              alt="exampleImage1"
+            />
+          )}
+          <span className={nickName}>{user?.nickname}</span>
+          <p className={mainText}>{content}</p>
+          <img  
+          src={image}
+                className={uploadImage}
+                alt=""
+              />
+          <div className={tagBox}>
+            {hashTag?.map((item, index) => {
+              return <span key={index}>#{item}</span>;
+            })}
+          </div>
+          
+        </div>
+     
+      <button className={styles.likeIcon}>
         <img src={Like} alt="하트" />
       </button>
       <Comment />

@@ -51,11 +51,11 @@ font-size: var(--text-xm);
 font-weight: 400;
 }
 
-.like img {
+.likeIcon img {
 margin-top: 10px;
 }
 
-.like {
+.likeIcon {
 display: block;
 margin: 0 auto;
 margin-top: 49px;
