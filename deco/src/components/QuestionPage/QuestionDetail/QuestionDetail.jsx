@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
 import Like from "@/assets/heartActivate.svg";
@@ -43,7 +43,7 @@ const DetailPage = () => {
   };
   let [data, setData] = useState([]);
 
-  let { title, content, image, user, category, hashTag, like } = data;
+  let { title, content, image, user, category, hashTag } = data;
 
   return (
     <div className={container}>
@@ -64,7 +64,7 @@ const DetailPage = () => {
       </div>
       <button className={likeIcon}>
         <img src={Like} alt="하트" />
-        <span>좋아요 {like}</span>
+        <span>좋아요</span>
       </button>
       <Comment />
     </div>
