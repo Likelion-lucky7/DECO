@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
-import Like from "@/assets/likeActivate.svg";
+import Like from "@/assets/heartActivate.svg";
 import Comment from "@/components/Common/Comment/Comment";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 // import { ReactComponent as lik } from "@/assets/profile.svg";
