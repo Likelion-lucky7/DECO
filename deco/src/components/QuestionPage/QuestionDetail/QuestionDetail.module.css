@@ -51,17 +51,17 @@ font-size: var(--text-xm);
 font-weight: 400;
 }
 
-.like img {
+.likeIcon img {
 /* margin: auto 0px; */
 vertical-align:middle;
 margin: 0px;
-}
 
-.like span {
+
+.likeIcon span {
   vertical-align: middle;
 }
 
-.like {
+.likeIcon {
 display: block;
 margin: 0 auto;
 margin-top: 49px;
