@@ -22,10 +22,12 @@ const QuestionAnswer = () => {
     e.preventDefault();
 
     await axios
-      .post(`http://localhost:3001/questionComment/`, {
-        userId: "임시 아이디",
-        nickname: "임시 닉네임", // 나중에 {id}에 맞는 {nickname}을 가져올 수 있게
-        content: commentWriteField.value,
+      .post(`http://localhost:3001/question/`, {
+        user: {
+          userId: "임시 아이디",
+          nickname: "임시 닉네임", // 나중에 {id}에 맞는 {nickname}을 가져올 수 있게
+        },
+        comment: commentWriteField.value,
       })
       .then((res) => {
         console.log(res);

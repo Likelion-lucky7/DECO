@@ -10,7 +10,7 @@ const {
   topic,
   profileImege,
   nickName,
-  like,
+  likeIcon,
   tagBox,
   textTitle,
   uploadImage,
@@ -45,7 +45,7 @@ const DetailPage = () => {
         <span>#React</span>
         <span>#React</span>
       </div>
-      <button className={like}>
+      <button className={likeIcon}>
         <img src={Like} alt="하트" />
         <span>좋아요</span>
       </button>
