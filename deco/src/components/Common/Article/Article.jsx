@@ -24,7 +24,7 @@ const Article = ({ item }) => {
     <article className={styles.container}>
       <div className={styles.userAndDate}>
         <div className={styles.userInfo}>
-          {user?.image == "" ? (
+          {user?.profile == "" ? (
             <Profile />
           ) : (
             <img alt="유저 프로필 사진입니다" />

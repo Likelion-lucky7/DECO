@@ -40,26 +40,36 @@
       "title": "redux와 recoil의 차이가 무엇인가요?",
       "date": "2023.03.11",
       "user": {
-        "image": "",
-        "nickname": "닉네임"
+        "userId": "id",
+        "profile": "",
+        "nickname": "닉네임",
+        "email": "example@google.com"
       },
       "category": "기술",
       "hashTag": ["React","JavaScript"],
       "like": "3",
-      "hits": "5"
+      "hits": "5",
+      "content": "내용",
+      "image": "",
+      "comment": "댓글 내용"
     },
     {
       "id": 2,
       "title": "redux 어렵나요?",
       "date": "2023.03.11",
       "user": {
-        "image": "",
-        "nickname": "닉네임"
+        "userId": "id",
+        "profile": "",
+        "nickname": "닉네임",
+        "email": "example@google.com"
       },
       "category": "기술",
       "hashTag": ["TypeScript","JavaScript"],
       "like": "3",
-      "hits": "5"
+      "hits": "5",
+      "content": "내용",
+      "image": "",
+      "comment": "댓글 내용"
     }
   ]
 }
