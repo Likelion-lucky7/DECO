@@ -4,8 +4,26 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import styles from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
+import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { firebaseAuth } from "@/firebase/auth";
 
 const SignUp = () => {
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
+  const register = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        firebaseAuth,
+        registerEmail,
+        registerPassword,
+      );
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className={styles.container}>
       <WelcomeInfo subtitle="DECO의 일원이 되어주세요 !" />
@@ -16,22 +34,32 @@ const SignUp = () => {
       <form className={styles.form}>
         <FileUpload isSignUp={true} />
 
-        <FormInput name="id" label="아이디" placeholder="아이디 입력" />
+        <FormInput
+          name="id"
+          label="아이디"
+          placeholder="아이디 입력"
+          onChange={(event) => {
+            setRegisterEmail(event.target.value);
+          }}
+        />
         <FormInput
           name="password"
           type="password"
           label="비밀번호"
           placeholder="비밀번호 입력"
+          onChange={(event) => {
+            setRegisterPassword(event.target.value);
+          }}
         />
-        <FormInput
+        {/* <FormInput
           name="email"
           type="email"
           label="이메일"
           placeholder="이메일 입력"
         />
-        <FormInput name="nickname" label="닉네임" placeholder="닉네임 입력" />
+        <FormInput name="nickname" label="닉네임" placeholder="닉네임 입력" /> */}
 
-        <SubmitButton title="회원가입" writeButton={false} />
+        <SubmitButton title="회원가입" writeButton={false} onClick={register} />
       </form>
     </div>
   );

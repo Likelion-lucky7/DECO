@@ -1,0 +1,75 @@
+{
+  "sideProject": [
+    {
+      "id": 1,
+      "title":"제목입니다",
+      "uploadImage":[],
+      "description":"react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다",
+      "user":{
+        "image":"",
+        "email":"hello.world.com",
+        "nickname":"user1"
+      },
+      "date":"2023-06-27",
+      "member":"2명",
+      "role":["프론트엔드","백엔드","기획"],
+      "period":"2023-06-07",
+      "status":"초기 모집",
+      "skill":["ts","js","figma"]
+    },
+    {
+      "id": 2,
+      "title":"제목입니다",
+      "description":"react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다ect를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다ect를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다ect를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react를 하실 팀원 모집합니다",
+      "user":{
+        "image":"",
+        "email":"2hello.world.com",
+        "nickname":"user2"
+      },
+      "date":"2023-06-27",
+      "member":"22명",
+      "role":["프론트엔드","백엔드","디자이너","기획","기타"],
+      "period":"2023-06-07",
+      "status":"초기 모집",
+      "skill":["react","ts","js"]
+    }
+  ],
+  "question" : [
+    {
+      "id": 1,
+      "title": "redux와 recoil의 차이가 무엇인가요?",
+      "date": "2023.03.11",
+      "user": {
+        "userId": "id",
+        "profile": "",
+        "nickname": "닉네임",
+        "email": "example@google.com"
+      },
+      "category": "기술",
+      "hashTag": ["React","JavaScript"],
+      "like": "3",
+      "hits": "5",
+      "content": "내용",
+      "image": "",
+      "comment": "댓글 내용"
+    },
+    {
+      "id": 2,
+      "title": "redux 어렵나요?",
+      "date": "2023.03.11",
+      "user": {
+        "userId": "id",
+        "profile": "",
+        "nickname": "닉네임",
+        "email": "example@google.com"
+      },
+      "category": "기술",
+      "hashTag": ["TypeScript","JavaScript"],
+      "like": "3",
+      "hits": "5",
+      "content": "내용",
+      "image": "",
+      "comment": "댓글 내용"
+    }
+  ]
+}
