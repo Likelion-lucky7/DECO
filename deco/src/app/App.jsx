@@ -15,6 +15,7 @@ import QuestionPage from "@/pages/QuestionPage";
 import CommunityPage from "@/pages/CommunityPage";
 import SideProjectPage from "@/pages/SideProjectPage";
 import NotFoundPage from "@/pages/NotFoundPage";
+
 function App() {
   const [count, setCount] = useState(0);
 

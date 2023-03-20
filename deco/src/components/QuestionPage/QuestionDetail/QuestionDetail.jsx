@@ -6,13 +6,14 @@ import Comment from "@/components/Common/Comment/Comment";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 // import { ReactComponent as lik } from "@/assets/profile.svg";
 import axios from "axios";
+import Hashtag from "@/components/Common/HashTag/HashTag";
 
 const {
   container,
   topic,
   profileImege,
   nickName,
-  like,
+  likeIcon,
   tagBox,
   textTitle,
   uploadImage,
@@ -42,29 +43,26 @@ const DetailPage = () => {
   };
   let [data, setData] = useState([]);
 
-  let { title, content, image, user, category, hashTag, like, hits } = data;
+  let { title, content, image, user, category, hashTag } = data;
 
   return (
     <div className={container}>
-      <div>
-        <span className={topic}>{category}</span>
-        <h2 className={textTitle}>{title}</h2>
-        {user?.image === "" ? (
-          <Profile className={profileImege} />
-        ) : (
-          <img src={user?.image} className={profileImege} alt="exampleImage1" />
-        )}
-        <span className={nickName}>{user?.nickname}</span>
-        <p className={mainText}>{content}</p>
-        <img src={image} className={uploadImage} alt="" />
-        <div className={tagBox}>
-          {hashTag?.map((item, index) => {
-            return <span key={index}>#{item}</span>;
-          })}
-        </div>
+      <span className={topic}>{category}</span>
+      <h2 className={textTitle}>{title}</h2>
+      {user?.profile === "" ? (
+        <Profile className={profileImege} />
+      ) : (
+        <img src={user?.profile} className={profileImege} alt="exampleImage1" />
+      )}
+      <span className={nickName}>{user?.nickname}</span>
+      <p className={mainText}>{content}</p>
+      <img className={uploadImage} src={image} alt="exampleImage2" />
+      <img className={uploadImage} src={image} alt="exampleImage3" />
+      <div className={tagBox}>
+        {hashTag &&
+          hashTag.map((item, index) => <Hashtag key={index} content={item} />)}
       </div>
-
-      <button className={styles.likeIcon}>
+      <button className={likeIcon}>
         <img src={Like} alt="하트" />
         <span>좋아요</span>
       </button>
