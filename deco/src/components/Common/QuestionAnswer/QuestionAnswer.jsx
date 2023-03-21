@@ -23,19 +23,20 @@ const QuestionAnswer = () => {
 
     e.preventDefault();
 
-    await createData(
-      await {
-        user: {
-          userid: "임시 아이디",
-          nickname: "임시 닉네임",
-        },
-        comment: commentWriteField.value,
+    // firebase 이용하는 방법
+    await createData({
+      user: {
+        userid: "임시 아이디",
+        nickname: "임시 닉네임",
       },
-    );
+      comment: commentWriteField.value,
+    });
+
     clearText(commentWriteField);
 
     console.log("comments 콜렉션에 comments 데이터 생성");
 
+    // axios 목업 데이터 이용하는 방법
     /* await axios
       .post(`http://localhost:3001/question/`, {
         user: {
