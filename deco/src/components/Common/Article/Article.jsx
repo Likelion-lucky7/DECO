@@ -12,13 +12,6 @@ const Article = ({ item }) => {
   const navigation = () => {
     navigate(`/question/${id}`);
   };
-  const checkHandler = (e) => {
-    if (e.key === "Enter") {
-      navigation();
-    } else {
-      return null;
-    }
-  };
 
   return (
     <article className={styles.container}>
@@ -33,17 +26,9 @@ const Article = ({ item }) => {
         </div>
         <div className={styles.date}>작성일 {date}</div>
       </div>
-      {/* <div
-        className={styles.linkToDetail}
-        role="button"
-        tabIndex={0}
-        onClick={navigation}
-        onKeyDown={checkHandler}
-      > */}
       <Link to={`/question/${id}`} className={styles.linkToDetail}>
         <h2>{title}</h2>
       </Link>
-      {/* </div> */}
       <div className={styles.hashAndAdditionalInfo}>
         <div className={styles.hash}>
           {category ? <QuestionCategory categoryName={category} /> : null}

@@ -67,6 +67,12 @@ const SignUp = () => {
           }}
         />
         <FormInput
+          name="password"
+          type="password"
+          label="비밀번호 확인"
+          placeholder="비밀번호 입력"
+        />
+        <FormInput
           name="email"
           type="email"
           label="이메일"

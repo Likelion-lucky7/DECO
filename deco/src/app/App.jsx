@@ -17,8 +17,6 @@ import SideProjectPage from "@/pages/SideProjectPage";
 import NotFoundPage from "@/pages/NotFoundPage";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className={styles.layout}>
       <NavBar />
