@@ -1,0 +1,106 @@
+{
+  "sideProjects": [
+    {
+      "id": 1,
+      "title":"제목입니다",
+      "uploadImage":[],
+      "description":"react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다",
+      "user":{
+        "image":"",
+        "email":"hello.world.com",
+        "nickname":"user1"
+      },
+      "date":"2023-06-27",
+      "member":"2명",
+      "role":["프론트엔드","백엔드","기획"],
+      "period":"2023-06-07",
+      "status":"초기 모집",
+      "skill":["ts","js","figma"]
+    },
+    {
+      "id": 2,
+      "title":"제목입니다",
+      "description":"react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다ect를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다ect를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다ect를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react project를 하실 팀원 모집합니다react를 하실 팀원 모집합니다",
+      "user":{
+        "image":"",
+        "email":"2hello.world.com",
+        "nickname":"user2"
+      },
+      "date":"2023-06-27",
+      "member":"22명",
+      "role":["프론트엔드","백엔드","디자이너","기획","기타"],
+      "period":"2023-06-07",
+      "status":"초기 모집",
+      "skill":["react","ts","js"]
+    }
+  ],
+  "question":[
+    {
+      "id": 1,
+      "title": "redux와 recoil의 차이가 무엇인가요?",
+      "date": "2023.03.11",
+      "user": {
+        "image": "",
+        "email": "hello.world.com",
+        "nickname": "닉네임"
+      },
+      "category": "기술",
+      "hashTag": ["React","JavaScript"],
+      "like": "3",
+      "hits": "5",
+      "content": "redux와 recoil의 차이가 무엇인가요? 제곧내",
+      "comment":[{
+        "id":1,
+        "nickname": "세명",
+        "comment": "좋은 질문이네요^^",
+        "image": "" 
+      },
+      {
+        "id":2,
+        "nickname": "두명",
+        "comment": "이거 제가 아는건데 좀 어렵긴해요ㅎㅎ",
+        "image": ""   
+      },
+      {
+        "id":3,
+        "nickname": "한명",
+        "comment": "진짜 모름",
+        "image": ""   
+      }
+    ]
+    },
+    {
+      "id": 2,
+      "title": "redux 어렵나요?",
+      "date": "2023.03.11",
+      "user": {
+        "image": "",
+        "email": "hello.world.com",
+        "nickname": "닉네임"
+      },
+      "category": "기술",
+      "hashTag": ["TypeScript","JavaScript"],
+      "like": "3",
+      "hits": "5",
+      "comment":[{
+        "id":1,
+        "nickname":"육명",
+        "comment":"당연히 어렵죠ㅋ",
+        "image": ""
+      },
+      {
+        "id":2,
+        "nickname":"오명",
+        "comment":"안써봐서 모르겠어요",
+        "image": ""
+      },
+      {
+        "id":3,
+        "nickname":"네명",
+        "comment":"왜써요?",
+        "image": ""
+      }
+    ]
+    }
+  ]
+}

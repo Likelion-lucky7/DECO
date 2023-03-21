@@ -1,4 +1,4 @@
-.editorBox{
+.editorBox {
   border: 1px solid var(--gray-400);
   border-radius: 8px;
   padding: 27px;
@@ -53,7 +53,7 @@
   background-color: var(--white);
 }
 
-.buttonWrapper button:first-child{
+.buttonWrapper button:first-child {
   margin-bottom: 17px;
 }
 

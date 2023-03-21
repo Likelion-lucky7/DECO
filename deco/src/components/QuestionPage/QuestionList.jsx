@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
@@ -9,6 +10,18 @@ import Sort from "../Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
+  const [props, setProps] = useState([]);
+
+  const getData = async () => {
+    const response = await axios.get("http://localhost:3001/question");
+    const data = await response.data;
+    setProps(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <BoardBanner
@@ -25,7 +38,9 @@ const QuestionList = () => {
         <Hashtag content="HTML " />
       </div>
       <Sort />
-      <Article title="redux와 recoil의 차이가 무엇인가요?" />
+      {props.map((item) => {
+        return <Article key={item.id} item={item} />;
+      })}
       <Pagination />
     </>
   );

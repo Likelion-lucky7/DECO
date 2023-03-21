@@ -20,7 +20,7 @@
   padding: 30px;
 }
 
-.answerWrite textarea::placeholder{
+.answerWrite textarea::placeholder {
   font-size: var(--text-base);
   font-weight: 500;
 }
@@ -28,9 +28,4 @@
 .submitButton {
   float: right;
   margin-top: 16px;
-  padding: 11px 26px;
-  background-color: var(--primary);
-  color: #FFFFFF;
-  border: none;
-  border-radius: 5px;
 }

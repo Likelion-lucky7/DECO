@@ -12,7 +12,7 @@ const {
   topic,
   profileImege,
   nickName,
-  like,
+  likeIcon,
   tagBox,
   textTitle,
   uploadImage,
@@ -60,12 +60,11 @@ const DetailPage = () => {
           }):null}
         </div>
       </div>
-
-      <button className={styles.likeIcon}>
+      <button className={likeIcon}>
         <img src={Like} alt="하트" />
         <span>좋아요</span>
       </button>
-      <Comment />
+      <Comment id={id.id} />
     </div>
   );
 };
