@@ -1,0 +1,37 @@
+/* displayState = false */
+.buttonWrapper {
+  display: none;
+}
+
+/* displayState = true */
+.buttonWrapperDisplay {
+  position: absolute;
+  top: 66px;
+  right: 32px;
+  background-color: var(--white);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: #333;
+}
+
+.buttonWrapperDisplay button {
+  display: flex;
+  border: none;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  background-color: var(--white);
+  line-height: 2.3;
+}
+
+.buttonWrapperDisplay button:hover {
+  color: var(--primary);
+}
+
+.dotThree {
+  position: absolute;
+  top: 35px;
+  right: 30px;
+}
