@@ -15,6 +15,8 @@ import QuestionPage from "@/pages/QuestionPage";
 import CommunityPage from "@/pages/CommunityPage";
 import SideProjectPage from "@/pages/SideProjectPage";
 import NotFoundPage from "@/pages/NotFoundPage";
+import { app } from "@/firebase/app";
+console.log(app);
 function App() {
   const [count, setCount] = useState(0);
 
