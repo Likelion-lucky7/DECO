@@ -1,24 +1,50 @@
 import { useId } from "react";
 import styles from "./SubmitButton.module.css";
-import axios from "axios";
+// import axios from "axios";
 import { useRecoilValue } from "recoil";
 import { titleState } from "@/@store/titleState";
+// import { useCreateData } from "@/firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
+import { dbService } from "@/firebase/app";
 
 const SubmitButton = ({ writeButton, title, ...restProps }) => {
   const id = useId();
+  // const inputTitle = useRecoilValue(titleState);
   const inputTitle = useRecoilValue(titleState);
+  // const { createData } = useCreateData("title");
 
-  const submitTitle = async () => {
+  const submitTitle = async (e) => {
+    e.preventDefault();
     try {
-      await axios
-        .post(`http://localhost:3001/questionPost/`, {
-          title: inputTitle,
-        })
-        .then(console.log("get data"));
-    } catch (error) {
-      console.log(error);
+      const docRef = await addDoc(collection(dbService, "question"), {
+        title: inputTitle,
+      });
+      console.log("성공?", docRef.id);
+    } catch (e) {
+      console.error("error");
     }
   };
+  // const submitTitle = async (e) => {
+  //   e.preventDefault();
+
+  //   await createData(
+  //     await {
+  //       title: inputTitle,
+  //     },
+  //   );
+
+  //   console.log("성공?!");
+  //   /*
+  //   try {
+  //     await axios
+  //       .post(`http://localhost:3001/question/`, {
+  //         title: inputTitle,
+  //       })
+  //       .then(console.log("get data"));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }*/
+  // };
 
   return (
     <>
@@ -35,7 +61,12 @@ const SubmitButton = ({ writeButton, title, ...restProps }) => {
         </div>
       ) : (
         <div className={styles.container}>
-          <button id={id} className={styles.button} {...restProps}>
+          <button
+            onClick={submitTitle}
+            id={id}
+            className={styles.button}
+            {...restProps}
+          >
             {title}
           </button>
         </div>
