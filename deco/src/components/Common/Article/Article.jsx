@@ -4,7 +4,7 @@ import Hashtag from "../Hashtag/Hashtag";
 import QuestionCategory from "@/components/QuestionPage/QuestionCategory";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { ReactComponent as LoveIcon } from "@/assets/loveIcon.svg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Article = ({ item }) => {
   const { title, date, user, category, hashTag, like, hits, id } = item;
@@ -33,15 +33,17 @@ const Article = ({ item }) => {
         </div>
         <div className={styles.date}>작성일 {date}</div>
       </div>
-      <div
+      {/* <div
         className={styles.linkToDetail}
         role="button"
         tabIndex={0}
         onClick={navigation}
         onKeyDown={checkHandler}
-      >
+      > */}
+      <Link to={`/question/${id}`} className={styles.linkToDetail}>
         <h2>{title}</h2>
-      </div>
+      </Link>
+      {/* </div> */}
       <div className={styles.hashAndAdditionalInfo}>
         <div className={styles.hash}>
           {category ? <QuestionCategory categoryName={category} /> : null}

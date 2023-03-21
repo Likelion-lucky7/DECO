@@ -1,6 +1,6 @@
 import styles from "./SubmitButton.module.css";
 
-const SubmitButton = ({ writeButton, title }) => {
+const SubmitButton = ({ writeButton, title, ...restProps }) => {
   return (
     <>
       {writeButton ? (
@@ -9,7 +9,9 @@ const SubmitButton = ({ writeButton, title }) => {
         </div>
       ) : (
         <div className={styles.container}>
-          <button className={styles.button}>{title}</button>
+          <button className={styles.button} {...restProps}>
+            {title}
+          </button>
         </div>
       )}
     </>
