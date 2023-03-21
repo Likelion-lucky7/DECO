@@ -5,11 +5,13 @@ import { titleState } from "@/@store/titleState";
 import { collection, addDoc } from "firebase/firestore";
 import { dbService } from "@/firebase/app";
 import { contentState } from "@/@store/contentState";
+import { hashTagState } from "../../../@store/hashTagState";
 
 const SubmitButton = ({ writeButton, title, ...restProps }) => {
   const id = useId();
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
+  const inputHashTag = useRecoilValue(hashTagState);
 
   const submitTitle = async (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ const SubmitButton = ({ writeButton, title, ...restProps }) => {
       const docRef = await addDoc(collection(dbService, "question"), {
         title: inputTitle,
         content: inputContent,
+        hashtag: inputHashTag,
       });
       console.log("성공?", docRef.id);
     } catch (e) {
