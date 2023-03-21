@@ -5,7 +5,7 @@ import Like from "@/assets/heartActivate.svg";
 import Comment from "@/components/Common/Comment/Comment";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { dbService } from "@/firebase/app";
-import { getDocs, collection } from "firebase/firestore";
+import {collection, onSnapshot } from "firebase/firestore";
 
 const {
   container,
@@ -23,18 +23,14 @@ const DetailPage = () => {
   let id = useParams();
   let [data, setData] = useState([]);
 
-  const getNweets = async () => {
-    const querySnapShot = await getDocs(collection(dbService, "nweets"));
-    querySnapShot.forEach((doc) => {
-      if (id.id === doc.data().id) {
-        setData(doc.data());
-      }
-    });
-  };
   useEffect(() => {
-    getNweets();
-  }, []);
-
+    onSnapshot(collection(dbService, "nweets"), (snapshot) => {
+      const nweetsArr = snapshot.docs.map((item)=> item.data())
+        const filteredData = nweetsArr.filter(item=>{ return item.id == id.id})
+        setData(filteredData[0])
+      })
+    }, []);
+    
   let { title, content, image, user, category, hashTag, like, hits } = data;
 
   return (
