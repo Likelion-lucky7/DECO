@@ -4,8 +4,8 @@ import styles from "./QuestionDetail.module.css";
 import Like from "@/assets/heartActivate.svg";
 import Comment from "@/components/Common/Comment/Comment";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
-// import { ReactComponent as lik } from "@/assets/profile.svg";
-import axios from "axios";
+import { dbService } from "@/firebase/app";
+import { getDocs, collection } from "firebase/firestore";
 
 const {
   container,
@@ -20,27 +20,20 @@ const {
 } = styles;
 
 const DetailPage = () => {
-  let [editMode, setEditMode] = useState(false);
-
   let id = useParams();
-  const navigate = useNavigate();
-  useEffect(() => {
-    localStorage.setItem("id", "user1");
-    getData("get");
-  }, []);
-
-  // 게시글 조회 구현
-  const getData = async () => {
-    try {
-      let response = await axios.get(`http://localhost:3001/question/${id.id}`);
-      let data = await response.data;
-      setData(data);
-    } catch (error) {
-      // navigate("/*");
-      console.log("404 Error");
-    }
-  };
   let [data, setData] = useState([]);
+
+  const getNweets = async () => {
+    const querySnapShot = await getDocs(collection(dbService, "nweets"));
+    querySnapShot.forEach((doc) => {
+      if (id.id === doc.data().id) {
+        setData(doc.data());
+      }
+    });
+  };
+  useEffect(() => {
+    getNweets();
+  }, []);
 
   let { title, content, image, user, category, hashTag, like, hits } = data;
 
@@ -49,18 +42,22 @@ const DetailPage = () => {
       <div>
         <span className={topic}>{category}</span>
         <h2 className={textTitle}>{title}</h2>
-        {user?.image === "" ? (
+        {user?.profile === "" ? (
           <Profile className={profileImege} />
         ) : (
-          <img src={user?.image} className={profileImege} alt="exampleImage1" />
+          <img
+            src={user?.profile}
+            className={profileImege}
+            alt="exampleImage1"
+          />
         )}
         <span className={nickName}>{user?.nickname}</span>
         <p className={mainText}>{content}</p>
-        <img src={image} className={uploadImage} alt="" />
+        {image ? <img src={image} className={uploadImage} alt="" /> : null}
         <div className={tagBox}>
-          {hashTag?.map((item, index) => {
+          {hashTag?.length > 1 ?hashTag?.map((item, index) => {
             return <span key={index}>#{item}</span>;
-          })}
+          }):null}
         </div>
       </div>
 
