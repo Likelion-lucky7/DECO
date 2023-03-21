@@ -4,33 +4,57 @@ import Hashtag from "../Hashtag/Hashtag";
 import QuestionCategory from "@/components/QuestionPage/QuestionCategory";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { ReactComponent as LoveIcon } from "@/assets/loveIcon.svg";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Article = ({ title = "" }) => {
+const Article = ({ item }) => {
+  const { title, date, user, category, hashTag, like, hits, id } = item;
+  const navigate = useNavigate();
+  const navigation = () => {
+    navigate(`/question/${id}`);
+  };
+  const checkHandler = (e) => {
+    if (e.key === "Enter") {
+      navigation();
+    } else {
+      return null;
+    }
+  };
+
   return (
     <article className={styles.container}>
       <div className={styles.userAndDate}>
         <div className={styles.userInfo}>
-          <Profile />
-          <span>닉네임</span>
+          {user?.profile == "" ? (
+            <Profile />
+          ) : (
+            <img alt="유저 프로필 사진입니다" />
+          )}
+          <span>{user.nickname}</span>
         </div>
-        <div className={styles.date}>작성일 2023.03.11</div>
+        <div className={styles.date}>작성일 {date}</div>
       </div>
-      <h2>
-        <Link to="">{title}</Link>
-      </h2>
+      <div
+        className={styles.linkToDetail}
+        role="button"
+        tabIndex={0}
+        onClick={navigation}
+        onKeyDown={checkHandler}
+      >
+        <h2>{title}</h2>
+      </div>
       <div className={styles.hashAndAdditionalInfo}>
         <div className={styles.hash}>
-          <QuestionCategory categoryName="기술" />
-          <Hashtag content="React" />
-          <Hashtag content="JavaScript" />
+          {category ? <QuestionCategory categoryName={category} /> : null}
+          {hashTag.map((item, index) => (
+            <Hashtag key={index} content={item} />
+          ))}
         </div>
         <div className={styles.AdditionalInfo}>
           <LoveIcon />
-          <span>3</span>
+          <span>{like}</span>
           <span className={styles.midpoint}>&#183;</span>
           <span>조회</span>
-          <span>5</span>
+          <span>{hits}</span>
         </div>
       </div>
     </article>

@@ -1,9 +1,12 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
 import Like from "@/assets/heartActivate.svg";
-import emptyPicture from "@/assets/empty_picture.png";
 import Comment from "@/components/Common/Comment/Comment";
+import { ReactComponent as Profile } from "@/assets/profile.svg";
+// import { ReactComponent as lik } from "@/assets/profile.svg";
+import axios from "axios";
+import Hashtag from "@/components/Common/HashTag/HashTag";
 
 const {
   container,
@@ -18,32 +21,46 @@ const {
 } = styles;
 
 const DetailPage = () => {
+  let [editMode, setEditMode] = useState(false);
+
   let id = useParams();
-  // console.log(id);
+  const navigate = useNavigate();
+  useEffect(() => {
+    localStorage.setItem("id", "user1");
+    getData("get");
+  }, []);
+
+  // 게시글 조회 구현
+  const getData = async () => {
+    try {
+      let response = await axios.get(`http://localhost:3001/question/${id.id}`);
+      let data = await response.data;
+      setData(data);
+    } catch (error) {
+      // navigate("/*");
+      console.log("404 Error");
+    }
+  };
+  let [data, setData] = useState([]);
+
+  let { title, content, image, user, category, hashTag } = data;
+
   return (
     <div className={container}>
-      <span className={topic}>기술</span>
-      <h2 className={textTitle}>redux와 recoil의 차이가 무엇인가요?</h2>
-      <img src={emptyPicture} className={profileImege} alt="exampleImage1" />
-      <span className={nickName}>닉네임</span>
-      <p className={mainText}>
-        redux와 recoil이 상태를 관리하기 위한 라이브러리로 알고 있는데 둘의
-        차이점 장단점이 궁금합니다.redux와 recoil이 상태를 관리하기 위한
-        라이브러리로 알고 있는데 둘의 차이점 장단점이 궁금합니다.redux와
-        recoil이 상태를 관리하기 위한 라이브러리로 알고 있는데 둘의 차이점
-        장단점이 궁금합니다.redux와 recoil이 상태를 관리하기 위한 라이브러리로
-        알고 있는데 둘의 차이점 장단점이 궁금합니다.redux와 recoil이 상태를
-        관리하기 위한 라이브러리로 알고 있는데 둘의 차이점 장단점이
-        궁금합니다.redux와 recoil이 상태를 관리하기 위한 라이브러리로 알고
-        있는데 둘의 차이점 장단점이 궁금합니다.redux와 recoil이 상태를 관리하기
-        위한 라이브러리로 알고 있는데 둘의 차이점 장단점이 궁금합니다.
-      </p>
-      <img className={uploadImage} src={emptyPicture} alt="exampleImage2" />
-      <img className={uploadImage} src={emptyPicture} alt="exampleImage3" />
+      <span className={topic}>{category}</span>
+      <h2 className={textTitle}>{title}</h2>
+      {user?.profile === "" ? (
+        <Profile className={profileImege} />
+      ) : (
+        <img src={user?.profile} className={profileImege} alt="exampleImage1" />
+      )}
+      <span className={nickName}>{user?.nickname}</span>
+      <p className={mainText}>{content}</p>
+      <img className={uploadImage} src={image} alt="exampleImage2" />
+      <img className={uploadImage} src={image} alt="exampleImage3" />
       <div className={tagBox}>
-        <span>#React</span>
-        <span>#React</span>
-        <span>#React</span>
+        {hashTag &&
+          hashTag.map((item, index) => <Hashtag key={index} content={item} />)}
       </div>
       <button className={likeIcon}>
         <img src={Like} alt="하트" />
