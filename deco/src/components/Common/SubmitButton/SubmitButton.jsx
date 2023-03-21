@@ -1,23 +1,22 @@
 import { useId } from "react";
 import styles from "./SubmitButton.module.css";
-// import axios from "axios";
 import { useRecoilValue } from "recoil";
 import { titleState } from "@/@store/titleState";
-// import { useCreateData } from "@/firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { dbService } from "@/firebase/app";
+import { contentState } from "@/@store/contentState";
 
 const SubmitButton = ({ writeButton, title, ...restProps }) => {
   const id = useId();
-  // const inputTitle = useRecoilValue(titleState);
   const inputTitle = useRecoilValue(titleState);
-  // const { createData } = useCreateData("title");
+  const inputContent = useRecoilValue(contentState);
 
   const submitTitle = async (e) => {
     e.preventDefault();
     try {
       const docRef = await addDoc(collection(dbService, "question"), {
         title: inputTitle,
+        content: inputContent,
       });
       console.log("성공?", docRef.id);
     } catch (e) {

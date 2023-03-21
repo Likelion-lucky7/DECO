@@ -2,15 +2,23 @@ import { useId } from "react";
 import styles from "./WriteInput.module.css";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { inputCountState, titleState } from "@/@store/titleState";
+import { contentState } from "@/@store/contentState";
 
 const WriteInput = ({ isQuestion, ...restProps }) => {
   const id = useId();
 
   const [title, setTitle] = useRecoilState(titleState);
+  const [content, setContent] = useRecoilState(contentState);
   const count = useRecoilValue(inputCountState);
 
-  const onChange = (e) => {
+  const onChangeTitle = (e) => {
     setTitle(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const onChangeContent = (e) => {
+    setContent(e.target.value);
+    console.log(e.target.value);
   };
 
   return (
@@ -22,7 +30,7 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
             type="text"
             placeholder="제목을 입력해주세요."
             className={styles.title_question}
-            onChange={onChange}
+            onChange={onChangeTitle}
             value={title}
           />
           <span className={styles.totalNumber_question}>{count} / 100</span>
@@ -34,6 +42,8 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
             rows="10"
             placeholder="궁금한 내용을 적어주세요.&#10;질문하는 내용이 구체적일수록 더 정확한 답변을 받을 수 있어요."
             className={styles.content_question}
+            onChange={onChangeContent}
+            value={content}
           ></textarea>
         </>
       ) : (
