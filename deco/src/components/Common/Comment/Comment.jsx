@@ -2,19 +2,21 @@ import AnswerEditor from "@/components/Common/AnswerEditor/AnswerEditor";
 import QuestionAnswer from "@/components/Common/QuestionAnswer/QuestionAnswer";
 import React, { useEffect, useState } from "react";
 import styles from "@/components/Common/Comment/Comment.module.css";
-import axios from "axios";
+import { db } from "@/firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 const Comment = ({ id }) => {
   let [props, setProps] = useState([]);
   const getData = async () => {
-    let response = await axios.get(`http://localhost:3001/question/${id}`);
-    let data = await response.data;
+    const querySnapShot = await getDocs(collection(db, "comments"));
 
-    setProps(data);
+    const newData = querySnapShot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+      // const filteredData
+    }));
+    setProps(newData);
   };
-
-  let commentData = props?.comment;
-
   useEffect(() => {
     getData();
   }, []);
@@ -23,9 +25,11 @@ const Comment = ({ id }) => {
     <>
       <QuestionAnswer />
       <h2 className={styles.title}>답변</h2>
-      {commentData?.map((item) => {
+      {props.map((item) => {
+        console.log(item);
         return <AnswerEditor key={item.id} item={item} />;
       })}
+      ;
     </>
   );
 };
