@@ -6,6 +6,12 @@ import styles from "@/components/Common/AnswerEditor/AnswerEditor.module.css";
 const AnswerEditor = ({ item }) => {
   let { nickname, comment, image } = item;
 
+  const [displayState, setDisplayState] = useState(false);
+
+  const onClickDot = () => {
+    setDisplayState((displayState) => !displayState);
+  };
+
   return (
     <div>
       <div className={styles.editorBox}>
@@ -22,10 +28,16 @@ const AnswerEditor = ({ item }) => {
           src={threeDot}
           type="button"
           className={styles.dotThree}
+          onClick={onClickDot}
+          aria-hidden="true"
           alt="점 세개 선택버튼"
         />
-        <div className={styles.buttonWrapper}>
-          <button name="editButton" type="submit" className="">
+        <div
+          className={
+            displayState ? styles.buttonWrapperDisplay : styles.buttonWrapper
+          }
+        >
+          <button name="editButton" type="submit">
             수정하기
           </button>
           <button name="deleteButton" type="submit">
