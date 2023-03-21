@@ -1,6 +1,6 @@
+import AnswerEditor from "@/components/Common/AnswerEditor/AnswerEditor";
+import QuestionAnswer from "@/components/Common/QuestionAnswer/QuestionAnswer";
 import React, { useEffect, useState } from "react";
-import AnswerEditor from "../AnswerEditor/AnswerEditor";
-import QuestionAnswer from "../QuestionAnswer/QuestionAnswer";
 import styles from "@/components/Common/Comment/Comment.module.css";
 import axios from "axios";
 
