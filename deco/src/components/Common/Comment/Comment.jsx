@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import styles from "@/components/Common/Comment/Comment.module.css";
 import { db } from "@/firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
+import { useParams } from "react-router-dom";
 
 const Comment = ({ id }) => {
   let [props, setProps] = useState([]);
+  const questionId = useParams();
   const getData = async () => {
     const querySnapShot = await getDocs(collection(db, "comments"));
 
@@ -26,10 +28,14 @@ const Comment = ({ id }) => {
       <QuestionAnswer />
       <h2 className={styles.title}>답변</h2>
       {props.map((item) => {
+        return +questionId.id === item.commentId ? (
+          <AnswerEditor key={item.id} item={item} />
+        ) : undefined;
+      })}
+      {/* {props.map((item) => {
         console.log(item);
         return <AnswerEditor key={item.id} item={item} />;
-      })}
-      ;
+      })} */}
     </>
   );
 };
