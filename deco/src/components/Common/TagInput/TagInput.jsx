@@ -28,7 +28,7 @@ const TagInput = ({ isQuestion }) => {
 
   const submitTagItem = () => {
     let updatedTagList = [...tagList];
-    updatedTagList.push(tagItem);
+    updatedTagList.push(tagItem.trim());
     setTagList(updatedTagList);
     setTagItem("");
   };
