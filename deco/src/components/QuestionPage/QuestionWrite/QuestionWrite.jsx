@@ -43,6 +43,7 @@ const QuestionWrite = () => {
           <SubmitButton title="등록" writeButton={true} />
         </div>
       </div>
+      {/* <button onClick={handleTest}>클릭</button> */}
     </div>
   );
 };

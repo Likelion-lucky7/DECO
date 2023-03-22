@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router";
 import NavBar from "@/components/Common/NavBar";
 import styles from "./App.module.css";
