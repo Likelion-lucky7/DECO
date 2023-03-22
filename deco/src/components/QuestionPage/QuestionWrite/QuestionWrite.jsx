@@ -8,20 +8,23 @@ import { titleState } from "@/@store/titleState";
 import { collection, addDoc } from "firebase/firestore";
 import { dbService } from "@/firebase/app";
 import { contentState } from "@/@store/contentState";
-import { hashTagState } from "@/@store/hashTagState";
+import { hashTagListState } from "@/@store/hashTagListState";
 
 const QuestionWrite = () => {
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
-  const inputHashTag = useRecoilValue(hashTagState);
+  const inputHashTagList = useRecoilValue(hashTagListState);
 
   const submitTitle = async (e) => {
     e.preventDefault();
+    console.log("해시태그", inputHashTagList);
+    console.log("1" + inputContent);
+
     try {
       const docRef = await addDoc(collection(dbService, "question"), {
         title: inputTitle,
         content: inputContent,
-        hashtag: inputHashTag,
+        hashtag: inputHashTagList,
       });
       console.log("성공?", docRef.id);
     } catch (e) {

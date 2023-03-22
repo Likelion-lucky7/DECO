@@ -2,15 +2,12 @@ import { bool, string } from "prop-types";
 import styles from "./TagInput.module.css";
 import { useRecoilState } from "recoil";
 import { hashTagState } from "@/@store/hashTagState";
-import { useState } from "react";
+// import { useState } from "react";
+import { hashTagListState } from "../../../@store/hashTagListState";
 
 const TagInput = ({ isQuestion }) => {
-  const [tagItem, setTagItem] = useState("");
-  const [tagList, setTagList] = useState([]);
-
-  const onChangeTag = (e) => {
-    setTagItem(e.target.value);
-  };
+  const [tagItem, setTagItem] = useRecoilState(hashTagState);
+  const [tagList, setTagList] = useRecoilState(hashTagListState);
 
   const onKeyPress = (e) => {
     if (e.target.value.length !== 0 && e.key === "Enter") {
