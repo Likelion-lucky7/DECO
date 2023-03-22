@@ -27,7 +27,8 @@ const QuestionAnswer = () => {
     await createData({
       user: {
         userid: "임시 아이디",
-        nickname: "임시 닉네임",
+        profile: null,
+        nickname: "자영",
       },
       comment: commentWriteField.value,
     });

@@ -9,7 +9,6 @@ const {
   VITE_STORAGE_BUCKET,
   VITE_MESSAGIN_ID,
   VITE_APP_ID,
-  VITE_MEASUREMENT_ID,
 } = import.meta.env;
 
 const firebaseConfig = {

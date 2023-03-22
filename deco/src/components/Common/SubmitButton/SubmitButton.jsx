@@ -8,7 +8,7 @@ import { contentState } from "@/@store/contentState";
 import { hashTagState } from "../../../@store/hashTagState";
 
 const SubmitButton = ({ writeButton, title, ...restProps }) => {
-  const id = useId();
+  /* const id = useId();
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
   const inputHashTag = useRecoilValue(hashTagState);
@@ -25,7 +25,7 @@ const SubmitButton = ({ writeButton, title, ...restProps }) => {
     } catch (e) {
       console.error("error");
     }
-  };
+  }; */
   // const submitTitle = async (e) => {
   //   e.preventDefault();
 
@@ -53,8 +53,8 @@ const SubmitButton = ({ writeButton, title, ...restProps }) => {
       {writeButton ? (
         <div className={styles.container_writeButton}>
           <button
-            onClick={submitTitle}
-            id={id}
+            // onClick={submitTitle}
+            // id={id}
             className={styles.button_writeButton}
             {...restProps}
           >
@@ -64,8 +64,8 @@ const SubmitButton = ({ writeButton, title, ...restProps }) => {
       ) : (
         <div className={styles.container}>
           <button
-            onClick={submitTitle}
-            id={id}
+            // onClick={submitTitle}
+            // id={id}
             className={styles.button}
             {...restProps}
           >
