@@ -1,3 +1,34 @@
+.box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 50px;
+  margin: 10px 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border: 1px solid var(--gray-300);
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 10px 10px 0 0;
+}
+
+.inputWrapper {
+  width: 760px;
+  height: 50px;
+  border: 1px solid var(--gray-300);
+  border-radius: 5px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  padding-left: 17px;
+  color: #333333;
+  position: relative;
+}
+
 /* isQuestion = false */
 .tag {
   width: 1170px;
@@ -12,12 +43,17 @@
 
 /* isQuestion = true */
 .tag_question {
-  width: 760px;
-  height: 50px;
-  border: 1px solid var(--gray-300);
-  border-radius: 5px;
-  margin-top: 22px;
-  margin-bottom: 22px;
-  padding-left: 17px;
-  color: #333333;
+  width: 700px;
+  height: 48px;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.hashButton {
+  border: 0;
+  background-color: transparent;
+  margin-right: -8px;
 }
