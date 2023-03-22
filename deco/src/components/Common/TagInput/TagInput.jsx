@@ -9,15 +9,25 @@ const TagInput = ({ isQuestion }) => {
   const [tagItem, setTagItem] = useRecoilState(hashTagState);
   const [tagList, setTagList] = useRecoilState(hashTagListState);
 
+  const isEmptyValue = (value) => {
+    if (!value.length) {
+      return true;
+    }
+    return false;
+  };
+
   const onKeyPress = (e) => {
     if (e.target.value.length !== 0 && e.key === "Enter") {
       submitTagItem();
+    }
+
+    if (isEmptyValue(e.target.value.trim())) {
+      return setTagItem("");
     }
   };
 
   const submitTagItem = () => {
     let updatedTagList = [...tagList];
-    console.log(tagList);
     updatedTagList.push(tagItem);
     setTagList(updatedTagList);
     setTagItem("");
