@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import emptyPicture from "@/assets/empty_Picture.png";
-import threeDot from "@/assets/dots_three_icon.png";
 import styles from "@/components/Common/AnswerEditor/AnswerEditor.module.css";
+import DotButton from "../DotButton/dotButton";
 
 const AnswerEditor = ({ item }) => {
   let { nickname, comment, image } = item;
@@ -14,24 +13,14 @@ const AnswerEditor = ({ item }) => {
           className={styles.profileImege}
           alt="exampleImage1"
         />
+
         <span className={styles.nickName}>{nickname}</span>
+
         <p className={styles.answer} type="text" value={"./"}>
           {comment}
         </p>
-        <img
-          src={threeDot}
-          type="button"
-          className={styles.dotThree}
-          alt="점 세개 선택버튼"
-        />
-        <div className={styles.buttonWrapper}>
-          <button name="editButton" type="submit" className="">
-            수정하기
-          </button>
-          <button name="deleteButton" type="submit">
-            삭제하기
-          </button>
-        </div>
+
+        <DotButton />
       </div>
     </div>
   );
