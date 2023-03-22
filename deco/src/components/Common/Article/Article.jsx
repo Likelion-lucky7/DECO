@@ -12,16 +12,15 @@ const Article = ({ item }) => {
   const navigation = () => {
     navigate(`/question/${id}`);
   };
-
   return (
     <article className={styles.container}>
       <div className={styles.userAndDate}>
         <div className={styles.userInfo}>
-          {user?.profile == "" ? (
+          {user?.profile === ""? (
             <Profile />
-          ) : (
-            <img alt="유저 프로필 사진입니다" />
-          )}
+            ) : (
+              <img  src = {user?.profile} alt="유저 프로필 사진입니다" />
+              )}
           <span>{user.nickname}</span>
         </div>
         <div className={styles.date}>작성일 {date}</div>
