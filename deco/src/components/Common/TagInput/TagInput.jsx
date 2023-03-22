@@ -28,6 +28,7 @@ const TagInput = ({ isQuestion }) => {
 
   const submitTagItem = () => {
     let updatedTagList = [...tagList];
+    if (updatedTagList.length >= 5) return;
     updatedTagList.push(tagItem.trim());
     setTagList(updatedTagList);
     setTagItem("");
@@ -59,7 +60,7 @@ const TagInput = ({ isQuestion }) => {
         {isQuestion ? (
           <input
             type="text"
-            placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등)"
+            placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 최대 5개까지)"
             className={styles.tag_question}
             onChange={(e) => setTagItem(e.target.value)}
             value={tagItem}
@@ -68,7 +69,7 @@ const TagInput = ({ isQuestion }) => {
         ) : (
           <input
             type="text"
-            placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등)"
+            placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 최대 5개까지)"
             className={styles.tag}
           />
         )}
