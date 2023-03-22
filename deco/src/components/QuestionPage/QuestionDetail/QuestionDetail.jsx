@@ -5,7 +5,8 @@ import Like from "@/assets/heartActivate.svg";
 import Comment from "@/components/Common/Comment/Comment";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { dbService } from "@/firebase/app";
-import { getDocs, collection, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import {collection, onSnapshot } from "firebase/firestore";
+import { updateDoc, doc, deleteDoc } from "firebase/firestore";
 import styles2 from "@/components/Common/WriteInput/WriteInput.module.css";
 
 const {
@@ -13,7 +14,7 @@ const {
   topic,
   profileImege,
   nickName,
-  like,
+  likeIcon,
   tagBox,
   textTitle,
   uploadImage,
@@ -24,24 +25,23 @@ const DetailPage = () => {
   let id = useParams();
   let navigate = useNavigate()
   let [data, setData] = useState([]);
+
   
   let [editMode, setEditMode] = useState(false);
   let [ubdateTitle, setUpdateTitle] = useState("");
   let [ubdateContent, setUpdateContent] = useState("");
   
   // 게시글 조회
-  const getNweets = async () => {
-    const querySnapShot = await getDocs(collection(dbService, "nweets"));
-    querySnapShot.forEach((doc) => {
-      if (id.id === doc.data().id) {
-        setData(doc.data());
-      }
-    });
-  };
+
   useEffect(() => {
-    getNweets();
     localStorage.setItem("id","user1")
-  }, []);
+    onSnapshot(collection(dbService, "question"), (snapshot) => {
+      const nweetsArr = snapshot.docs.map((item)=> item.data())
+        const filteredData = nweetsArr.filter(item=>{ return item.id == id.id})
+        setData(filteredData[0])
+      })
+    }, []);
+    
 
   let { title, content, image, user, category, hashTag, like, hits } = data;
 // console.log(user?.nickname)
@@ -64,7 +64,7 @@ const onUpdate = async (e) => {
   let testPath = "YOm6tv5go7u9MJn4zRdB"
   const ok = window.confirm("수정하시겠습니까")
   if(ok){
-    await updateDoc(doc(dbService, "nweets", testPath),{title:ubdateTitle, content:ubdateContent});
+    await updateDoc(doc(dbService, "question", testPath),{title:ubdateTitle, content:ubdateContent});
     setEditMode(!editMode)
   }else{
     console.log("취소")
@@ -141,14 +141,13 @@ const onUpdate = async (e) => {
         <img src={Like} alt="하트" />
         <span>좋아요</span>
       </button>
-      {localStorage.getItem("id") == user?.nickname && editMode === false ? (
+      {localStorage.getItem("id") == user?.userId && editMode === false ? (
         <>
         <button >삭제</button>
         <button onClick={()=>{setEditMode(true)}}>수정</button>
         </>
       ) : null}
-
-      <Comment />
+      <Comment id={id.id} />
     </div>
   );
 };

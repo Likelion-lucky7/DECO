@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router";
 import NavBar from "@/components/Common/NavBar";
 import styles from "./App.module.css";
@@ -15,9 +14,8 @@ import QuestionPage from "@/pages/QuestionPage";
 import CommunityPage from "@/pages/CommunityPage";
 import SideProjectPage from "@/pages/SideProjectPage";
 import NotFoundPage from "@/pages/NotFoundPage";
-function App() {
-  const [count, setCount] = useState(0);
 
+function App() {
   return (
     <div className={styles.layout}>
       <NavBar />
