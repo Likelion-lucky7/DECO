@@ -7,6 +7,7 @@ const {
   VITE_MESSAGE_SENDER_ID,
   VITE_STORAGE_BUCKET,
   VITE_APP_ID,
+  VITE_MEASUREMENT_ID,
 } = import.meta.env;
 
 const firebaseConfig = {
@@ -16,6 +17,7 @@ const firebaseConfig = {
   storageBucket: VITE_STORAGE_BUCKET,
   messagingSenderId: VITE_MESSAGE_SENDER_ID,
   appId: VITE_APP_ID,
+  measurementId: VITE_MEASUREMENT_ID,
 };
 
 export const app = initializeApp(firebaseConfig);
