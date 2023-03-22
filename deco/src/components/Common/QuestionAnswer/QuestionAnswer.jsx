@@ -26,7 +26,8 @@ const QuestionAnswer = () => {
     // firebase 이용하는 방법
     await createData({
       user: {
-        userid: "임시 아이디",
+        userId: "임시 아이디",
+        profile: null,
         nickname: "임시 닉네임",
       },
       comment: commentWriteField.value,

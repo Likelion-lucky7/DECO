@@ -1,31 +1,31 @@
 import { useId } from "react";
 import styles from "./SubmitButton.module.css";
-import { useRecoilValue } from "recoil";
-import { titleState } from "@/@store/titleState";
-import { collection, addDoc } from "firebase/firestore";
-import { dbService } from "@/firebase/app";
-import { contentState } from "@/@store/contentState";
-import { hashTagState } from "../../../@store/hashTagState";
+// import { useRecoilValue } from "recoil";
+// import { titleState } from "@/@store/titleState";
+// import { collection, addDoc } from "firebase/firestore";
+// import { dbService } from "@/firebase/app";
+// import { contentState } from "@/@store/contentState";
+// import { hashTagState } from "../../../@store/hashTagState";
 
 const SubmitButton = ({ writeButton, title, ...restProps }) => {
   const id = useId();
-  const inputTitle = useRecoilValue(titleState);
-  const inputContent = useRecoilValue(contentState);
-  const inputHashTag = useRecoilValue(hashTagState);
+  // const inputTitle = useRecoilValue(titleState);
+  // const inputContent = useRecoilValue(contentState);
+  // const inputHashTag = useRecoilValue(hashTagState);
 
-  const submitTitle = async (e) => {
-    e.preventDefault();
-    try {
-      const docRef = await addDoc(collection(dbService, "question"), {
-        title: inputTitle,
-        content: inputContent,
-        hashtag: inputHashTag,
-      });
-      console.log("성공?", docRef.id);
-    } catch (e) {
-      console.error("error");
-    }
-  };
+  // const submitTitle = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const docRef = await addDoc(collection(dbService, "comments"), {
+  //       title: inputTitle,
+  //       content: inputContent,
+  //       hashtag: inputHashTag,
+  //     });
+  //     console.log("성공?", docRef.id);
+  //   } catch (e) {
+  //     console.error("error");
+  //   }
+  // };
   // const submitTitle = async (e) => {
   //   e.preventDefault();
 
@@ -53,7 +53,7 @@ const SubmitButton = ({ writeButton, title, ...restProps }) => {
       {writeButton ? (
         <div className={styles.container_writeButton}>
           <button
-            onClick={submitTitle}
+            // onClick={submitTitle}
             id={id}
             className={styles.button_writeButton}
             {...restProps}
@@ -64,7 +64,7 @@ const SubmitButton = ({ writeButton, title, ...restProps }) => {
       ) : (
         <div className={styles.container}>
           <button
-            onClick={submitTitle}
+            // onClick={submitTitle}
             id={id}
             className={styles.button}
             {...restProps}
