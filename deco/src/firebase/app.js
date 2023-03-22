@@ -22,7 +22,5 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-<<<<<<< HEAD
 export const dbService = getFirestore();
-=======
->>>>>>> a7597f0fa9ce651988d9ab5062555a7211591cd4
+
