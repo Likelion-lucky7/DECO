@@ -1,5 +1,9 @@
 import { addDoc, collection } from "firebase/firestore";
+<<<<<<< HEAD
 import { useCallback, useMemo, useState } from "react";
+=======
+import { useState, useCallback, useMemo } from "react";
+>>>>>>> a7597f0fa9ce651988d9ab5062555a7211591cd4
 import { db } from "./index";
 
 /**
@@ -11,6 +15,10 @@ import { db } from "./index";
  *   createData: (data: any) => Promise<any>
  * }}
  */
+<<<<<<< HEAD
+=======
+
+>>>>>>> a7597f0fa9ce651988d9ab5062555a7211591cd4
 export function useCreateData(collectionKey) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
