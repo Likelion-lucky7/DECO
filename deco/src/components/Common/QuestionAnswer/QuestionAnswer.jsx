@@ -4,7 +4,7 @@ import Styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { commentState } from "@/@store/commentState";
 import { useCreateData } from "@/firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 /* 텍스트 지우는 함수 */
@@ -15,7 +15,8 @@ function clearText(target) {
 const QuestionAnswer = () => {
   const [comment, setComment] = useRecoilState(commentState);
   const { createData } = useCreateData("comments");
-  let commentsId = useParams();
+  const commentsId = useParams();
+
   function onChange(e) {
     setComment(e.target.value);
   }
@@ -32,10 +33,11 @@ const QuestionAnswer = () => {
         profile: null,
         nickname: "임시 닉네임",
       },
+      date: new Date().getTime(),
       comment: commentWriteField.value,
       commentId: +commentsId.id,
     });
-
+    // indexData.current += 1;
     clearText(commentWriteField);
 
     console.log("comments 콜렉션에 comments 데이터 생성");
