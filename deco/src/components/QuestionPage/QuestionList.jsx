@@ -1,3 +1,6 @@
+import { dbService } from "@/firebase/app";
+import axios from "axios";
+import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
@@ -11,6 +14,18 @@ import styles from "./QuestionList.module.css";
 const QuestionList = () => {
   const [props, setProps] = useState([]);
 
+  const getData = async () => {
+    const querySnapShot = await getDocs(collection(dbService, "question"));
+
+    const newData = querySnapShot.docs.map((doc) => ({
+      ...doc.data(),
+    }));
+    setProps(newData);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <>
       <BoardBanner
