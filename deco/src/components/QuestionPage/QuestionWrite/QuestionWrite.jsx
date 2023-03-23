@@ -3,8 +3,35 @@ import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import TagInput from "@/components/Common/TagInput/TagInput";
 import styles from "./QuestionWrite.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
+import { useRecoilValue } from "recoil";
+import { titleState } from "@/@store/titleState";
+import { collection, addDoc } from "firebase/firestore";
+import { dbService } from "@/firebase/app";
+import { contentState } from "@/@store/contentState";
+import { hashTagListState } from "@/@store/hashTagListState";
 
 const QuestionWrite = () => {
+  const inputTitle = useRecoilValue(titleState);
+  const inputContent = useRecoilValue(contentState);
+  const inputHashTagList = useRecoilValue(hashTagListState);
+
+  const submitTitle = async (e) => {
+    e.preventDefault();
+    console.log("해시태그", inputHashTagList);
+    console.log("1" + inputContent);
+
+    try {
+      const docRef = await addDoc(collection(dbService, "question"), {
+        title: inputTitle,
+        content: inputContent,
+        hashtag: inputHashTagList,
+      });
+      console.log("성공?", docRef.id);
+    } catch (e) {
+      console.error("error");
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.info}>
@@ -40,10 +67,9 @@ const QuestionWrite = () => {
         <TagInput isQuestion={true} />
         <div className={styles.rowButton}>
           <FileUpload isSignUp={false} />
-          <SubmitButton title="등록" writeButton={true} />
+          <SubmitButton onClick={submitTitle} title="등록" writeButton={true} />
         </div>
       </div>
-      {/* <button onClick={handleTest}>클릭</button> */}
     </div>
   );
 };
