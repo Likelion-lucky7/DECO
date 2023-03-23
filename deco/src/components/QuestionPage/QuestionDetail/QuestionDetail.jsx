@@ -9,7 +9,7 @@ import {collection, onSnapshot } from "firebase/firestore";
 import { updateDoc, doc, deleteDoc } from "firebase/firestore";
 import styles2 from "@/components/Common/WriteInput/WriteInput.module.css";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { getQuestion, getQuestionRealtime} from "@/@store/getQuestionData";
+import { getQuestion} from "@/@store/getQuestionData";
 
 
 const {
@@ -36,8 +36,6 @@ const DetailPage = () => {
   let questionData = useRecoilValue(getQuestion)
   let data = questionData.filter((item)=>item.id === id.id)[0]
 
-  let realTime = useRecoilValue(getQuestionRealtime)
-  console.log(realTime)
   
   // 실시간 게시글 조회
   // useEffect(() => {
