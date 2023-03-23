@@ -9,18 +9,14 @@ import { useRecoilState } from "recoil";
 import { async } from "@firebase/util";
 
 const AnswerEditor = ({ item }) => {
-  let { user, comment, image } = item;
+  const { user, comment, id } = item;
 
   const [commentField, setCommentField] = useRecoilState(commentUpdateState);
 
   const [updateMode, setUpdateMode] = useState(false);
-  const [updateComment, setUpdateComment] = useState("");
 
   const { deleteData } = useDeleteData("comments");
   const { updateData } = useUpdateData("comments");
-
-  let path = "75rPtTlDHIoS9qzVzPi5";
-  // path를 안 받아오고 해결 하는 법이 있을까
 
   const onClickDotButton = async (e) => {
     e.preventDefault();
@@ -30,13 +26,12 @@ const AnswerEditor = ({ item }) => {
     }
 
     if (e.target.name == "deleteButton") {
-      await deleteData(path);
+      await deleteData(id);
     }
   };
 
   const onChangeComment = (e) => {
     setCommentField(e.target.value); // 리코일
-    setUpdateComment(e.target.value); // 댓글 입력값 업데이트
   };
 
   const onClickUpdateButton = async (e) => {
@@ -46,9 +41,9 @@ const AnswerEditor = ({ item }) => {
 
     await updateData(
       {
-        comment: updateComment,
+        comment: commentField,
       },
-      path,
+      id,
     );
   };
 
@@ -82,7 +77,7 @@ const AnswerEditor = ({ item }) => {
             <textarea
               className={styles.updateAnswer}
               type="text"
-              name="updateComment"
+              name="commentField"
               placeholder="수정할 내용을 입력해주세요."
               defaultValue={comment}
               onChange={onChangeComment}

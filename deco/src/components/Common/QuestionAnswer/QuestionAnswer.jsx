@@ -4,6 +4,7 @@ import Styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { commentState } from "@/@store/commentState";
 import { useCreateData } from "@/firebase/firestore";
+import { useState } from "react";
 
 /* 텍스트 지우는 함수 */
 function clearText(target) {
