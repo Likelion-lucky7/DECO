@@ -1,50 +1,59 @@
+/* eslint-disable no-useless-escape */
 import { bool, string } from "prop-types";
 import styles from "./TagInput.module.css";
 import { useRecoilState } from "recoil";
 import { hashTagState } from "@/@store/hashTagState";
-// import { useState } from "react";
 import { hashTagListState } from "../../../@store/hashTagListState";
 
 const TagInput = ({ isQuestion }) => {
-  const [tagItem, setTagItem] = useRecoilState(hashTagState);
-  const [tagList, setTagList] = useRecoilState(hashTagListState);
+  const [inputHashTag, setInputHashTag] = useRecoilState(hashTagState);
+  const [hashTags, setHashTags] = useRecoilState(hashTagListState);
 
-  const isEmptyValue = (value) => {
-    if (!value.length) {
-      return true;
-    }
-    return false;
-  };
+  const addHashTag = (e) => {
+    const allowedCommand = ["Comma", "Enter", "Space", "NumpadEnter"];
+    if (!allowedCommand.includes(e.code)) return;
+    if ([...hashTags].length >= 5) return;
 
-  const onKeyPress = (e) => {
-    if (e.target.value.length !== 0 && e.key === "Enter") {
-      submitTagItem();
-    }
+    const isEmptyValue = (value) => {
+      if (!value.length) {
+        return true;
+      }
+      return false;
+    };
 
     if (isEmptyValue(e.target.value.trim())) {
-      return setTagItem("");
+      return setInputHashTag("");
     }
-  };
 
-  const submitTagItem = () => {
-    let updatedTagList = [...tagList];
-    if (updatedTagList.length >= 5) return;
-    updatedTagList.push(tagItem.trim());
-    setTagList(updatedTagList);
-    setTagItem("");
+    let newHashTag = e.target.value.trim();
+    const regExp = /[\{\}\[\]\/?.;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+    if (regExp.test(newHashTag)) {
+      newHashTag = newHashTag.replace(regExp, "");
+    }
+    if (newHashTag.includes(",")) {
+      newHashTag = newHashTag.split(",").join("");
+    }
+
+    if (isEmptyValue(newHashTag)) return;
+
+    setHashTags((prevHashTags) => {
+      return [...new Set([...prevHashTags, newHashTag])];
+    });
+
+    setInputHashTag("");
   };
 
   const deleteTagItem = (e) => {
     const deleteTagItem = e.target.parentElement.firstChild.innerText;
-    const filteredTagList = tagList.filter(
+    const filteredTagList = hashTags.filter(
       (tagItem) => tagItem !== deleteTagItem,
     );
-    setTagList(filteredTagList);
+    setHashTags(filteredTagList);
   };
 
   return (
     <div className={styles.box}>
-      {tagList.map((hashTag, idx) => {
+      {hashTags.map((hashTag, idx) => {
         return (
           <div key={idx} className={styles.item}>
             <span>{hashTag}</span>
@@ -62,9 +71,9 @@ const TagInput = ({ isQuestion }) => {
             type="text"
             placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 최대 5개까지)"
             className={styles.tag_question}
-            onChange={(e) => setTagItem(e.target.value)}
-            value={tagItem}
-            onKeyUp={onKeyPress}
+            onChange={(e) => setInputHashTag(e.target.value)}
+            value={inputHashTag}
+            onKeyUp={addHashTag}
           />
         ) : (
           <input
