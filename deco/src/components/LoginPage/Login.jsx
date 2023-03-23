@@ -4,7 +4,7 @@ import FormInput from "@/components/Common/FormInput/FormInput";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
-import { firebaseAuth } from "@/firebase/auth";
+import { auth } from "@/firebase/auth/index";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
   const [loginPassword, setloginPassword] = useState("");
   const [user, setUser] = useState({});
   useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (currentUser) => {
+    onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
   }, []);
@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const user = await signInWithEmailAndPassword(
-        firebaseAuth,
+        auth,
         loginEmail,
         loginPassword,
       );

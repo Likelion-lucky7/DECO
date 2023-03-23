@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
@@ -11,16 +10,6 @@ import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
   const [props, setProps] = useState([]);
-
-  const getData = async () => {
-    const response = await axios.get("http://localhost:3001/question");
-    const data = await response.data;
-    setProps(data);
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <>

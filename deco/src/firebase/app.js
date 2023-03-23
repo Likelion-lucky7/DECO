@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const {
   VITE_API_KEY,
@@ -9,7 +10,6 @@ const {
   VITE_STORAGE_BUCKET,
   VITE_MESSAGIN_ID,
   VITE_APP_ID,
-  VITE_MEASUREMENT_ID,
 } = import.meta.env;
 
 const firebaseConfig = {
@@ -24,3 +24,4 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const dbService = getFirestore();
+export const storage = getStorage(app);

@@ -4,40 +4,60 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import styles from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
-import { useEffect, useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-} from "firebase/auth";
-import { firebaseAuth } from "@/firebase/auth";
+import { useRef } from "react";
+import { useSignUp } from "@/firebase/auth/useSignUp";
+import { useCreateAuthUser } from "@/firebase/firestore";
+import { useAuthState } from "@/firebase/auth/useAuthState";
+
+const initialFormState = {
+  email: "",
+  password: "",
+  passwordConfirm: "",
+  nickname: "",
+};
 
 const SignUp = () => {
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (currentUser) => {
-      setUser(currentUser);
-    });
-  }, []);
+  const { signUp } = useSignUp();
+  const { createAuthUser } = useCreateAuthUser();
+  const { isLoading, error, user } = useAuthState();
 
-  const register = async (e) => {
+  const formSatateRef = useRef(initialFormState);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const user = await createUserWithEmailAndPassword(
-        firebaseAuth,
-        registerEmail,
-        registerPassword,
-      );
-    } catch (error) {
-      console.log(error.message);
+
+    const { email, password, passwordConfirm, nickname } =
+      formSatateRef.current;
+    console.log(formSatateRef);
+    if (!nickname || nickname.trim().length < 2) {
+      console.error("닉네임은 2글자 이상 입력해야 해요");
+      return;
     }
+
+    if (!Object.is(password, passwordConfirm)) {
+      console.error("비밀번호를 다시 확인하세요");
+      return;
+    }
+
+    const user = await signUp(email, password, nickname);
+    await createAuthUser(user, { photoURL: "../../assets/empty_picture.png" });
+
+    console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
   };
 
-  const logout = async () => {
-    await signOut(firebaseAuth);
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    formSatateRef.current[name] = value;
   };
+
+  if (isLoading) {
+    return <div role="alert">페이지를 준비중입니다.</div>;
+  }
+
+  if (error) {
+    return <div role="alert">오류! {error.message}</div>;
+  }
+
   return (
     <div className={styles.container}>
       <WelcomeInfo subtitle="DECO의 일원이 되어주세요 !" />
@@ -45,43 +65,38 @@ const SignUp = () => {
       <Profile className={styles.profile} alt="프로필 이미지" />
       <p className={styles.profile_info}>이미지를 설정해주세요 !</p>
 
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <FileUpload isSignUp={true} />
 
         <FormInput
-          name="id"
-          label="아이디"
+          name="email"
+          type="email"
+          label="e-mail 아이디"
           placeholder="아이디 입력"
-          onChange={(event) => {
-            setRegisterEmail(event.target.value);
-          }}
+          onChange={handleChangeInput}
         />
         <FormInput
           name="password"
           type="password"
           label="비밀번호"
           placeholder="비밀번호 입력"
-          onChange={(event) => {
-            setRegisterPassword(event.target.value);
-            console.log(registerPassword);
-          }}
+          onChange={handleChangeInput}
         />
         <FormInput
-          name="password"
+          name="passwordConfirm"
           type="password"
           label="비밀번호 확인"
           placeholder="비밀번호 입력"
+          onChange={handleChangeInput}
         />
         <FormInput
-          name="email"
-          type="email"
-          label="이메일"
-          placeholder="이메일 입력"
+          name="nickname"
+          label="닉네임"
+          placeholder="닉네임 입력"
+          onChange={handleChangeInput}
         />
-        <FormInput name="nickname" label="닉네임" placeholder="닉네임 입력" />
-        <button onClick={logout}>로그아웃</button>
         <div>로그인한 유저: {user?.email}</div>
-        <SubmitButton title="회원가입" writeButton={false} onClick={register} />
+        <SubmitButton type="submit" title="회원가입" writeButton={false} />
       </form>
     </div>
   );
