@@ -31,3 +31,21 @@
   font-size: var(--text-sm);
   font-weight: 400;
 }
+
+/* updateMode = true */
+.submitButton {
+  display: block;
+  float: right;
+}
+
+.updateAnswer {
+  display: flex;
+  margin-top: 22px;
+  width: 1080px;
+  height: 150px;
+  resize: none;
+  border: 1px soild gray;
+  border-radius: 5px;
+  padding: 30px;
+  line-height: 1.6;
+}

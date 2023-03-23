@@ -26,7 +26,7 @@ const Comment = ({ id }) => {
       <QuestionAnswer />
       <h2 className={styles.title}>답변</h2>
       {props.map((item) => {
-        console.log(item);
+        // console.log(item);
         return <AnswerEditor key={item.id} item={item} />;
       })}
       ;

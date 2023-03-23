@@ -19,6 +19,8 @@ export function useDeleteData(collectionKey) {
     async (documentKey) => {
       const documentRef = doc(db, collectionKey, documentKey);
 
+      console.log(documentKey);
+
       setIsLoading(true);
 
       try {
