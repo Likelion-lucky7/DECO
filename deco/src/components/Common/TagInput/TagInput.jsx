@@ -52,11 +52,11 @@ const TagInput = ({ isQuestion }) => {
   };
 
   return (
-    <div className={styles.box}>
+    <div className={styles.tagBox}>
       {hashTags.map((hashTag, idx) => {
         return (
-          <div key={idx} className={styles.item}>
-            <span>{hashTag}</span>
+          <div key={idx} className={styles.tagItem}>
+            <span className={styles.fontColor}>{hashTag}</span>
             <button onClick={deleteTagItem} className={styles.hashButton}>
               ✕
             </button>
@@ -65,7 +65,7 @@ const TagInput = ({ isQuestion }) => {
       })}
 
       <div className={styles.inputWrapper}>
-        <span className={styles.hash}>#</span>
+        <span>#</span>
         {isQuestion ? (
           <input
             type="text"

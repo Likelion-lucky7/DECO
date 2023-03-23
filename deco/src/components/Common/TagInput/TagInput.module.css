@@ -1,20 +1,21 @@
-.box {
+.tagBox {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 50px;
+  min-height: 3.125rem;
   margin: 10px 0;
 }
 
-.item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 10px;
-  border: 1px solid var(--gray-300);
+.tagItem {
+  padding: 6px 12px;
+  border: 1px solid var(--secondary);
   border-radius: 5px;
-  font-size: 13px;
+  font-size: 14px;
   margin: 10px 10px 0 0;
+}
+
+.fontColor {
+  color: var(--secondary);
 }
 
 .inputWrapper {
@@ -56,4 +57,5 @@ input:focus {
   border: 0;
   background-color: transparent;
   margin-right: -8px;
+  color: var(--secondary);
 }
