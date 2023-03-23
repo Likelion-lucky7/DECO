@@ -1,24 +1,26 @@
-import emptyPicture from "@/assets/empty_Picture.png";
-import styles from "@/components/Common/AnswerEditor/AnswerEditor.module.css";
-import { useDeleteData, useUpdateData } from "@/firebase/firestore";
-import DotButton from "@/components/Common/DotButton/DotButton";
 import { useState } from "react";
+import styles from "@/components/Common/AnswerEditor/AnswerEditor.module.css";
+import emptyPicture from "@/assets/empty_Picture.png";
+import DotButton from "@/components/Common/DotButton/DotButton";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
-import { commentState } from "@/@store/commentState";
+import { useDeleteData, useUpdateData } from "@/firebase/firestore";
+import { commentUpdateState } from "@/@store/commentUpdateState";
 import { useRecoilState } from "recoil";
 import { async } from "@firebase/util";
 
 const AnswerEditor = ({ item }) => {
   let { user, comment, image } = item;
 
-  const [commentField, setCommentField] = useRecoilState(commentState);
+  const [commentField, setCommentField] = useRecoilState(commentUpdateState);
 
-  let path = "75rPtTlDHIoS9qzVzPi5";
   const [updateMode, setUpdateMode] = useState(false);
   const [updateComment, setUpdateComment] = useState("");
 
   const { deleteData } = useDeleteData("comments");
   const { updateData } = useUpdateData("comments");
+
+  let path = "75rPtTlDHIoS9qzVzPi5";
+  // path를 안 받아오고 해결 하는 법이 있을까
 
   const onClickDotButton = async (e) => {
     e.preventDefault();
@@ -33,8 +35,8 @@ const AnswerEditor = ({ item }) => {
   };
 
   const onChangeComment = (e) => {
-    setCommentField(e.target.value);
-    setUpdateComment(e.target.value);
+    setCommentField(e.target.value); // 리코일
+    setUpdateComment(e.target.value); // 댓글 입력값 업데이트
   };
 
   const onClickUpdateButton = async (e) => {
@@ -48,6 +50,10 @@ const AnswerEditor = ({ item }) => {
       },
       path,
     );
+  };
+
+  const onClickCancelButton = () => {
+    setUpdateMode((updateMode) => !updateMode);
   };
 
   return (
@@ -65,6 +71,12 @@ const AnswerEditor = ({ item }) => {
 
             <div className={styles.submitButton}>
               <SubmitButton type="submit" title="수정" writeButton={true} />
+              <SubmitButton
+                type="button"
+                title="취소"
+                writeButton={true}
+                onClick={onClickCancelButton}
+              />
             </div>
 
             <textarea

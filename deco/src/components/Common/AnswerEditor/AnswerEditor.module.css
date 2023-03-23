@@ -34,8 +34,12 @@
 
 /* updateMode = true */
 .submitButton {
-  display: block;
-  float: right;
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  top: 34px;
+  right: 29px;
 }
 
 .updateAnswer {
