@@ -4,7 +4,7 @@ import Hashtag from "../Hashtag/Hashtag";
 import QuestionCategory from "@/components/QuestionPage/QuestionCategory";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { ReactComponent as LoveIcon } from "@/assets/loveIcon.svg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Article = ({ item }) => {
   const { title, date, user, category, hashTag, like, hits, id } = item;
@@ -12,36 +12,22 @@ const Article = ({ item }) => {
   const navigation = () => {
     navigate(`/question/${id}`);
   };
-  const checkHandler = (e) => {
-    if (e.key === "Enter") {
-      navigation();
-    } else {
-      return null;
-    }
-  };
-
   return (
     <article className={styles.container}>
       <div className={styles.userAndDate}>
         <div className={styles.userInfo}>
-          {user?.profile == "" ? (
+          {user?.profile === ""? (
             <Profile />
-          ) : (
-            <img alt="유저 프로필 사진입니다" />
-          )}
+            ) : (
+              <img  src = {user?.profile} alt="유저 프로필 사진입니다" />
+              )}
           <span>{user.nickname}</span>
         </div>
         <div className={styles.date}>작성일 {date}</div>
       </div>
-      <div
-        className={styles.linkToDetail}
-        role="button"
-        tabIndex={0}
-        onClick={navigation}
-        onKeyDown={checkHandler}
-      >
+      <Link to={`/question/${id}`} className={styles.linkToDetail}>
         <h2>{title}</h2>
-      </div>
+      </Link>
       <div className={styles.hashAndAdditionalInfo}>
         <div className={styles.hash}>
           {category ? <QuestionCategory categoryName={category} /> : null}
