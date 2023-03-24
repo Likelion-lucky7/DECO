@@ -14,6 +14,7 @@ function clearText(target) {
 const QuestionAnswer = ({ title, ...restProps }) => {
   const [comment, setComment] = useRecoilState(commentState);
   const { createData } = useCreateData("comments");
+  const commentsId = useParams();
 
   function onChange(e) {
     setComment(e.target.value);
@@ -27,13 +28,15 @@ const QuestionAnswer = ({ title, ...restProps }) => {
     // firebase 이용하는 방법
     await createData({
       user: {
-        userid: "임시 아이디",
+        userId: "임시 아이디",
         profile: null,
-        nickname: "자영",
+        nickname: "임시 닉네임",
       },
+      date: new Date().getTime(),
       comment: commentWriteField.value,
+      commentId: +commentsId.id,
     });
-
+    // indexData.current += 1;
     clearText(commentWriteField);
 
     console.log("comments 콜렉션에 comments 데이터 생성");
