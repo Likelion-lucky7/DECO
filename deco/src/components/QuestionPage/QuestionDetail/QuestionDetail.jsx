@@ -72,7 +72,7 @@ const onDelete = async (e) => {
     }
     
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -80,7 +80,6 @@ const onDelete = async (e) => {
     e.preventDefault();
 
     if (e.target.name == "updateButton") {
-      console.log("수정버튼");
       setEditMode(true);
     }
 
