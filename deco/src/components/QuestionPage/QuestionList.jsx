@@ -1,7 +1,6 @@
-import { dbService } from "@/firebase/app";
-import axios from "axios";
-import { collection, getDocs } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import { getQuestion } from "@/@store/getQuestionData";
+import React from "react";
+import { useRecoilState } from "recoil";
 import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
@@ -12,20 +11,9 @@ import Sort from "../Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
-  const [props, setProps] = useState([]);
+  let questionData = useRecoilState(getQuestion);
+  let filteredData = questionData[0].filter((item) => item.id !== undefined);
 
-  const getData = async () => {
-    const querySnapShot = await getDocs(collection(dbService, "question"));
-
-    const newData = querySnapShot.docs.map((doc) => ({
-      ...doc.data(),
-    }));
-    setProps(newData);
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <>
       <BoardBanner
@@ -42,7 +30,7 @@ const QuestionList = () => {
         <Hashtag content="HTML " />
       </div>
       <Sort />
-      {props.map((item) => {
+      {filteredData.map((item) => {
         return <Article key={item.id} item={item} />;
       })}
       <Pagination />

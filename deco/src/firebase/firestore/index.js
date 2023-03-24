@@ -5,3 +5,5 @@ export const db = getFirestore(app);
 
 export * from "./useCreateData";
 export * from "./useCreateAuthUser";
+export * from "./useDeleteData";
+export * from "./useUpdateData";

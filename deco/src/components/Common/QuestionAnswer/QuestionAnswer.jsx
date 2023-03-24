@@ -4,15 +4,17 @@ import Styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { commentState } from "@/@store/commentState";
 import { useCreateData } from "@/firebase/firestore";
+import { useState } from "react";
 
 /* 텍스트 지우는 함수 */
 function clearText(target) {
   target.value = "";
 }
 
-const QuestionAnswer = () => {
+const QuestionAnswer = ({ title, ...restProps }) => {
   const [comment, setComment] = useRecoilState(commentState);
   const { createData } = useCreateData("comments");
+  const commentsId = useParams();
 
   function onChange(e) {
     setComment(e.target.value);
@@ -26,12 +28,15 @@ const QuestionAnswer = () => {
     // firebase 이용하는 방법
     await createData({
       user: {
-        userid: "임시 아이디",
+        userId: "임시 아이디",
+        profile: null,
         nickname: "임시 닉네임",
       },
+      date: new Date().getTime(),
       comment: commentWriteField.value,
+      commentId: +commentsId.id,
     });
-
+    // indexData.current += 1;
     clearText(commentWriteField);
 
     console.log("comments 콜렉션에 comments 데이터 생성");
@@ -56,7 +61,7 @@ const QuestionAnswer = () => {
 
   return (
     <div className={Styles.answerWrite}>
-      <h2>답변하기</h2>
+      <h2>{title}</h2>
 
       <form onSubmit={submitData}>
         <textarea
@@ -64,6 +69,7 @@ const QuestionAnswer = () => {
           name="comment"
           placeholder="질문에 대한 답변을 하려면 로그인을 해주세요"
           onChange={onChange}
+          {...restProps}
         ></textarea>
 
         <div className={Styles.submitButton}>
@@ -75,3 +81,9 @@ const QuestionAnswer = () => {
 };
 
 export default QuestionAnswer;
+
+/* Props -------------------------------------------------------------------- */
+
+QuestionAnswer.defaultProps = {
+  title: "답변하기",
+};

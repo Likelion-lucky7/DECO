@@ -12,7 +12,7 @@
   font-weight: 600;
   font-size: var(--text-sm);
   position: relative;
-  bottom: 4px;
+  bottom: 8px;
   transform: translateY(-50%);
 }
 
@@ -30,4 +30,26 @@
   line-height: 30px;
   font-size: var(--text-sm);
   font-weight: 400;
+}
+
+/* updateMode = true */
+.submitButton {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  top: 34px;
+  right: 29px;
+}
+
+.updateAnswer {
+  display: flex;
+  margin-top: 22px;
+  width: 1080px;
+  height: 150px;
+  resize: none;
+  border: 1px soild gray;
+  border-radius: 5px;
+  padding: 30px;
+  line-height: 1.6;
 }
