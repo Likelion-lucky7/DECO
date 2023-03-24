@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, {useState } from "react";
+import {useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
 import Like from "@/assets/heartActivate.svg";
 import Comment from "@/components/Common/Comment/Comment";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { dbService } from "@/firebase/app";
-import {collection, onSnapshot } from "firebase/firestore";
 import { updateDoc, doc, deleteDoc } from "firebase/firestore";
 import styles2 from "@/components/Common/WriteInput/WriteInput.module.css";
-import { useRecoilState, useRecoilValue } from 'recoil';
+import {useRecoilValue } from 'recoil';
 import { getQuestion} from "@/@store/getQuestionData";
+import DotButton from "@/components/Common/DotButton/DotButton";
 
 
 const {
@@ -26,7 +26,6 @@ const {
 
 const DetailPage = () => {
   let id = useParams();
-  // let [data, setData] = useState([]);
   
   
   let [editMode, setEditMode] = useState(false);
@@ -36,23 +35,9 @@ const DetailPage = () => {
   let questionData = useRecoilValue(getQuestion)
   let data = questionData.filter((item)=>item.id === id.id)[0]
 
-  
-  // 실시간 게시글 조회
-  // useEffect(() => {
-  //   localStorage.setItem("id","user1")
-  //   onSnapshot(collection(dbService, "question"), (snapshot) => {
-  //     const nweetsArr = snapshot.docs.map((item)=> item.data())
-  //       const filteredData = nweetsArr.filter(item=>{ return item.id == id.id})
-  //       setData(filteredData[0])
-  //     })
-  //   }, []);
-    
 
   let { title, content, image, user, category, hashTag, like, hits } = data;
   console.log(title)
-// console.log(user?.nickname)
-
-
 // 게시글 수정
 
 const onChange = (e) =>{
@@ -149,10 +134,11 @@ const onUpdate = async (e) => {
         <span>좋아요</span>
       </button>
       {localStorage.getItem("id") == user?.userId && editMode === false ? (
-        <>
-        <button >삭제</button>
-        <button onClick={()=>{setEditMode(true)}}>수정</button>
-        </>
+        // <>
+        // <button >삭제</button>
+        // <button onClick={()=>{setEditMode(true)}}>수정</button>
+        // </>
+        <DotButton setEditMode={setEditMode} />
       ) : null}
       <Comment id={id.id} />
     </div>
