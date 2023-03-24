@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import threeDot from "@/assets/dots_three_icon.png";
 import styles from "@/components/Common/DotButton/DotButton.module.css";
 
-const DotButton = () => {
+const DotButton = ({ ...restProps }) => {
   const [displayState, setDisplayState] = useState(false);
 
   // 토글 형식
@@ -26,10 +26,10 @@ const DotButton = () => {
           displayState ? styles.buttonWrapperDisplay : styles.buttonWrapper
         }
       >
-        <button name="editButton" type="submit">
+        <button name="updateButton" type="submit" {...restProps}>
           수정하기
         </button>
-        <button name="deleteButton" type="submit">
+        <button name="deleteButton" type="submit" {...restProps}>
           삭제하기
         </button>
       </div>
