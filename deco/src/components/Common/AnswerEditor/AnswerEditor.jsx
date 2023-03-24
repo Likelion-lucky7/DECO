@@ -53,18 +53,56 @@ const AnswerEditor = ({ item }) => {
 
   return (
     <div>
-      <div className={styles.editorBox}>
-        <img
-          src={emptyPicture}
-          className={styles.profileImege}
-          alt="exampleImage1"
-        />
-        <span className={styles.nickName}>{user.nickname}</span>
-        <p className={styles.answer} type="text" value={"./"}>
-          {comment}
-        </p>
-        <DotButton />
-      </div>
+      {updateMode ? (
+        <div className={styles.editorBox}>
+          <form onSubmit={onClickUpdateButton}>
+            <img
+              src={emptyPicture}
+              className={styles.profileImege}
+              alt="exampleImage1"
+            />
+
+            <span className={styles.nickName}>{user.nickname}</span>
+
+            <div className={styles.submitButton}>
+              <SubmitButton type="submit" title="수정" writeButton={true} />
+              <SubmitButton
+                type="button"
+                title="취소"
+                writeButton={true}
+                onClick={onClickCancelButton}
+              />
+            </div>
+
+            <textarea
+              className={styles.updateAnswer}
+              type="text"
+              name="commentField"
+              placeholder="수정할 내용을 입력해주세요."
+              defaultValue={comment}
+              onChange={onChangeComment}
+            ></textarea>
+          </form>
+        </div>
+      ) : (
+        <div className={styles.editorBox}>
+          <form>
+            <img
+              src={emptyPicture}
+              className={styles.profileImege}
+              alt="exampleImage1"
+            />
+
+            <span className={styles.nickName}>{user.nickname}</span>
+
+            <p className={styles.answer} type="text" name="comment">
+              {comment}
+            </p>
+
+            <DotButton onClick={onClickDotButton} />
+          </form>
+        </div>
+      )}
     </div>
   );
 };
