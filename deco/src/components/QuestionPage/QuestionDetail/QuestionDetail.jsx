@@ -58,6 +58,7 @@ const onUpdate = async (e) => {
   if(ok){
     await updateDoc(doc(dbService, "question", testPath),{title:ubdateTitle, content:ubdateContent});
     setEditMode(!editMode)
+    location.reload()
   }else{
     console.log("취소")
   }
@@ -70,11 +71,10 @@ const onClickDotButton = (e) => {
 
   if (e.target.name == "updateButton") {
     console.log("수정버튼")
-    // setUpdateMode((updateMode) => !updateMode);
+    setEditMode(true)
   }
 
   if (e.target.name == "deleteButton") {
-    // await deleteData(id);
     console.log("삭제하기")
   }
 };
