@@ -8,7 +8,6 @@ import { useId, useRef } from "react";
 import { useSignUp } from "@/firebase/auth/useSignUp";
 import { useCreateAuthUser } from "@/firebase/firestore";
 import { useAuthState } from "@/firebase/auth/useAuthState";
-import MainPage from "@/pages/MainPage";
 import { useDownloadURL, useUploadFiles } from "@/firebase/storage";
 
 const initialFormState = {
@@ -31,6 +30,7 @@ const SignUp = () => {
   const { fileInputRef, uploadFiles } = useUploadFiles();
 
   const { imageIsLoading, imageError, downloadURL } = useDownloadURL();
+  console.log({ imageIsLoading, imageError, downloadURL });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,7 +50,7 @@ const SignUp = () => {
     uploadFiles();
     console.log("파일 업로드 요청");
     const user = await signUp(email, password, nickname);
-    await createAuthUser(user, { photoURL: downloadURL });
+    await createAuthUser(user, { photoURL: "assets/" });
 
     console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
   };
@@ -69,7 +69,19 @@ const SignUp = () => {
   }
 
   if (user) {
-    return <MainPage />;
+    return (
+      <div>
+        {/* <MainPage />; */}
+        <ul>
+          {downloadURL &&
+            downloadURL.map((url) => (
+              <li key={url}>
+                <img height={30} src={url} alt="" />
+              </li>
+            ))}
+        </ul>
+      </div>
+    );
   }
 
   return (
@@ -81,12 +93,6 @@ const SignUp = () => {
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <FileUpload id={id} isSignUp={true} ref={fileInputRef} />
-
-        {/* <label htmlFor={id}>파일 업로드</label>
-        <input type="file" id={id} ref={fileInputRef} />
-        <button type="button" onClick={handleUploadFile}>
-          업로드
-        </button> */}
 
         <FormInput
           name="email"
