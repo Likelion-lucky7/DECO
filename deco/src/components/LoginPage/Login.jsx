@@ -45,8 +45,8 @@ const Login = () => {
 
   if (user) {
     return (
-      <MainPage />
-      // <button onClick={handleSignOut}>로그아웃</button>
+      // <MainPage />
+      <button onClick={handleSignOut}>로그아웃</button>
     );
   }
 

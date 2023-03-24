@@ -4,10 +4,12 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import styles from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
-import { useRef } from "react";
+import { useId, useRef } from "react";
 import { useSignUp } from "@/firebase/auth/useSignUp";
 import { useCreateAuthUser } from "@/firebase/firestore";
 import { useAuthState } from "@/firebase/auth/useAuthState";
+import MainPage from "@/pages/MainPage";
+import { useDownloadURL, useUploadFiles } from "@/firebase/storage";
 
 const initialFormState = {
   email: "",
@@ -22,6 +24,13 @@ const SignUp = () => {
   const { isLoading, error, user } = useAuthState();
 
   const formSatateRef = useRef(initialFormState);
+
+  // 프로필 사진 업로드
+  const id = useId();
+
+  const { fileInputRef, uploadFiles } = useUploadFiles();
+
+  const { imageIsLoading, imageError, downloadURL } = useDownloadURL();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,9 +47,10 @@ const SignUp = () => {
       console.error("비밀번호를 다시 확인하세요");
       return;
     }
-
+    uploadFiles();
+    console.log("파일 업로드 요청");
     const user = await signUp(email, password, nickname);
-    await createAuthUser(user, { photoURL: "../../assets/empty_picture.png" });
+    await createAuthUser(user, { photoURL: downloadURL });
 
     console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
   };
@@ -58,6 +68,10 @@ const SignUp = () => {
     return <div role="alert">오류! {error.message}</div>;
   }
 
+  if (user) {
+    return <MainPage />;
+  }
+
   return (
     <div className={styles.container}>
       <WelcomeInfo subtitle="DECO의 일원이 되어주세요 !" />
@@ -66,7 +80,13 @@ const SignUp = () => {
       <p className={styles.profile_info}>이미지를 설정해주세요 !</p>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <FileUpload isSignUp={true} />
+        <FileUpload id={id} isSignUp={true} ref={fileInputRef} />
+
+        {/* <label htmlFor={id}>파일 업로드</label>
+        <input type="file" id={id} ref={fileInputRef} />
+        <button type="button" onClick={handleUploadFile}>
+          업로드
+        </button> */}
 
         <FormInput
           name="email"
