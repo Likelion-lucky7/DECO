@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, {useState } from "react";
+import {useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
 import Like from "@/assets/heartActivate.svg";
 import Comment from "@/components/Common/Comment/Comment";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { dbService } from "@/firebase/app";
-import {collection, onSnapshot } from "firebase/firestore";
 import { updateDoc, doc, deleteDoc } from "firebase/firestore";
 import styles2 from "@/components/Common/WriteInput/WriteInput.module.css";
+import {useRecoilValue } from 'recoil';
+import { getQuestion} from "@/@store/getQuestionData";
+import DotButton from "@/components/Common/DotButton/DotButton";
+
 
 const {
   container,
@@ -23,30 +26,18 @@ const {
 
 const DetailPage = () => {
   let id = useParams();
-  let navigate = useNavigate()
-  let [data, setData] = useState([]);
-
+  
   
   let [editMode, setEditMode] = useState(false);
   let [ubdateTitle, setUpdateTitle] = useState("");
   let [ubdateContent, setUpdateContent] = useState("");
-  
-  // 게시글 조회
 
-  useEffect(() => {
-    localStorage.setItem("id","user1")
-    onSnapshot(collection(dbService, "question"), (snapshot) => {
-      const nweetsArr = snapshot.docs.map((item)=> item.data())
-        const filteredData = nweetsArr.filter(item=>{ return item.id == id.id})
-        setData(filteredData[0])
-      })
-    }, []);
-    
+  let questionData = useRecoilValue(getQuestion)
+  let data = questionData.filter((item)=>item.id === id.id)[0]
+
 
   let { title, content, image, user, category, hashTag, like, hits } = data;
-// console.log(user?.nickname)
-
-
+  console.log(title)
 // 게시글 수정
 
 const onChange = (e) =>{
@@ -61,7 +52,7 @@ const onChange = (e) =>{
 const onUpdate = async (e) => {
   e.preventDefault()
   // 임의의 데이터 path를 지정 추후 로그인 인증후 변경 필요
-  let testPath = "YOm6tv5go7u9MJn4zRdB"
+  let testPath = "DNEzD3roLzTP3f4JkeJC"
   const ok = window.confirm("수정하시겠습니까")
   if(ok){
     await updateDoc(doc(dbService, "question", testPath),{title:ubdateTitle, content:ubdateContent});
@@ -70,6 +61,7 @@ const onUpdate = async (e) => {
     console.log("취소")
   }
 };
+
 
 
 
