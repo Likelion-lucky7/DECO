@@ -49,7 +49,7 @@ const FileUpload = ({ isSignUp }) => {
               index;
             }
             return item ? (
-              <div key={index}>
+              <div key={index} className={styles.imgBox}>
                 <label htmlFor="file" className={styles.profile_label}>
                   <span className={styles.profile_image}>
                     {!imgFile[index] && `파일 업로드`}
