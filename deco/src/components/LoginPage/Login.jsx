@@ -4,7 +4,7 @@ import FormInput from "@/components/Common/FormInput/FormInput";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
-import { useAuthState, useSignIn, useSignOut } from "@/firebase/auth";
+import { useAuthState, useSignIn } from "@/firebase/auth";
 import MainPage from "@/pages/MainPage";
 
 const initialFormState = {
@@ -14,7 +14,7 @@ const initialFormState = {
 const Login = () => {
   const formStateRef = useRef(initialFormState);
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
-  const { signOut } = useSignOut();
+
   const { isLoading, error, user } = useAuthState();
 
   const handleSignIn = async (e) => {
@@ -23,11 +23,6 @@ const Login = () => {
     const { email, password } = formStateRef.current;
 
     await signIn(email, password);
-  };
-
-  const handleSignOut = async () => {
-    console.log("로그아웃");
-    signOut();
   };
 
   const handleChangeInput = (e) => {
