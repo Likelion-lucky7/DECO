@@ -134,11 +134,10 @@ const onUpdate = async (e) => {
         <span>좋아요</span>
       </button>
       {localStorage.getItem("id") == user?.userId && editMode === false ? (
-        // <>
-        // <button >삭제</button>
-        // <button onClick={()=>{setEditMode(true)}}>수정</button>
-        // </>
-        <DotButton setEditMode={setEditMode} />
+        <>
+        <button >삭제</button>
+        <button onClick={()=>{setEditMode(true)}}>수정</button>
+        </>
       ) : null}
       <Comment id={id.id} />
     </div>
