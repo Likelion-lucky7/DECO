@@ -12,7 +12,7 @@ function clearText(target) {
   target.value = "";
 }
 
-const QuestionAnswer = () => {
+const QuestionAnswer = ({ title, ...restProps }) => {
   const [comment, setComment] = useRecoilState(commentState);
   const { createData } = useCreateData("comments");
   const commentsId = useParams();
@@ -62,7 +62,7 @@ const QuestionAnswer = () => {
 
   return (
     <div className={Styles.answerWrite}>
-      <h2>답변하기</h2>
+      <h2>{title}</h2>
 
       <form onSubmit={submitData}>
         <textarea
@@ -70,6 +70,7 @@ const QuestionAnswer = () => {
           name="comment"
           placeholder="질문에 대한 답변을 하려면 로그인을 해주세요"
           onChange={onChange}
+          {...restProps}
         ></textarea>
 
         <div className={Styles.submitButton}>
@@ -81,3 +82,9 @@ const QuestionAnswer = () => {
 };
 
 export default QuestionAnswer;
+
+/* Props -------------------------------------------------------------------- */
+
+QuestionAnswer.defaultProps = {
+  title: "답변하기",
+};
