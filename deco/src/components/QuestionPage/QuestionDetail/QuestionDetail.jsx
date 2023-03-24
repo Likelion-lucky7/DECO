@@ -31,7 +31,7 @@ const DetailPage = () => {
   let id = useParams();
   let navigate = useNavigate()
   let [editMode, setEditMode] = useState(false);
-  let updateTitle = useRef("");
+  let [updateTitle,setUpdateTitle] = useState("");
   let updateContent = useRef("");
 
   let questionData = useRecoilValue(getQuestion);
@@ -47,7 +47,7 @@ const DetailPage = () => {
     const ok = window.confirm("수정하시겠습니까");
     if (ok) {
       await updateDoc(doc(dbService, "question", testPath), {
-        title: updateTitle.current.value,
+        title: updateTitle,
         content: updateContent.current.value,
       });
       setEditMode(!editMode);
@@ -56,7 +56,6 @@ const DetailPage = () => {
       console.log("취소");
     }
   };
-
 //게시글 삭제
 const onDelete = async (e) => {
   let ok = window.confirm("삭제하시나요?");
@@ -99,10 +98,11 @@ const onDelete = async (e) => {
               name="title"
               placeholder="제목을 입력해주세요."
               className={styles2.title}
-              ref={updateTitle}
+              maxLength="99"
               required
+              onChange={(e)=>{setUpdateTitle(e.target.value)}}
             />
-            <span className={styles2.totalNumber}>0 / 100</span>
+            <span className={styles2.totalNumber}>{updateTitle.length}/ 100</span>
 
             <textarea
               name="content"
@@ -122,6 +122,7 @@ const onDelete = async (e) => {
                 <SubmitButton
                   onClick={() => {
                     setEditMode(false);
+                    setUpdateTitle("")
                   }}
                   title="취소"
                   writeButton={true}
