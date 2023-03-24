@@ -4,7 +4,7 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import styles from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useSignUp } from "@/firebase/auth/useSignUp";
 import { useCreateAuthUser } from "@/firebase/firestore";
 import { useAuthState } from "@/firebase/auth/useAuthState";
@@ -21,7 +21,28 @@ const SignUp = () => {
   const { createAuthUser } = useCreateAuthUser();
   const { isLoading, error, user } = useAuthState();
 
+  const [isActive, setIsActive] = useState(false);
+
   const formSatateRef = useRef(initialFormState);
+
+  const { email, password, passwordConfirm, nickname } = formSatateRef.current;
+
+  // 이메일 검사 @, .이 포함되게
+  const isValidEmail = email.includes("@") && email.includes(".");
+
+  // 비밀번호 특수문자 검사 (특수문자 1자 이상, 전체 6자 이상)
+  const specialLetter = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+  const isValidPassword = password.length >= 6 && specialLetter >= 1;
+
+  // 모든 input의 value가 1자 이상
+  const isValidInput =
+    nickname.length >= 1 &&
+    email.length >= 1 &&
+    password.length >= 1 &&
+    passwordConfirm.length >= 1;
+
+  // 모든 조건을 충족하면 작동 (버튼 활성화)
+  const getIsActive = isValidEmail && isValidPassword && isValidInput === true;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,14 +50,25 @@ const SignUp = () => {
     const { email, password, passwordConfirm, nickname } =
       formSatateRef.current;
     console.log(formSatateRef);
-    if (!nickname || nickname.trim().length < 2) {
-      console.error("닉네임은 2글자 이상 입력해야 해요");
-      return;
+
+    if (isValidEmail) {
+      console.error("이메일 형식으로 적어주세요.");
+    }
+
+    if (isValidPassword) {
+      console.error("특수문자 1자 이상, 전체 6자 이상 적어주세요.");
     }
 
     if (!Object.is(password, passwordConfirm)) {
-      console.error("비밀번호를 다시 확인하세요");
-      return;
+      console.error("비밀번호가 일치하지 않습니다.");
+    }
+
+    if (!nickname || nickname.trim().length < 2) {
+      console.error("닉네임은 2글자 이상 입력해야 해요");
+    }
+
+    if (!isValidEmail || !isValidPassword || !isValidInput) {
+      alert("모든 칸에 입력을 해주세요.");
     }
 
     const user = await signUp(email, password, nickname);
@@ -48,6 +80,10 @@ const SignUp = () => {
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     formSatateRef.current[name] = value;
+
+    if (getIsActive) {
+      setIsActive((isActive) => !isActive);
+    }
   };
 
   if (isLoading) {
@@ -71,10 +107,11 @@ const SignUp = () => {
         <FormInput
           name="email"
           type="email"
-          label="e-mail 아이디"
-          placeholder="아이디 입력"
+          label="이메일"
+          placeholder="이메일 입력"
           onChange={handleChangeInput}
         />
+
         <FormInput
           name="password"
           type="password"
@@ -82,21 +119,33 @@ const SignUp = () => {
           placeholder="비밀번호 입력"
           onChange={handleChangeInput}
         />
+
         <FormInput
           name="passwordConfirm"
           type="password"
           label="비밀번호 확인"
-          placeholder="비밀번호 입력"
+          placeholder="비밀번호 확인 입력"
           onChange={handleChangeInput}
         />
+
         <FormInput
           name="nickname"
           label="닉네임"
           placeholder="닉네임 입력"
           onChange={handleChangeInput}
         />
+
         <div>로그인한 유저: {user?.email}</div>
-        <SubmitButton type="submit" title="회원가입" writeButton={false} />
+
+        {isActive ? (
+          <SubmitButton type="submit" title="회원가입" writeButton={false} />
+        ) : (
+          <div className={styles.buttonContainer}>
+            <button type="button" className={styles.disableButton} disabled>
+              회원가입
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );
