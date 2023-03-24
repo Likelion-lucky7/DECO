@@ -5,6 +5,7 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { useAuthState, useSignIn, useSignOut } from "@/firebase/auth";
+import MainPage from "@/pages/MainPage";
 
 const initialFormState = {
   email: "",
@@ -44,12 +45,8 @@ const Login = () => {
 
   if (user) {
     return (
-      <div className={styles.container}>
-        <div>인증 사용자 페이지</div>
-        <div>{user.disPlayName}</div>
-        <div>{user.email}</div>
-        <button onClick={handleSignOut}>로그아웃</button>
-      </div>
+      <MainPage />
+      // <button onClick={handleSignOut}>로그아웃</button>
     );
   }
 
