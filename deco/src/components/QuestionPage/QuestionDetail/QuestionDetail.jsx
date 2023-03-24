@@ -22,6 +22,7 @@ const {
   textTitle,
   uploadImage,
   mainText,
+  dotButton
 } = styles;
 
 const DetailPage = () => {
@@ -64,7 +65,19 @@ const onUpdate = async (e) => {
 
 
 
+const onClickDotButton = (e) => {
+  e.preventDefault();
 
+  if (e.target.name == "updateButton") {
+    console.log("수정버튼")
+    // setUpdateMode((updateMode) => !updateMode);
+  }
+
+  if (e.target.name == "deleteButton") {
+    // await deleteData(id);
+    console.log("삭제하기")
+  }
+};
 
 
   return (
@@ -127,18 +140,17 @@ const onUpdate = async (e) => {
             return <span key={index}>#{item}</span>;
           }):null}
         </div>
+      {localStorage.getItem("id") == user?.userId && editMode === false ? (
+        <div className={dotButton}>
+        <DotButton onClick={onClickDotButton} />
+        </div>
+      ) : null}
       </div>}
 
       <button className={styles.likeIcon}>
         <img src={Like} alt="하트" />
         <span>좋아요</span>
       </button>
-      {localStorage.getItem("id") == user?.userId && editMode === false ? (
-        <>
-        <button >삭제</button>
-        <button onClick={()=>{setEditMode(true)}}>수정</button>
-        </>
-      ) : null}
       <Comment id={id.id} />
     </div>
   );
