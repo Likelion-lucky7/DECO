@@ -27,6 +27,7 @@ const Comment = ({ id }) => {
   }, []);
 
   const newArr = timeData
+    .filter((item) => +questionId.id === item.commentId)
     .sort((a, b) => b.date - a.date)
     .map((item) => item.date);
 
