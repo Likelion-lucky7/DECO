@@ -1,88 +1,65 @@
+import { forwardRef } from "react";
 import { ReactComponent as Upload } from "../../../assets/file_upload.svg";
 import styles from "./FileUpload.module.css";
-import { useState, useRef, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { fileImageState } from "@/@store/fileImageState";
 
-const FileUpload = ({ isSignUp }) => {
-  const [imgFile, setImgFile] = useState([]);
-  const imgRef = useRef([null, null]);
-  const [isVisible, setIsVisible] = useState([true, false]);
+const FileUpload = forwardRef(function FileUpload({ isSignUp, id }, ref) {
+  const [imgFile, setImgFile] = useRecoilState(fileImageState);
 
-  // 이미지 업로드 input의 onChange
-  const saveImgFile = (index) => {
-    const file = imgRef.current[index].files[0];
+  const onImageChange = (e) => {
+    const {
+      target: { files },
+    } = e;
+    const theFile = files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const previewImgUrl = reader.result;
-      if (previewImgUrl) {
-        setImgFile([...imgFile, previewImgUrl]);
-      }
+    reader.onloadend = (finishedEvent) => {
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+      setImgFile(result);
     };
+    reader.readAsDataURL(theFile);
   };
-
-  useEffect(() => {
-    if (imgFile[0]) {
-      setIsVisible([true, true]);
-    }
-  }, [imgFile]);
 
   return (
     <div>
       {isSignUp ? (
         <div>
-          <label htmlFor="file" className={styles.profile_label_isSignUp}>
+          <label htmlFor={id} className={styles.profile_label_isSignUp}>
             <Upload className={styles.profile_image_isSignUp} /> 파일 업로드
           </label>
 
           <input
-            id="file"
+            id={id}
             type="file"
             accept="image/jpg, image/png, image/jpeg"
             name="profile"
             className={styles.profile_form_isSignUp}
+            ref={ref}
           />
         </div>
       ) : (
         <div className={styles.box}>
-          {isVisible.map((item, index) => {
-            {
-              index;
-            }
-            return item ? (
-              <div key={index} className={styles.imgBox}>
-                <label htmlFor="file" className={styles.profile_label}>
-                  <span className={styles.profile_image}>
-                    {!imgFile[index] && `파일 업로드`}
-                    {imgFile[index] && (
-                      <img
-                        src={
-                          imgFile[index]
-                            ? imgFile[index]
-                            : `/images/icon/user.png`
-                        }
-                        alt="프로필 이미지"
-                      />
-                    )}
-                  </span>
-                </label>
-                <input
-                  ref={(el) => {
-                    imgRef.current[index] = el;
-                  }}
-                  id="file"
-                  type="file"
-                  accept="image/jpg, image/png, image/jpeg"
-                  name="profile"
-                  className={styles.profile_form}
-                  onChange={() => saveImgFile(index)}
-                />
-              </div>
-            ) : null;
-          })}
+          <div className={styles.imgBox}>
+            <label htmlFor={id} className={styles.profile_label}>
+              <span className={styles.profile_image}>파일업로드</span>
+              {imgFile && <img src={imgFile} alt="프로필 이미지" />}
+            </label>
+            <input
+              id={id}
+              type="file"
+              accept="image/jpg, image/png, image/jpeg"
+              name="profile"
+              className={styles.profile_form}
+              ref={ref}
+              onChange={onImageChange}
+            />
+          </div>
         </div>
       )}
     </div>
   );
-};
+});
 
 export default FileUpload;
