@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
 import Like from "@/assets/heartActivate.svg";
 import Comment from "@/components/Common/Comment/Comment";
@@ -29,10 +29,8 @@ const {
 
 const DetailPage = () => {
   let id = useParams();
-
+  let navigate = useNavigate()
   let [editMode, setEditMode] = useState(false);
-  // let [ubdateTitle, setUpdateTitle] = useState("");
-  // let [ubdateContent, setUpdateContent] = useState("");
   let updateTitle = useRef("");
   let updateContent = useRef("");
 
@@ -59,6 +57,25 @@ const DetailPage = () => {
     }
   };
 
+//게시글 삭제
+const onDelete = async (e) => {
+  let ok = window.confirm("삭제하시나요?");
+  // 임의의 데이터 path를 지정
+  let testPath = "BtgwnuosLKk2xB971fey"
+  try {
+    if (ok) {
+      await deleteDoc(doc(dbService, "question", testPath));
+      navigate("/question")
+      location.reload()
+    } else {
+      console.log("삭제x");
+    }
+    
+  } catch (error) {
+    console.log(error)
+  }
+};
+
   const onClickDotButton = (e) => {
     e.preventDefault();
 
@@ -68,7 +85,7 @@ const DetailPage = () => {
     }
 
     if (e.target.name == "deleteButton") {
-      console.log("삭제하기");
+      onDelete()
     }
   };
 
