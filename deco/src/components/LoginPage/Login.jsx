@@ -45,8 +45,11 @@ const Login = () => {
 
   if (user) {
     return (
-      // <MainPage />
-      <button onClick={handleSignOut}>로그아웃</button>
+      <div className={styles.profileImage}>
+        <img height={200} src={user.photoURL} alt="프로필 이미지" />
+        <p>{user.displayName}</p>
+        <button onClick={signOut}>로그아웃</button>
+      </div>
     );
   }
 
