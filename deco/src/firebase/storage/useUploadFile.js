@@ -1,6 +1,6 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { storage } from './index';
+import { useCallback, useMemo, useRef, useState } from "react";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "./index";
 
 /* -------------------------------------------------------------------------- */
 
@@ -9,7 +9,7 @@ import { storage } from './index';
  * @param {{ dirName?: string; usingId?: boolean; }}
  * @returns {{ fileInputRef, uploadFiles, isLoading, error, urlList }}
  */
-export function useUploadFiles({ dirName = 'assets', usingId = true } = {}) {
+export function useUploadFiles({ dirName = "assets", usingId = true } = {}) {
   const fileInputRef = useRef(null);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -23,11 +23,13 @@ export function useUploadFiles({ dirName = 'assets', usingId = true } = {}) {
       const files = fileInput.files;
 
       const filesRef = Array.from(files).map((file) => {
-        if (!file.name.includes('.')) {
-          throw new TypeError('업로드 할 파일에 확장자가 포함되어 있지 않습니다.');
+        if (!file.name.includes(".")) {
+          throw new TypeError(
+            "업로드 할 파일에 확장자가 포함되어 있지 않습니다.",
+          );
         }
-        const [ fileName = '', fileExt = '' ] = file.name.split('.');
-        const fileId = usingId ? `${generateId()}.` : '';
+        const [fileName = "", fileExt = ""] = file.name.split(".");
+        const fileId = usingId ? `${generateId()}.` : "";
         return ref(storage, `${dirName}/${fileName}.${fileId}${fileExt}`);
       });
 
@@ -35,20 +37,22 @@ export function useUploadFiles({ dirName = 'assets', usingId = true } = {}) {
 
       try {
         const uploadPromises = filesRef.map((fileRef, index) =>
-          uploadBytes(fileRef, files[index])
+          uploadBytes(fileRef, files[index]),
         );
 
         const uploadSanpshots = await Promise.all(uploadPromises);
 
         const downloadURLs = uploadSanpshots.map((snapshot) =>
-          getDownloadURL(snapshot.ref)
+          getDownloadURL(snapshot.ref),
         );
 
         const downloadURLList = await Promise.all(downloadURLs);
 
         setUrlList(downloadURLList);
 
-        fileInput.value = '';
+        fileInput.value = "";
+
+        return downloadURLList;
       } catch (error) {
         setError(error);
       } finally {
@@ -59,13 +63,15 @@ export function useUploadFiles({ dirName = 'assets', usingId = true } = {}) {
 
   return useMemo(
     () => ({ fileInputRef, uploadFiles, isLoading, error, urlList }),
-    [error, isLoading, uploadFiles, urlList]
+    [error, isLoading, uploadFiles, urlList],
   );
 }
 
-function generateId({ prefix = 'euid', digit = 9 } = {}) {
-  const suffix='abcdefghijklmnopqrstuvwxyz-_+=';
-  return `${prefix}-${getRandomNumber(getDigitNumber(digit))}${suffix[getRandomNumber(suffix.length - 1)][getRandomNumber(2) > 0 ? 'toUpperCase' : 'toLowerCase']()}`;
+function generateId({ prefix = "euid", digit = 9 } = {}) {
+  const suffix = "abcdefghijklmnopqrstuvwxyz-_+=";
+  return `${prefix}-${getRandomNumber(getDigitNumber(digit))}${suffix[
+    getRandomNumber(suffix.length - 1)
+  ][getRandomNumber(2) > 0 ? "toUpperCase" : "toLowerCase"]()}`;
 }
 
 function getRandomNumber(n = 10) {

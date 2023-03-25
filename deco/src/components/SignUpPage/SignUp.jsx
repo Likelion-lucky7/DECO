@@ -4,11 +4,12 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import styles from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
-import { useId, useRef } from "react";
+import { useId, useRef, useState } from "react";
 import { useSignUp } from "@/firebase/auth/useSignUp";
 import { useCreateAuthUser } from "@/firebase/firestore";
 import { useAuthState } from "@/firebase/auth/useAuthState";
 import { useDownloadURL, useUploadFiles } from "@/firebase/storage";
+import { useSignOut } from "@/firebase/auth";
 
 const initialFormState = {
   email: "",
@@ -19,6 +20,7 @@ const initialFormState = {
 
 const SignUp = () => {
   const { signUp } = useSignUp();
+  const { signOut } = useSignOut();
   const { createAuthUser } = useCreateAuthUser();
   const { isLoading, error, user } = useAuthState();
 
@@ -27,10 +29,29 @@ const SignUp = () => {
   // 프로필 사진 업로드
   const id = useId();
 
+  const [profileImage, setProfileImage] = useState(null);
   const { fileInputRef, uploadFiles } = useUploadFiles();
 
   const { imageIsLoading, imageError, downloadURL } = useDownloadURL();
   console.log({ imageIsLoading, imageError, downloadURL });
+
+  const handleChangeUploadInput = (e) => {
+    const { files } = e.target;
+    const willUploadFile = files[0];
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      setProfileImage(reader.result);
+    });
+
+    if (willUploadFile) {
+      reader.readAsDataURL(willUploadFile);
+    }
+  };
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    formSatateRef.current[name] = value;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,17 +68,17 @@ const SignUp = () => {
       console.error("비밀번호를 다시 확인하세요");
       return;
     }
-    uploadFiles();
+
+    const uploadedImagesUrls = await uploadFiles();
+
+    // 업로드 된 이미지 URL
+    const uploadedImageUrl = uploadedImagesUrls[0];
+
     console.log("파일 업로드 요청");
-    const user = await signUp(email, password, nickname);
-    await createAuthUser(user, { photoURL: "assets/" });
+    const user = await signUp(email, password, nickname, uploadedImageUrl);
+    await createAuthUser(user, { photoURL: uploadedImageUrl });
 
     console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
-  };
-
-  const handleChangeInput = (e) => {
-    const { name, value } = e.target;
-    formSatateRef.current[name] = value;
   };
 
   if (isLoading) {
@@ -70,16 +91,10 @@ const SignUp = () => {
 
   if (user) {
     return (
-      <div>
-        {/* <MainPage />; */}
-        <ul>
-          {downloadURL &&
-            downloadURL.map((url) => (
-              <li key={url}>
-                <img height={30} src={url} alt="" />
-              </li>
-            ))}
-        </ul>
+      <div className={styles.profileImage}>
+        <img height={200} src={user.photoURL} alt="프로필 이미지" />
+        <p>{user.displayName}</p>
+        <button onClick={signOut}>로그아웃</button>
       </div>
     );
   }
@@ -88,11 +103,27 @@ const SignUp = () => {
     <div className={styles.container}>
       <WelcomeInfo subtitle="DECO의 일원이 되어주세요 !" />
 
-      <Profile className={styles.profile} alt="프로필 이미지" />
-      <p className={styles.profile_info}>이미지를 설정해주세요 !</p>
+      {profileImage ? (
+        <img
+          src={profileImage}
+          alt="프로필 이미지"
+          className={styles.profile}
+          width={137}
+        />
+      ) : (
+        <>
+          <Profile className={styles.profile} alt="프로필 이미지" />
+          <p className={styles.profile_info}>이미지를 설정해주세요 !</p>
+        </>
+      )}
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <FileUpload id={id} isSignUp={true} ref={fileInputRef} />
+        <FileUpload
+          id={id}
+          isSignUp={true}
+          ref={fileInputRef}
+          onChange={handleChangeUploadInput}
+        />
 
         <FormInput
           name="email"

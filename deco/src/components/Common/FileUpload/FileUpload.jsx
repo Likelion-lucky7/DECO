@@ -2,7 +2,10 @@ import { forwardRef } from "react";
 import { ReactComponent as Upload } from "../../../assets/file_upload.svg";
 import styles from "./FileUpload.module.css";
 
-const FileUpload = forwardRef(function FileUpload({ isSignUp, id }, ref) {
+const FileUpload = forwardRef(function FileUpload(
+  { isSignUp, id, ...restProps },
+  ref,
+) {
   return (
     <div>
       {isSignUp ? (
@@ -18,6 +21,7 @@ const FileUpload = forwardRef(function FileUpload({ isSignUp, id }, ref) {
             name="profile"
             className={styles.profile_form_isSignUp}
             ref={ref}
+            {...restProps}
           />
         </div>
       ) : (
