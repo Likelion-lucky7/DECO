@@ -3,7 +3,7 @@ import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import TagInput from "@/components/Common/TagInput/TagInput";
 import styles from "./QuestionWrite.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { titleState } from "@/@store/titleState";
 import { collection, addDoc } from "firebase/firestore";
 import { dbService } from "@/firebase/app";
@@ -12,12 +12,14 @@ import { hashTagListState } from "@/@store/hashTagListState";
 import { useId } from "react";
 import { useUploadFiles } from "@/firebase/storage";
 import { fileImageState } from "@/@store/fileImageState";
+import { selectState } from "@/@store/selectState";
 
 const QuestionWrite = () => {
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
   const inputHashTagList = useRecoilValue(hashTagListState);
   const inputFileImage = useRecoilValue(fileImageState);
+  const [selected, setSelected] = useRecoilState(selectState);
 
   //파일 업로드
   const id = useId();
@@ -33,6 +35,7 @@ const QuestionWrite = () => {
 
     try {
       const docRef = await addDoc(collection(dbService, "question"), {
+        category: selected,
         title: inputTitle,
         content: inputContent,
         hashtag: inputHashTagList,
@@ -42,6 +45,17 @@ const QuestionWrite = () => {
     } catch (e) {
       console.error("error");
     }
+  };
+
+  // select box
+  const selectList = [
+    { value: "토픽 선택", name: "토픽 선택" },
+    { value: "기술", name: "기술" },
+    { value: "커리어", name: "커리어" },
+  ];
+
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
   };
 
   return (
@@ -67,12 +81,22 @@ const QuestionWrite = () => {
       </div>
 
       <div>
-        <select name="" id="" className={styles.select}>
-          <option value="" defaultValue="토픽 선택">
-            토픽 선택
-          </option>
-          <option value="skill">기술</option>
-          <option value="career">커리어</option>
+        <select
+          className={styles.select}
+          onChange={handleSelect}
+          value={selected}
+        >
+          {selectList.map((item) => {
+            return (
+              <option
+                value={item.value}
+                key={item.value}
+                defaultValue="토픽 선택"
+              >
+                {item.name}
+              </option>
+            );
+          })}
         </select>
 
         <WriteInput isQuestion={true} />
