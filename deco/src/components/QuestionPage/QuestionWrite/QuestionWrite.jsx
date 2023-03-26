@@ -9,7 +9,7 @@ import { collection, addDoc, doc } from "firebase/firestore";
 import { dbService } from "@/firebase/app";
 import { contentState } from "@/@store/contentState";
 import { hashTagListState } from "@/@store/hashTagListState";
-import { useId } from "react";
+import { useEffect, useId } from "react";
 import { useUploadFiles } from "@/firebase/storage";
 import { fileImageState } from "@/@store/fileImageState";
 import { selectState } from "@/@store/selectState";
@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { useReadData } from "@/firebase/firestore/useReadData";
 
 const QuestionWrite = () => {
-  const { readData } = useReadData("question");
+  const { readData, data } = useReadData("question");
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
   const inputHashTagList = useRecoilValue(hashTagListState);
@@ -31,6 +31,10 @@ const QuestionWrite = () => {
   //파일 업로드
   const id = useId();
   const { fileInputRef, uploadFiles } = useUploadFiles();
+
+  useEffect(() => {
+    readData();
+  }, [readData]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -48,18 +52,19 @@ const QuestionWrite = () => {
       console.error("error");
     }
 
-    console.log(
-      "doc이다",
-      doc(dbService, "question", docRef._key.path.segments[1]),
-    );
+    // console.log(
+    //   "doc이다",
+    //   doc(dbService, "question", docRef._key.path.segments[1]),
+    // );
     if (confirm("게시글을 등록하시겠습니까?")) {
       // console.log("🧟‍♀️", docRef._key.path.segments[1]);
       // const result = await getData(docRef._key.path.segments[1]);
-      const result = await readData(docRef._key.path.segments[1]);
-      console.log("result입니다. ", result);
+      // const result = await readData(docRef._key.path.segments[1]);
+
+      console.log("result입니다. ", data[0].id);
 
       // resetTitle();
-      // navigate(`/question/${result}`);
+      navigate(`/question/${data[0].id}`);
     }
   };
 
