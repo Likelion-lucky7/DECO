@@ -3,9 +3,9 @@ import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import TagInput from "@/components/Common/TagInput/TagInput";
 import styles from "./QuestionWrite.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
-import { useRecoilValue, useRecoilState } from "recoil";
-import { titleState } from "@/@store/titleState";
-import { collection, addDoc } from "firebase/firestore";
+import { useRecoilValue, useRecoilState, useResetRecoilState } from "recoil";
+import { titleGetState, titleState } from "@/@store/titleState";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { dbService } from "@/firebase/app";
 import { contentState } from "@/@store/contentState";
 import { hashTagListState } from "@/@store/hashTagListState";
@@ -21,7 +21,10 @@ const QuestionWrite = () => {
   const inputHashTagList = useRecoilValue(hashTagListState);
   const inputFileImage = useRecoilValue(fileImageState);
   const [selected, setSelected] = useRecoilState(selectState);
+  const resetTitle = useResetRecoilState(titleState);
   const navigate = useNavigate();
+
+  const getTitle = useRecoilValue(titleGetState);
 
   //파일 업로드
   const id = useId();
@@ -30,22 +33,58 @@ const QuestionWrite = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     uploadFiles();
-
+    let docRef = null;
     try {
-      const docRef = await addDoc(collection(dbService, "question"), {
+      docRef = await addDoc(collection(dbService, "question"), {
         category: selected,
         title: inputTitle,
         content: inputContent,
         hashtag: inputHashTagList,
         file: inputFileImage,
       });
-      console.log("성공?", docRef.id);
     } catch (e) {
       console.error("error");
     }
 
-    confirm("게시글을 등록하시겠습니까?");
-    navigate(`/question/`);
+    if (confirm("게시글을 등록하시겠습니까?")) {
+      console.log("🧟‍♀️", docRef._key.path.segments[1]);
+      const result = await getData(docRef._key.path.segments[1]);
+      console.log("result입니다. ", result);
+      // resetTitle();
+      navigate(`/question/`);
+    }
+  };
+
+  const getData = async (questionId) => {
+    console.log("🧟‍♂️", questionId);
+    const q = await query(
+      collection(dbService, "question"),
+      where("id", "==", String(questionId)),
+    );
+
+    const querySnapshot = await getDocs(q);
+    console.log("할수 이쒀 ", querySnapshot);
+    querySnapshot.forEach((doc) => {
+      console.log("doc 주세요 얼른: ", doc);
+    });
+
+    // let data = null;
+    // onSnapshot(q, (querySnapShot) => {
+    // querySnapShot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    // console.log("날것:", doc);
+    // console.log("데이터 주세요 => ", doc.data());
+    // console.log("\n");
+    // });
+    // console.log("🥷 데이터값을 내놔: ", querySnapShot);
+    // console.log("🥷 데이터값을 내놔: ", querySnapShot.docs);
+    // data = querySnapShot.docs.map((doc) => ({
+    //   id: doc.id,
+    //   ...doc.data(),
+    // }));
+    // console.log("나는 데이터야 ", data);
+    // });
+    // return data;
   };
 
   // select box
@@ -100,11 +139,13 @@ const QuestionWrite = () => {
           })}
         </select>
 
-        <WriteInput isQuestion={true} />
-        <TagInput isQuestion={true} />
-        <form className={styles.rowButton}>
-          <FileUpload isSignUp={false} id={id} ref={fileInputRef} />
-          <SubmitButton onClick={onSubmit} title="등록" writeButton={true} />
+        <form>
+          <WriteInput isQuestion={true} />
+          <TagInput isQuestion={true} />
+          <div className={styles.rowButton}>
+            <FileUpload isSignUp={false} id={id} ref={fileInputRef} />
+            <SubmitButton onClick={onSubmit} title="등록" writeButton={true} />
+          </div>
         </form>
       </div>
     </div>
