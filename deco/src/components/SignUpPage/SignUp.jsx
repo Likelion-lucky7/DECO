@@ -122,6 +122,8 @@ const SignUp = () => {
 
     console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
 
+    alert("데코에 오신 걸 환영합니다 !");
+
     navigate("/login");
   };
 

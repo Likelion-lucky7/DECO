@@ -27,6 +27,8 @@ const Login = () => {
 
     await signIn(email, password);
 
+    alert("로그인 되었습니다 !");
+
     setToken("access_token");
 
     navigate("/");
