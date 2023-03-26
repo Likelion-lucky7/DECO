@@ -7,7 +7,8 @@
   margin-right: 10px;
 }
 
-img > .profile_label {
+
+.profile_label img {
   width: 100px;
   height: 100px;
   position: absolute;
