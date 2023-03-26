@@ -13,6 +13,7 @@ import { useId } from "react";
 import { useUploadFiles } from "@/firebase/storage";
 import { fileImageState } from "@/@store/fileImageState";
 import { selectState } from "@/@store/selectState";
+import { useNavigate } from "react-router-dom";
 
 const QuestionWrite = () => {
   const inputTitle = useRecoilValue(titleState);
@@ -20,6 +21,7 @@ const QuestionWrite = () => {
   const inputHashTagList = useRecoilValue(hashTagListState);
   const inputFileImage = useRecoilValue(fileImageState);
   const [selected, setSelected] = useRecoilState(selectState);
+  const navigate = useNavigate();
 
   //파일 업로드
   const id = useId();
@@ -27,11 +29,7 @@ const QuestionWrite = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("해시태그", inputHashTagList);
-    console.log("1" + inputContent);
-
     uploadFiles();
-    console.log("파일 업로드 요청");
 
     try {
       const docRef = await addDoc(collection(dbService, "question"), {
@@ -45,6 +43,9 @@ const QuestionWrite = () => {
     } catch (e) {
       console.error("error");
     }
+
+    confirm("게시글을 등록하시겠습니까?");
+    navigate(`/question/`);
   };
 
   // select box
