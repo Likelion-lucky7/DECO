@@ -40,7 +40,7 @@ const NavBar = () => {
               <ul className={styles.account}>
                 <li className={styles.login}>
                   {/* <img src={user.photoURL} alt="프로필 이미지" /> */}
-                  <span>{user.displayName}</span>
+                  <span>{user?.displayName}</span>
                 </li>
                 <li className={styles.join}>
                   <Link to="/" onClick={handleSignOut}>

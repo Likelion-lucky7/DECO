@@ -51,6 +51,16 @@ const SignUp = () => {
       formSatateRef.current;
     console.log(formSatateRef);
 
+    const user = await signUp(email, password, nickname);
+    await createAuthUser(user, { photoURL: "../../assets/empty_picture.png" });
+
+    console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
+  };
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    formSatateRef.current[name] = value;
+
     if (isValidEmail) {
       console.error("이메일 형식으로 적어주세요.");
     }
@@ -70,16 +80,6 @@ const SignUp = () => {
     if (!isValidEmail || !isValidPassword || !isValidInput) {
       alert("모든 칸에 입력을 해주세요.");
     }
-
-    const user = await signUp(email, password, nickname);
-    await createAuthUser(user, { photoURL: "../../assets/empty_picture.png" });
-
-    console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
-  };
-
-  const handleChangeInput = (e) => {
-    const { name, value } = e.target;
-    formSatateRef.current[name] = value;
 
     if (getIsActive) {
       setIsActive((isActive) => !isActive);
@@ -140,11 +140,12 @@ const SignUp = () => {
         {isActive ? (
           <SubmitButton type="submit" title="회원가입" writeButton={false} />
         ) : (
-          <div className={styles.buttonContainer}>
-            <button type="button" className={styles.disableButton} disabled>
-              회원가입
-            </button>
-          </div>
+          <SubmitButton
+            type="submit"
+            title="회원가입"
+            writeButton={false}
+            disabled
+          />
         )}
       </form>
     </div>
