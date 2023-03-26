@@ -8,6 +8,7 @@ import { useCallback, useRef, useState } from "react";
 import { useSignUp } from "@/firebase/auth/useSignUp";
 import { useCreateAuthUser } from "@/firebase/firestore";
 import { useAuthState } from "@/firebase/auth/useAuthState";
+import { useNavigate } from "react-router-dom";
 
 const initialFormState = {
   email: "",
@@ -20,6 +21,7 @@ const SignUp = () => {
   const { signUp } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const { isLoading, error, user } = useAuthState();
+  const navigate = useNavigate();
 
   // 이메일, 비밀번호, 비밀번호 확인, 닉네임
   const [email, setEmail] = useState("");
@@ -39,17 +41,18 @@ const SignUp = () => {
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
   const [isNickName, setIsNickName] = useState(false);
 
+  // 유효성 검사가 전부 true(통과)이면 버튼 동작하게
   const [isActive, setIsActive] = useState(false);
 
   const onChangeName = useCallback((e) => {
     const nickNameCurrent = e.target.value;
     setNickName(e.target.value);
 
-    if (nickNameCurrent.length < 3 || nickNameCurrent.length > 11) {
-      setNickNameMessage("❌2글자 이상 10글자 미만으로 입력해주세요.");
+    if (nickNameCurrent.length < 2 || nickNameCurrent.length > 11) {
+      setNickNameMessage("❌1글자 이상 10글자 미만으로 입력해주세요.");
       setIsNickName(false);
     } else {
-      setNickNameMessage("");
+      setNickNameMessage("⭕올바른 닉네임 형식입니다.");
       setIsNickName(true);
     }
   }, []);
@@ -65,7 +68,7 @@ const SignUp = () => {
       setEmailMessage("❌이메일 형식을 다시 확인해주세요.");
       setIsEmail(false);
     } else {
-      setEmailMessage("");
+      setEmailMessage("⭕올바른 이메일 형식입니다.");
       setIsEmail(true);
     }
   }, []);
@@ -83,7 +86,7 @@ const SignUp = () => {
       );
       setIsPassword(false);
     } else {
-      setPasswordMessage("");
+      setPasswordMessage("⭕안전한 비밀번호입니다.");
       setIsPassword(true);
     }
   }, []);
@@ -106,30 +109,20 @@ const SignUp = () => {
   );
 
   const isCheckError = () => {
-    if (
-      setIsNickName &&
-      setIsEmail &&
-      setIsPassword &&
-      setIsPasswordConfirm === true
-    ) {
+    if (isEmail && isPassword && isPassword && isPasswordConfirm === true) {
       setIsActive(true);
     }
   };
 
-  // 모든 조건을 충족하면 작동 (버튼 활성화)
-  // const getIsActive = isValidEmail && isValidPassword && isValidInput === true;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    /* const { email, password, passwordConfirm, nickName } =
-      formSatateRef.current;
-    console.log(formSatateRef); */
 
     const user = await signUp(email, password, nickName);
     await createAuthUser(user, { photoURL: "../../assets/empty_picture.png" });
 
     console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
+
+    navigate("/login");
   };
 
   if (isLoading) {
@@ -205,7 +198,7 @@ const SignUp = () => {
           )}
         </div>
 
-        <div>로그인한 유저: {user?.email}</div>
+        {/* <div>로그인한 유저: {user?.email}</div> */}
 
         {isActive ? (
           <SubmitButton type="submit" title="회원가입" writeButton={false} />
