@@ -13,8 +13,8 @@ import styles from "./QuestionList.module.css";
 const QuestionList = () => {
   let questionData = useRecoilState(getQuestion);
   let originalData = questionData[0].filter((item) => item.id !== undefined)
-  let [filteredData, setFilterdData] = useState([...originalData]
-  );
+console.log(originalData)
+  let [filteredData, setFilterdData] = useState([...originalData]);
   let [category, setCategory] = useState("전체");
 
 
@@ -35,13 +35,16 @@ const QuestionList = () => {
   const onClickSort = async (e) => {
     e.preventDefault();
     if (e.target.name == "like") {
+      console.log("추천순")
       let arr = [...originalData];
       let newArr = arr.sort(function (a, b) {
-        return b.hits - a.hits;
+        return b.like - a.like;
       });
+      console.log(newArr)
       setFilterdData(newArr);
     }
     if (e.target.name == "new") {
+      console.log("최신순")
       let arr = [...originalData];
       let newArr = arr
         .sort(function (a, b) {
