@@ -49,7 +49,7 @@ const SignUp = () => {
     setNickName(e.target.value);
 
     if (nickNameCurrent.length < 2 || nickNameCurrent.length > 11) {
-      setNickNameMessage("❌1글자 이상 10글자 미만으로 입력해주세요.");
+      setNickNameMessage("❌2글자 이상 10글자 미만으로 입력해주세요.");
       setIsNickName(false);
     } else {
       setNickNameMessage("⭕올바른 닉네임 형식입니다.");
