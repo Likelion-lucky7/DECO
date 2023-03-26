@@ -1,6 +1,6 @@
-import {getQuestion} from "@/@store/getQuestionData";
+import { getQuestion } from "@/@store/getQuestionData";
 import React from "react";
-import { useRecoilState} from "recoil";
+import { useRecoilState } from "recoil";
 import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Category from "../Common/Category/Category";
@@ -11,8 +11,8 @@ import Sort from "../Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
-  let questionData = useRecoilState(getQuestion)
-  let filteredData = questionData[0].filter((item)=> item.id !== undefined)
+  let questionData = useRecoilState(getQuestion);
+  let filteredData = questionData[0].filter((item) => item.id !== undefined);
 
   return (
     <>

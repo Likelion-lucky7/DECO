@@ -51,6 +51,8 @@ export function useUploadFiles({ dirName = "assets", usingId = true } = {}) {
         setUrlList(downloadURLList);
 
         fileInput.value = "";
+
+        return downloadURLList;
       } catch (error) {
         setError(error);
       } finally {

@@ -7,7 +7,6 @@ import { useCreateData } from "@/firebase/firestore";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-
 /* 텍스트 지우는 함수 */
 function clearText(target) {
   target.value = "";

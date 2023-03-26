@@ -4,7 +4,10 @@ import styles from "./FileUpload.module.css";
 import { useRecoilState } from "recoil";
 import { fileImageState } from "@/@store/fileImageState";
 
-const FileUpload = forwardRef(function FileUpload({ isSignUp, id }, ref) {
+const FileUpload = forwardRef(function FileUpload(
+  { isSignUp, id, ...restProps },
+  ref,
+) {
   const [imgFile, setImgFile] = useRecoilState(fileImageState);
 
   const onImageChange = (e) => {
@@ -37,6 +40,7 @@ const FileUpload = forwardRef(function FileUpload({ isSignUp, id }, ref) {
             name="profile"
             className={styles.profile_form_isSignUp}
             ref={ref}
+            {...restProps}
           />
         </div>
       ) : (

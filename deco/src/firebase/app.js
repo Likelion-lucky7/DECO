@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const {
   VITE_API_KEY,
@@ -22,4 +23,5 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-export const dbService = getFirestore();
+export const dbService = getFirestore(app);
+export const storage = getStorage(app);
