@@ -12,7 +12,9 @@ import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
   let questionData = useRecoilState(getQuestion);
-  let [filteredData,setFilteredData]= useState(questionData[0].filter((item) => item.id !== undefined));
+  let newData = questionData[0].filter((item) => item.id !== undefined)
+  let [filteredData, setFilterdData] = useState([...newData]
+  );
   let [category, setCategory] = useState("전체");
 
 
@@ -33,23 +35,21 @@ const QuestionList = () => {
   const onClickSort = async (e) => {
     e.preventDefault();
     if (e.target.name == "like") {
-      let arr = [...filteredData];
+      let arr = [...newData];
       let newArr = arr.sort(function (a, b) {
         return b.hits - a.hits;
       });
-      setFilteredData(newArr);
+      setFilterdData(newArr);
     }
     if (e.target.name == "new") {
-      let arr = [...filteredData];
+      let arr = [...newData];
       let newArr = arr
         .sort(function (a, b) {
           return new Date(b.date).getTime() - new Date(a.date).getTime();
         })
-        setFilteredData(newArr);
+      setFilterdData(newArr);
     }
   };
-
-
   return (
     <>
       <BoardBanner
@@ -65,7 +65,7 @@ const QuestionList = () => {
         <Hashtag content="JavaScript" />
         <Hashtag content="HTML " />
       </div>
-      <Sort onClick={onClickSort}/>
+      <Sort onClick={onClickSort} />
 
       {category == "전체"
         ? filteredData.map((item) => {
