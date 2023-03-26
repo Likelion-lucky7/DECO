@@ -3,7 +3,7 @@ import WelcomeInfo from "@/components/Common/WelcomeInfo/WelcomeInfo";
 import FormInput from "@/components/Common/FormInput/FormInput";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthState, useSignIn } from "@/firebase/auth";
 import MainPage from "@/pages/MainPage";
 
@@ -14,8 +14,8 @@ const initialFormState = {
 const Login = () => {
   const formStateRef = useRef(initialFormState);
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
-
   const { isLoading, error, user } = useAuthState();
+  const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -23,6 +23,8 @@ const Login = () => {
     const { email, password } = formStateRef.current;
 
     await signIn(email, password);
+
+    navigate("/");
   };
 
   const handleChangeInput = (e) => {
