@@ -1,5 +1,5 @@
-import { getQuestion } from "@/@store/getQuestionData";
-import React from "react";
+import { getQuestion} from "@/@store/getQuestionData";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
@@ -12,7 +12,23 @@ import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
   let questionData = useRecoilState(getQuestion);
-  let filteredData = questionData[0].filter((item) => item.id !== undefined);
+  let filteredData= questionData[0].filter((item) => item.id !== undefined);
+  let [category, setCategory] = useState("전체");
+
+
+  const onClickCategory = async (e) => {
+    e.preventDefault();
+    if (e.target.name == "all") {
+      setCategory("전체");
+    }
+    if (e.target.name == "기술") {
+      setCategory("기술");
+    }
+
+    if (e.target.name == "커리어") {
+      setCategory("커리어");
+    }
+  };
 
   return (
     <>
@@ -22,17 +38,24 @@ const QuestionList = () => {
         write="질문하기"
         path="/question/write"
       />
-      <Category category1="기술" category2="커리어" />
+      <Category category1="기술" category2="커리어" onClick={onClickCategory} />
       <SearchForm />
       <div className={styles.hashtagContainer}>
         <Hashtag content="React" />
         <Hashtag content="JavaScript" />
         <Hashtag content="HTML " />
       </div>
-      <Sort />
-      {filteredData.map((item) => {
-        return <Article key={item.id} item={item} />;
-      })}
+      <Sort/>
+
+      {category == "전체"
+        ? filteredData.map((item) => {
+            return <Article key={item?.id} item={item} />;
+          })
+        : filteredData
+            .filter((item) => item.category === category)
+            .map((item) => {
+              return <Article key={item?.id} item={item} />;
+            })}
       <Pagination />
     </>
   );
