@@ -26,21 +26,16 @@
   margin: 0 auto;
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 34px;
+.formbox {
+  position: relative;
 }
 
-.disableButton {
-  text-align: center;
-  width: 364px;
-  height: 58px;
-  border: 1px solid #364fc7;
-  border-radius: 5px;
-  background-color: white;
-  color: #364fc7;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: default;
+.message {
+  display: flex;
+  display: block;
+  float: left;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 14px;
 }

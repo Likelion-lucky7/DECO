@@ -39,10 +39,10 @@ const Login = () => {
   }
 
   if (user) {
-    return (
+    /* return (
       <MainPage />
       // <button onClick={handleSignOut}>로그아웃</button>
-    );
+    ); */
   }
 
   return (
