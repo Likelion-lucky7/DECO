@@ -10,6 +10,7 @@ const NavBar = () => {
   const { isLoading, error, user } = useAuthState();
 
   // token을 이용한 로그인 여부에 따라 NavBar 디자인이 바뀌게 함
+  // 뭔가 필요 없는 거 같음..
   const [token, setToken] = useRecoilState(tokenState);
 
   const { signOut } = useSignOut();
@@ -87,7 +88,16 @@ const NavBar = () => {
               </li>
             </ul>
 
-            {token ? (
+            <ul className={styles.account}>
+              <li className={styles.login}>
+                <Link to="/login">로그인</Link>
+              </li>
+              <li className={styles.join}>
+                <Link to="/signup">회원가입</Link>
+              </li>
+            </ul>
+
+            {/* {token ? (
               <ul className={styles.account}>
                 <li className={styles.login}>
                   <img
@@ -113,7 +123,7 @@ const NavBar = () => {
                   <Link to="/signup">회원가입</Link>
                 </li>
               </ul>
-            )}
+            )} */}
           </div>
         </div>
       </header>

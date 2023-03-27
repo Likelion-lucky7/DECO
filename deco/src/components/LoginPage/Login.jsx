@@ -33,7 +33,7 @@ const Login = () => {
 
     setToken("access_token");
 
-    navigate("/");
+    navigate(-1);
   };
 
   const handleSignOut = async () => {
