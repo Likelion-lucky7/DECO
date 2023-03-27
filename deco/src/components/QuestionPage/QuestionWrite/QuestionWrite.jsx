@@ -1,40 +1,39 @@
-import WriteInput from "@/components/Common/WriteInput/WriteInput";
-import FileUpload from "@/components/Common/FileUpload/FileUpload";
-import TagInput from "@/components/Common/TagInput/TagInput";
-import styles from "./QuestionWrite.module.css";
-import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
-import { useRecoilValue, useRecoilState, useResetRecoilState } from "recoil";
-import { titleGetState, titleState } from "@/@store/titleState";
-import { collection, addDoc } from "firebase/firestore";
-import { dbService } from "@/firebase/app";
-import { contentState } from "@/@store/contentState";
-import { hashTagListState } from "@/@store/hashTagListState";
 import { useEffect, useId } from "react";
-import { useUploadFiles } from "@/firebase/storage";
-import { fileImageState } from "@/@store/fileImageState";
-import { selectState } from "@/@store/selectState";
 import { useNavigate } from "react-router-dom";
-import { useReadData } from "@/firebase/firestore/useReadData";
+import styles from "./QuestionWrite.module.css";
+import TagInput from "@/components/Common/TagInput/TagInput";
+import FileUpload from "@/components/Common/FileUpload/FileUpload";
+import WriteInput from "@/components/Common/WriteInput/WriteInput";
+import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
+import { dbService } from "@/firebase/app";
 import { useAuthState } from "@/firebase/auth";
+import { useUploadFiles } from "@/firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
+import { useReadData } from "@/firebase/firestore/useReadData";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { authUser } from "@/@store/user";
+import { titleState } from "@/@store/titleState";
+import { selectState } from "@/@store/selectState";
+import { contentState } from "@/@store/contentState";
+import { fileImageState } from "@/@store/fileImageState";
+import { hashTagListState } from "@/@store/hashTagListState";
 
 const QuestionWrite = () => {
+  const navigate = useNavigate();
   const { user } = useAuthState();
-  const { readData, data } = useReadData("question");
+  const userData = useRecoilValue(authUser);
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
-  const inputHashTagList = useRecoilValue(hashTagListState);
+  const { readData, data } = useReadData("question");
   const inputFileImage = useRecoilValue(fileImageState);
+  const inputHashTagList = useRecoilValue(hashTagListState);
   const [selected, setSelected] = useRecoilState(selectState);
-  const resetTitle = useResetRecoilState(titleState);
-  const navigate = useNavigate();
-  const getTitle = useRecoilValue(titleGetState);
-  let userData = useRecoilValue(authUser);
 
-  //파일 업로드
+  // 파일 업로드
   const id = useId();
   const { fileInputRef, uploadFiles } = useUploadFiles();
 
+  // doc.id값 추출위해 useEffect 사용
   useEffect(() => {
     if (data) {
       console.log("result입니다. ", data.id);
@@ -45,8 +44,7 @@ const QuestionWrite = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    let confirmMessage = confirm("글을 작성하시겠습니까?");
+    const confirmMessage = confirm("글을 작성하시겠습니까?");
 
     if (confirmMessage) {
       try {
@@ -62,7 +60,6 @@ const QuestionWrite = () => {
           content: inputContent,
           hashTag: inputHashTagList,
           image: inputFileImage,
-          // id: "",
           createdAt: Date.now(),
           hits: 0,
           like: 0,
@@ -76,7 +73,6 @@ const QuestionWrite = () => {
 
         // 3. 도큐멘트 추가 이후, 추가된 도큐멘트 ID 값으로 도큐멘트 읽기 요청
         await readData(docRef.id);
-
         navigate(`/question/`);
         window.location.reload();
       } catch (e) {
