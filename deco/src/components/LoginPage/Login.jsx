@@ -29,11 +29,11 @@ const Login = () => {
 
     await signIn(email, password);
 
-    alert("로그인 되었습니다 !");
-
     setToken("access_token");
 
-    navigate("/");
+    alert("로그인 되었습니다 !");
+
+    navigate(-1, { replace: true });
   };
 
   const handleSignOut = async () => {

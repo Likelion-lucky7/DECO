@@ -11,6 +11,8 @@ import { useAuthState } from "@/firebase/auth/useAuthState";
 import { useNavigate } from "react-router-dom";
 import { useDownloadURL, useUploadFiles } from "@/firebase/storage";
 import { useSignOut } from "@/firebase/auth";
+import { useRecoilState } from "recoil";
+import { tokenState } from "@/@store/authUserState";
 
 const initialFormState = {
   email: "",
@@ -25,6 +27,7 @@ const SignUp = () => {
   const { createAuthUser } = useCreateAuthUser();
   const { isLoading, error, user } = useAuthState();
   const navigate = useNavigate();
+  const [token, setToken] = useRecoilState(tokenState);
 
   // 이메일, 비밀번호, 비밀번호 확인, 닉네임
   const [email, setEmail] = useState("");
@@ -152,6 +155,8 @@ const SignUp = () => {
     await createAuthUser(user, { photoURL: uploadedImageUrl });
 
     console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
+
+    setToken("access_token");
 
     alert("데코에 오신 걸 환영합니다 !");
 
