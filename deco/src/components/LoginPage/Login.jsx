@@ -48,6 +48,16 @@ const Login = () => {
     return <div role="alert">오류! {error.message}</div>;
   }
 
+  if (user) {
+    return (
+      <div className={styles.profileImage}>
+        <img height={200} src={user.photoURL} alt="프로필 이미지" />
+        <p>{user.displayName}</p>
+        <button onClick={signOut}>로그아웃</button>
+      </div>
+    );
+  }
+  
   return (
     <div className={styles.container}>
       <WelcomeInfo subtitle="많은 정보를 얻어가세요 !" />

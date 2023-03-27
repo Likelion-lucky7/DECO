@@ -14,3 +14,7 @@
   font-size: var(--text-md);
   font-weight: 600;
 }
+.inner button {
+  border: none;
+  background-color: white;
+}

@@ -39,3 +39,11 @@
   color: #333;
   font-size: 14px;
 }
+
+.profileImage {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+}
