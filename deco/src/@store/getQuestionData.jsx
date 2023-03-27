@@ -15,7 +15,8 @@ export const getQuestion = selector({
     let data = await get(questionInitialData);
     const querySnapShot = await getDocs(collection(dbService, "question"));
     const newData = await querySnapShot.docs.map((doc) => ({
-      ...doc.data()
+      ...doc.data(),
+      id:doc.id
     }));
     data = await newData
 
