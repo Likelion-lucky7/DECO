@@ -9,22 +9,34 @@ import { collection, addDoc } from "firebase/firestore";
 import { dbService } from "@/firebase/app";
 import { contentState } from "@/@store/contentState";
 import { hashTagListState } from "@/@store/hashTagListState";
+import { useId } from "react";
+import { useUploadFiles } from "@/firebase/storage";
+import { fileImageState } from "@/@store/fileImageState";
 
 const QuestionWrite = () => {
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
   const inputHashTagList = useRecoilValue(hashTagListState);
+  const inputFileImage = useRecoilValue(fileImageState);
 
-  const submitTitle = async (e) => {
+  //파일 업로드
+  const id = useId();
+  const { fileInputRef, uploadFiles } = useUploadFiles();
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log("해시태그", inputHashTagList);
     console.log("1" + inputContent);
+
+    uploadFiles();
+    console.log("파일 업로드 요청");
 
     try {
       const docRef = await addDoc(collection(dbService, "question"), {
         title: inputTitle,
         content: inputContent,
         hashtag: inputHashTagList,
+        file: inputFileImage,
       });
       console.log("성공?", docRef.id);
     } catch (e) {
@@ -65,10 +77,10 @@ const QuestionWrite = () => {
 
         <WriteInput isQuestion={true} />
         <TagInput isQuestion={true} />
-        <div className={styles.rowButton}>
-          <FileUpload isSignUp={false} />
-          <SubmitButton onClick={submitTitle} title="등록" writeButton={true} />
-        </div>
+        <form className={styles.rowButton}>
+          <FileUpload isSignUp={false} id={id} ref={fileInputRef} />
+          <SubmitButton onClick={onSubmit} title="등록" writeButton={true} />
+        </form>
       </div>
     </div>
   );

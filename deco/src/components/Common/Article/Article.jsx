@@ -31,7 +31,7 @@ const Article = ({ item }) => {
       <div className={styles.hashAndAdditionalInfo}>
         <div className={styles.hash}>
           {category ? <QuestionCategory categoryName={category} /> : null}
-          {hashTag.map((item, index) => (
+          {hashTag?.map((item, index) => (
             <Hashtag key={index} content={item} />
           ))}
         </div>
