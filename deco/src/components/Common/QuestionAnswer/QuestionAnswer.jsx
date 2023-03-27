@@ -35,7 +35,7 @@ const QuestionAnswer = ({ title, ...restProps }) => {
       },
       date: new Date().getTime(),
       comment: commentWriteField.value,
-      commentId: +commentsId.id,
+      commentId: commentsId.id,
     });
     // indexData.current += 1;
     clearText(commentWriteField);

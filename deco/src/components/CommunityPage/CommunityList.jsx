@@ -1,4 +1,6 @@
+import { getCommunity } from "@/@store/getCommunityData";
 import React from "react";
+import { useRecoilState } from "recoil";
 import Article from "../Common/Article/Article";
 import BoardBanner from "../Common/BoardBanner/BoardBanner";
 import Hashtag from "../Common/Hashtag/Hashtag";
@@ -8,6 +10,9 @@ import Sort from "../Common/Sort/Sort";
 import styles from "./CommunityList.module.css";
 
 const CommunityList = () => {
+  const communityData = useRecoilState(getCommunity);
+  const filteredData = communityData[0].filter((item) => item.id !== undefined);
+
   return (
     <>
       <BoardBanner
@@ -18,12 +23,14 @@ const CommunityList = () => {
       />
       <SearchForm />
       <div className={styles.hashtagContainer}>
-        <Hashtag content="React" />
-        <Hashtag content="JavaScript" />
-        <Hashtag content="HTML " />
+        <Hashtag content="" />
+        <Hashtag content="" />
+        <Hashtag content="" />
       </div>
       <Sort />
-      <Article title="안녕하세요 저희 최종 프로젝트 완료했어요! 어떤가요?" />
+      {/* {filteredData.map((item) => {
+        return <Article key={item.id} item={item} />;
+      })} */}
       <Pagination />
     </>
   );
