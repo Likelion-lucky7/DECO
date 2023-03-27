@@ -15,8 +15,13 @@ import { fileImageState } from "@/@store/fileImageState";
 import { selectState } from "@/@store/selectState";
 import { useNavigate } from "react-router-dom";
 import { useReadData } from "@/firebase/firestore/useReadData";
+import { useAuthState } from "@/firebase/auth";
+import { authUser } from "@/@store/user";
 
 const QuestionWrite = () => {
+  const { user } = useAuthState();
+  let userData = useRecoilValue(authUser);
+  console.log(userData);
   const { readData, data } = useReadData("question");
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
@@ -34,6 +39,7 @@ const QuestionWrite = () => {
 
   useEffect(() => {
     if (data) {
+      confirm("글을 등록하시겠습니까?");
       console.log("result입니다. ", data.id);
       console.log(`/question/${data.id}로 이동합니다.`);
       navigate(`/question/${data.id}`);
@@ -62,10 +68,10 @@ const QuestionWrite = () => {
         hits: 0,
         like: 0,
         user: {
-          email: "",
-          nickname: "",
-          profile: "",
-          userId: "",
+          email: user.email,
+          nickname: user.displayName,
+          profiles: user.photoURL,
+          userId: userData,
         },
       });
 
