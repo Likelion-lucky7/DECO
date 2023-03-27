@@ -18,6 +18,7 @@ const Login = () => {
   const { isLoading, error, user } = useAuthState();
   const navigate = useNavigate();
 
+  // 로그인 상태를 알려주는 RecoilState
   const [token, setToken] = useRecoilState(tokenState);
 
   const handleSignIn = async (e) => {

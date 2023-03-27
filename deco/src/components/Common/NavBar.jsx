@@ -9,6 +9,7 @@ import { tokenState } from "@/@store/authUserState";
 const NavBar = () => {
   const { isLoading, error, user } = useAuthState();
 
+  // token을 이용한 로그인 여부에 따라 NavBar 디자인이 바뀌게 함
   const [token, setToken] = useRecoilState(tokenState);
 
   const { signOut } = useSignOut();
