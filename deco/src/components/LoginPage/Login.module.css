@@ -23,3 +23,11 @@
   flex-flow: column nowrap;
   margin: 0 auto;
 }
+
+.profileImage {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+}
