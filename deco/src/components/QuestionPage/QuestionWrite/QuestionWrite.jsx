@@ -56,9 +56,9 @@ const QuestionWrite = () => {
         content: inputContent,
         hashtag: inputHashTagList,
         image: inputFileImage,
+        id: "",
         date: "",
         hits: 0,
-        id: "",
         like: 0,
         user: {
           email: "",
@@ -74,6 +74,7 @@ const QuestionWrite = () => {
       console.error("error");
     }
   };
+  // window.location.reload();
 
   // select box
   const selectList = [
