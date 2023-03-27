@@ -1,6 +1,8 @@
 import { useState, useCallback, useMemo } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./index";
+import { authUser } from "@/@store/user";
+import { useRecoilState, useRecoilValue } from "recoil"
 
 /* -------------------------------------------------------------------------- */
 
@@ -17,7 +19,7 @@ export function useSignIn() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
-
+  let [data, setData] = useRecoilState(authUser);
   const signIn = useCallback(async (email, password) => {
     setIsLoading(true);
     try {
@@ -26,7 +28,7 @@ export function useSignIn() {
         email,
         password,
       );
-
+      setData(userCredentials._tokenResponse.localId)
       setUser(userCredentials);
     } catch (error) {
       setError(error);

@@ -11,6 +11,7 @@ import { useRecoilValue } from "recoil";
 import { getQuestion } from "@/@store/getQuestionData";
 import DotButton from "@/components/Common/DotButton/DotButton";
 import SubmitButton from "./../../Common/SubmitButton/SubmitButton";
+import { authUser } from "@/@store/user";
 
 const {
   container,
@@ -33,6 +34,7 @@ const DetailPage = () => {
   let [editMode, setEditMode] = useState(false);
   let [updateTitle,setUpdateTitle] = useState("");
   let updateContent = useRef("");
+  let userData =useRecoilValue(authUser)
 
   let questionData = useRecoilValue(getQuestion);
   let data = questionData.filter((item) => item.id === id.id)[0];
@@ -42,11 +44,9 @@ const DetailPage = () => {
   // 게시글 수정
   const onUpdate = async (e) => {
     e.preventDefault();
-    // 임의의 데이터 path를 지정 추후 로그인 인증후 변경 필요
-    let testPath = "DNEzD3roLzTP3f4JkeJC";
     const ok = window.confirm("수정하시겠습니까");
     if (ok) {
-      await updateDoc(doc(dbService, "question", testPath), {
+      await updateDoc(doc(dbService, "question", id.id), {
         title: updateTitle,
         content: updateContent.current.value,
       });
@@ -59,11 +59,9 @@ const DetailPage = () => {
 //게시글 삭제
 const onDelete = async (e) => {
   let ok = window.confirm("삭제하시나요?");
-  // 임의의 데이터 path를 지정
-  let testPath = "BtgwnuosLKk2xB971fey"
   try {
     if (ok) {
-      await deleteDoc(doc(dbService, "question", testPath));
+      await deleteDoc(doc(dbService, "question", id.id));
       navigate("/question")
       location.reload()
     } else {
@@ -154,7 +152,7 @@ const onDelete = async (e) => {
                 })
               : null}
           </div>
-          {localStorage.getItem("id") == user?.userId && editMode === false ? (
+          {userData== user?.userId && editMode === false ? (
             <div className={dotButton}>
               <DotButton onClick={onClickDotButton} />
             </div>
