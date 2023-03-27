@@ -22,6 +22,7 @@ const Article = ({ item }) => {
               <img  src = {user?.profile} alt="유저 프로필 사진입니다" />
               )}
           <span>{user?.nickname}</span>
+
         </div>
         <div className={styles.date}>작성일 {date}</div>
       </div>

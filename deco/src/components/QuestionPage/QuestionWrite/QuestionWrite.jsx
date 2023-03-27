@@ -3,45 +3,88 @@ import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import TagInput from "@/components/Common/TagInput/TagInput";
 import styles from "./QuestionWrite.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
-import { useRecoilValue } from "recoil";
-import { titleState } from "@/@store/titleState";
-import { collection, addDoc } from "firebase/firestore";
+import { useRecoilValue, useRecoilState, useResetRecoilState } from "recoil";
+import { titleGetState, titleState } from "@/@store/titleState";
+import { collection, addDoc, doc } from "firebase/firestore";
 import { dbService } from "@/firebase/app";
 import { contentState } from "@/@store/contentState";
 import { hashTagListState } from "@/@store/hashTagListState";
-import { useId } from "react";
+import { useEffect, useId } from "react";
 import { useUploadFiles } from "@/firebase/storage";
 import { fileImageState } from "@/@store/fileImageState";
+import { selectState } from "@/@store/selectState";
+import { useNavigate } from "react-router-dom";
+import { useReadData } from "@/firebase/firestore/useReadData";
 
 const QuestionWrite = () => {
+  const { readData, data } = useReadData("question");
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
   const inputHashTagList = useRecoilValue(hashTagListState);
   const inputFileImage = useRecoilValue(fileImageState);
+  const [selected, setSelected] = useRecoilState(selectState);
+  const resetTitle = useResetRecoilState(titleState);
+  const navigate = useNavigate();
+
+  const getTitle = useRecoilValue(titleGetState);
 
   //파일 업로드
   const id = useId();
   const { fileInputRef, uploadFiles } = useUploadFiles();
 
+  useEffect(() => {
+    if (data) {
+      console.log("result입니다. ", data.id);
+      console.log(`/question/${data.id}로 이동합니다.`);
+      // navigate(`/question/${data.id}`);
+    }
+  }, [data, navigate]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("해시태그", inputHashTagList);
-    console.log("1" + inputContent);
-
-    uploadFiles();
-    console.log("파일 업로드 요청");
 
     try {
+      // 1. 파일 업로드 요청 (업로드 할 파일 개수가 1개 이상인 경우만)
+      if (fileInputRef.current.files.length > 0) {
+        await uploadFiles();
+      }
+
+      // 2. 도큐멘트 추가 요청
       const docRef = await addDoc(collection(dbService, "question"), {
+        category: selected,
         title: inputTitle,
         content: inputContent,
         hashtag: inputHashTagList,
-        file: inputFileImage,
+        image: inputFileImage,
+        id: "",
+        date: "",
+        hits: 0,
+        like: 0,
+        user: {
+          email: "",
+          nickname: "",
+          profile: "",
+          userId: "",
+        },
       });
-      console.log("성공?", docRef.id);
+
+      // 3. 도큐멘트 추가 이후, 추가된 도큐멘트 ID 값으로 도큐멘트 읽기 요청
+      await readData(docRef.id);
     } catch (e) {
       console.error("error");
     }
+  };
+  // window.location.reload();
+
+  // select box
+  const selectList = [
+    { value: "토픽 선택", name: "토픽 선택" },
+    { value: "기술", name: "기술" },
+    { value: "커리어", name: "커리어" },
+  ];
+
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
   };
 
   return (
@@ -67,20 +110,30 @@ const QuestionWrite = () => {
       </div>
 
       <div>
-        <select name="" id="" className={styles.select}>
-          <option value="" defaultValue="토픽 선택">
-            토픽 선택
-          </option>
-          <option value="skill">기술</option>
-          <option value="career">커리어</option>
+        <select
+          className={styles.select}
+          onChange={handleSelect}
+          value={selected}
+        >
+          {selectList.map((item) => {
+            return (
+              <option
+                value={item.value}
+                key={item.value}
+                defaultValue="토픽 선택"
+              >
+                {item.name}
+              </option>
+            );
+          })}
         </select>
 
         <WriteInput isQuestion={true} />
         <TagInput isQuestion={true} />
-        <form className={styles.rowButton}>
+        <div className={styles.rowButton}>
           <FileUpload isSignUp={false} id={id} ref={fileInputRef} />
           <SubmitButton onClick={onSubmit} title="등록" writeButton={true} />
-        </form>
+        </div>
       </div>
     </div>
   );
