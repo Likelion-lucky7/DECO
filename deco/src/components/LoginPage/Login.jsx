@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react";
+import { useRef } from "react";
 import WelcomeInfo from "@/components/Common/WelcomeInfo/WelcomeInfo";
 import FormInput from "@/components/Common/FormInput/FormInput";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthState, useSignIn, useSignOut } from "@/firebase/auth";
-import MainPage from "@/pages/MainPage";
+import { useRecoilState } from "recoil";
+import { tokenState } from "@/@store/authUserState";
 
 const initialFormState = {
   email: "",
@@ -16,6 +17,10 @@ const Login = () => {
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
   const { signOut } = useSignOut();
   const { isLoading, error, user } = useAuthState();
+  const navigate = useNavigate();
+
+  // 로그인 상태를 알려주는 RecoilState
+  const [token, setToken] = useRecoilState(tokenState);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -23,10 +28,17 @@ const Login = () => {
     const { email, password } = formStateRef.current;
 
     await signIn(email, password);
+
+    alert("로그인 되었습니다 !");
+
+    setToken("access_token");
+
+    navigate("/");
   };
 
   const handleSignOut = async () => {
-    console.log("로그아웃");
+    alert("로그아웃 되었습니다.");
+    setToken("");
     signOut();
   };
 
@@ -48,7 +60,7 @@ const Login = () => {
       <div className={styles.profileImage}>
         <img height={200} src={user.photoURL} alt="프로필 이미지" />
         <p>{user.displayName}</p>
-        <button onClick={signOut}>로그아웃</button>
+        <button onClick={handleSignOut}>로그아웃</button>
       </div>
     );
   }

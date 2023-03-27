@@ -26,6 +26,20 @@
   margin: 0 auto;
 }
 
+.formbox {
+  position: relative;
+}
+
+.message {
+  display: flex;
+  display: block;
+  float: left;
+  margin-top: 12px;
+  margin-bottom: 7px;
+  color: #333;
+  font-size: 14px;
+}
+
 .profileImage {
   display: flex;
   flex-flow: column;
