@@ -8,9 +8,3 @@ export const authUser = atom({
   default: '',
   effects_UNSTABLE: [persistAtom], 
 });
-
-export const getAuthUser = atom({
-  key: 'getAuthUser',
-  default: '',
-  effects_UNSTABLE: [persistAtom], 
-});
