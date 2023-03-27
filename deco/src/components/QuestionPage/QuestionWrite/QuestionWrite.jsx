@@ -33,53 +33,47 @@ const QuestionWrite = () => {
   const { fileInputRef, uploadFiles } = useUploadFiles();
 
   useEffect(() => {
-    readData();
-  }, [readData]);
+    if (data) {
+      console.log("result입니다. ", data.id);
+      console.log(`/question/${data.id}로 이동합니다.`);
+      // navigate(`/question/${data.id}`);
+    }
+  }, [data, navigate]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    uploadFiles();
-    let docRef = null;
+
     try {
-      docRef = await addDoc(collection(dbService, "question"), {
+      // 1. 파일 업로드 요청 (업로드 할 파일 개수가 1개 이상인 경우만)
+      if (fileInputRef.current.files.length > 0) {
+        await uploadFiles();
+      }
+
+      // 2. 도큐멘트 추가 요청
+      const docRef = await addDoc(collection(dbService, "question"), {
         category: selected,
         title: inputTitle,
         content: inputContent,
         hashtag: inputHashTagList,
-        file: inputFileImage,
+        image: inputFileImage,
+        date: "",
+        hits: 0,
+        id: "",
+        like: 0,
+        user: {
+          email: "",
+          nickname: "",
+          profile: "",
+          userId: "",
+        },
       });
+
+      // 3. 도큐멘트 추가 이후, 추가된 도큐멘트 ID 값으로 도큐멘트 읽기 요청
+      await readData(docRef.id);
     } catch (e) {
       console.error("error");
     }
-
-    // console.log(
-    //   "doc이다",
-    //   doc(dbService, "question", docRef._key.path.segments[1]),
-    // );
-    if (confirm("게시글을 등록하시겠습니까?")) {
-      // console.log("🧟‍♀️", docRef._key.path.segments[1]);
-      // const result = await getData(docRef._key.path.segments[1]);
-      // const result = await readData(docRef._key.path.segments[1]);
-
-      console.log("result입니다. ", data[0].id);
-
-      // resetTitle();
-      navigate(`/question/${data[0].id}`);
-    }
   };
-
-  // const getData = async (questionId) => {
-  //   console.log("🧟‍♂️", questionId);
-  //   const q = await query(
-  //     collection(dbService, "question"),
-  //     where("id", "==", String(questionId)),
-  //   );
-
-  //   const querySnapshot = await getDocs(q);
-  //   console.log("할수 이쒀 ", querySnapshot);
-  //   querySnapshot.forEach((doc) => {
-  //     console.log("doc 주세요 얼른: ", doc);
-  //   });
 
   // select box
   const selectList = [
