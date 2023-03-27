@@ -34,16 +34,13 @@ const QuestionList = () => {
   const onClickSort = async (e) => {
     e.preventDefault();
     if (e.target.name == "like") {
-      console.log("추천순")
       let arr = [...originalData];
       let newArr = arr.sort(function (a, b) {
         return b.like - a.like;
       });
-      console.log(newArr)
       setFilteredData(newArr);
     }
     if (e.target.name == "new") {
-      console.log("최신순")
       let arr = [...originalData];
       let newArr = arr
         .sort(function (a, b) {
