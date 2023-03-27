@@ -16,11 +16,11 @@ const Article = ({ item }) => {
     <article className={styles.container}>
       <div className={styles.userAndDate}>
         <div className={styles.userInfo}>
-          {user?.profile === ""? (
+          {user?.profile === "" ? (
             <Profile />
-            ) : (
-              <img  src = {user?.profile} alt="유저 프로필 사진입니다" />
-              )}
+          ) : (
+            <img src={user?.profile} alt="유저 프로필 사진입니다" />
+          )}
           <span>{user.nickname}</span>
         </div>
         <div className={styles.date}>작성일 {date}</div>
@@ -31,7 +31,7 @@ const Article = ({ item }) => {
       <div className={styles.hashAndAdditionalInfo}>
         <div className={styles.hash}>
           {category ? <QuestionCategory categoryName={category} /> : null}
-          {hashTag.map((item, index) => (
+          {hashTag?.map((item, index) => (
             <Hashtag key={index} content={item} />
           ))}
         </div>
