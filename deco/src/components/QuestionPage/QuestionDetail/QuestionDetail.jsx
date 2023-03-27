@@ -11,6 +11,7 @@ import { useRecoilValue } from "recoil";
 import { getQuestion } from "@/@store/getQuestionData";
 import DotButton from "@/components/Common/DotButton/DotButton";
 import SubmitButton from "./../../Common/SubmitButton/SubmitButton";
+import { authUser } from "@/@store/user";
 
 const {
   container,
@@ -33,6 +34,7 @@ const DetailPage = () => {
   let [editMode, setEditMode] = useState(false);
   let [updateTitle,setUpdateTitle] = useState("");
   let updateContent = useRef("");
+  let userData =useRecoilValue(authUser)
 
   let questionData = useRecoilValue(getQuestion);
   let data = questionData.filter((item) => item.id === id.id)[0];
@@ -154,7 +156,7 @@ const onDelete = async (e) => {
                 })
               : null}
           </div>
-          {localStorage.getItem("id") == user?.userId && editMode === false ? (
+          {userData== user?.userId && editMode === false ? (
             <div className={dotButton}>
               <DotButton onClick={onClickDotButton} />
             </div>
