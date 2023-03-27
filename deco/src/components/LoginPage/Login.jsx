@@ -4,7 +4,7 @@ import FormInput from "@/components/Common/FormInput/FormInput";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthState, useSignIn } from "@/firebase/auth";
+import { useAuthState, useSignIn, useSignOut } from "@/firebase/auth";
 import { useRecoilState } from "recoil";
 import { tokenState } from "@/@store/authUserState";
 
@@ -15,6 +15,7 @@ const initialFormState = {
 const Login = () => {
   const formStateRef = useRef(initialFormState);
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
+  const { signOut } = useSignOut();
   const { isLoading, error, user } = useAuthState();
   const navigate = useNavigate();
 
@@ -35,6 +36,12 @@ const Login = () => {
     navigate("/");
   };
 
+  const handleSignOut = async () => {
+    alert("로그아웃 되었습니다.");
+    setToken("");
+    signOut();
+  };
+
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     formStateRef.current[name] = value;
@@ -53,11 +60,11 @@ const Login = () => {
       <div className={styles.profileImage}>
         <img height={200} src={user.photoURL} alt="프로필 이미지" />
         <p>{user.displayName}</p>
-        <button onClick={signOut}>로그아웃</button>
+        <button onClick={handleSignOut}>로그아웃</button>
       </div>
     );
   }
-  
+
   return (
     <div className={styles.container}>
       <WelcomeInfo subtitle="많은 정보를 얻어가세요 !" />

@@ -30,33 +30,33 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [nickName, setNickName] = useState("");
+  const [nickname, setNickname] = useState("");
 
   // 오류메시지 상태저장
   const [emailMessage, setEmailMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
-  const [nickNameMessage, setNickNameMessage] = useState("");
+  const [nicknameMessage, setNicknameMessage] = useState("");
 
   // 유효성 검사
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-  const [isNickName, setIsNickName] = useState(false);
+  const [isNickname, setIsNickname] = useState(false);
 
   // 유효성 검사가 전부 true(통과)이면 버튼 동작하게
   const [isActive, setIsActive] = useState(false);
 
   const onChangeName = useCallback((e) => {
-    const nickNameCurrent = e.target.value;
-    setNickName(e.target.value);
+    const nicknameCurrent = e.target.value;
+    setNickname(e.target.value);
 
-    if (nickNameCurrent.length < 2 || nickNameCurrent.length > 11) {
-      setNickNameMessage("❌2글자 이상 10글자 미만으로 입력해주세요.");
-      setIsNickName(false);
+    if (nicknameCurrent.length < 2 || nicknameCurrent.length > 11) {
+      setNicknameMessage("❌2글자 이상 10글자 미만으로 입력해주세요.");
+      setIsNickname(false);
     } else {
-      setNickNameMessage("⭕올바른 닉네임 형식입니다.");
-      setIsNickName(true);
+      setNicknameMessage("⭕올바른 닉네임 형식입니다.");
+      setIsNickname(true);
     }
   }, []);
 
@@ -112,8 +112,8 @@ const SignUp = () => {
   );
 
   const isCheckError = () => {
-    if (isEmail && isPassword && isPassword && isPasswordConfirm === true) {
-      setIsActive(true
+    if (isEmail && isPassword && isNickname && isPasswordConfirm === true) {
+      setIsActive(true);
     }
   };
 
@@ -141,21 +141,21 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const uploadedImagesUrls = await uploadFiles();
 
     // 업로드 된 이미지 URL
     const uploadedImageUrl = uploadedImagesUrls[0];
 
     console.log("파일 업로드 요청");
-    const user = await signUp(email, password, nickName, uploadedImageUrl);
+    const user = await signUp(email, password, nickname, uploadedImageUrl);
     await createAuthUser(user, { photoURL: uploadedImageUrl });
 
     console.log("회원가입 및 users 콜렉션에 user 데이터 생성");
-    
+
     alert("데코에 오신 걸 환영합니다 !");
 
-    navigate("/login");
+    navigate("/");
   };
 
   if (isLoading) {
@@ -252,8 +252,8 @@ const SignUp = () => {
             placeholder="닉네임 입력"
             onChange={onChangeName}
           />
-          {nickName.length > 0 && (
-            <span className={styles.message}>{nickNameMessage}</span>
+          {nickname.length > 0 && (
+            <span className={styles.message}>{nicknameMessage}</span>
           )}
         </div>
 
