@@ -20,8 +20,10 @@ import { authUser } from "@/@store/user";
 
 const QuestionWrite = () => {
   const { user } = useAuthState();
+
   let userData = useRecoilValue(authUser);
-  console.log(userData);
+  console.log("userData 내놔: ", userData);
+
   const { readData, data } = useReadData("question");
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
@@ -39,46 +41,51 @@ const QuestionWrite = () => {
 
   useEffect(() => {
     if (data) {
-      confirm("글을 등록하시겠습니까?");
       console.log("result입니다. ", data.id);
       console.log(`/question/${data.id}로 이동합니다.`);
-      navigate(`/question/${data.id}`);
+      // navigate(`/question/`);
     }
   }, [data, navigate]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      // 1. 파일 업로드 요청 (업로드 할 파일 개수가 1개 이상인 경우만)
-      if (fileInputRef.current.files.length > 0) {
-        await uploadFiles();
+    let confirmMessage = confirm("작성하시겠슴까");
+
+    if (confirmMessage) {
+      try {
+        // 1. 파일 업로드 요청 (업로드 할 파일 개수가 1개 이상인 경우만)
+        if (fileInputRef.current.files.length > 0) {
+          await uploadFiles();
+        }
+
+        // 2. 도큐멘트 추가 요청
+        const docRef = await addDoc(collection(dbService, "question"), {
+          category: selected,
+          title: inputTitle,
+          content: inputContent,
+          hashTag: inputHashTagList,
+          image: inputFileImage,
+          // id: "",
+          createdAt: Date.now(),
+          hits: 0,
+          like: 0,
+          user: {
+            email: user.email,
+            nickname: user.displayName,
+            profile: user.photoURL,
+            userId: userData,
+          },
+        });
+
+        // 3. 도큐멘트 추가 이후, 추가된 도큐멘트 ID 값으로 도큐멘트 읽기 요청
+        await readData(docRef.id);
+
+        navigate(`/question/`);
+        window.location.reload();
+      } catch (e) {
+        console.error("error");
       }
-
-      // 2. 도큐멘트 추가 요청
-      const docRef = await addDoc(collection(dbService, "question"), {
-        category: selected,
-        title: inputTitle,
-        content: inputContent,
-        hashtag: inputHashTagList,
-        image: inputFileImage,
-        id: "",
-        date: "",
-        createdAt: Date.now(),
-        hits: 0,
-        like: 0,
-        user: {
-          email: user.email,
-          nickname: user.displayName,
-          profiles: user.photoURL,
-          userId: userData,
-        },
-      });
-
-      // 3. 도큐멘트 추가 이후, 추가된 도큐멘트 ID 값으로 도큐멘트 읽기 요청
-      await readData(docRef.id);
-    } catch (e) {
-      console.error("error");
     }
   };
   // window.location.reload();
