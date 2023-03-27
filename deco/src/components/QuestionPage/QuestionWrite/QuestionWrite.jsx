@@ -5,7 +5,7 @@ import styles from "./QuestionWrite.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { useRecoilValue, useRecoilState, useResetRecoilState } from "recoil";
 import { titleGetState, titleState } from "@/@store/titleState";
-import { collection, addDoc, doc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { dbService } from "@/firebase/app";
 import { contentState } from "@/@store/contentState";
 import { hashTagListState } from "@/@store/hashTagListState";
@@ -36,7 +36,7 @@ const QuestionWrite = () => {
     if (data) {
       console.log("result입니다. ", data.id);
       console.log(`/question/${data.id}로 이동합니다.`);
-      // navigate(`/question/${data.id}`);
+      navigate(`/question/${data.id}`);
     }
   }, [data, navigate]);
 
