@@ -13,8 +13,7 @@ import styles from "./QuestionList.module.css";
 const QuestionList = () => {
   let questionData = useRecoilState(getQuestion);
   let originalData = questionData[0].filter((item) => item.id !== undefined)
-console.log(originalData)
-  let [filteredData, setFilterdData] = useState([...originalData]);
+  let [filteredData, setFilteredData] = useState([...originalData]);
   let [category, setCategory] = useState("전체");
 
 
@@ -41,7 +40,7 @@ console.log(originalData)
         return b.like - a.like;
       });
       console.log(newArr)
-      setFilterdData(newArr);
+      setFilteredData(newArr);
     }
     if (e.target.name == "new") {
       console.log("최신순")
@@ -50,7 +49,7 @@ console.log(originalData)
         .sort(function (a, b) {
           return new Date(b.date).getTime() - new Date(a.date).getTime();
         })
-      setFilterdData(newArr);
+        setFilteredData(newArr);
     }
   };
   return (
