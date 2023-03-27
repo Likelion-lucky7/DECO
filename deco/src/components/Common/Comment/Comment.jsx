@@ -27,7 +27,7 @@ const Comment = ({ id }) => {
   }, []);
 
   const newArr = timeData
-    .filter((item) => +questionId.id === item.commentId)
+    .filter((item) => questionId.id === item.commentId)
     .sort((a, b) => b.date - a.date)
     .map((item) => item.date);
 
@@ -37,7 +37,7 @@ const Comment = ({ id }) => {
       <h2 className={styles.title}>답변</h2>
       {newArr.map((i) => {
         const item = timeData.find(
-          (item) => +questionId.id === item.commentId && item.date === i,
+          (item) => questionId.id === item.commentId && item.date === i,
         );
         return item ? (
           <AnswerEditor key={item.id} item={item} sort={newArr} />
