@@ -20,10 +20,6 @@ import { authUser } from "@/@store/user";
 
 const QuestionWrite = () => {
   const { user } = useAuthState();
-
-  let userData = useRecoilValue(authUser);
-  console.log("userData 내놔: ", userData);
-
   const { readData, data } = useReadData("question");
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
@@ -32,8 +28,8 @@ const QuestionWrite = () => {
   const [selected, setSelected] = useRecoilState(selectState);
   const resetTitle = useResetRecoilState(titleState);
   const navigate = useNavigate();
-
   const getTitle = useRecoilValue(titleGetState);
+  let userData = useRecoilValue(authUser);
 
   //파일 업로드
   const id = useId();
@@ -50,7 +46,7 @@ const QuestionWrite = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    let confirmMessage = confirm("작성하시겠슴까");
+    let confirmMessage = confirm("글을 작성하시겠습니까?");
 
     if (confirmMessage) {
       try {
@@ -88,7 +84,6 @@ const QuestionWrite = () => {
       }
     }
   };
-  // window.location.reload();
 
   // select box
   const selectList = [
