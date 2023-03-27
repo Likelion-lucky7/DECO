@@ -44,7 +44,11 @@ const NavBar = () => {
               </ul>
               <ul className={styles.account}>
                 <li className={styles.login}>
-                  {/* <img src={user?.photoURL} alt="프로필 이미지" /> */}
+                  <img
+                    className={styles.profile}
+                    src={user?.photoURL}
+                    alt="프로필 이미지"
+                  />
                   <span>{user?.displayName}</span>
                 </li>
 
@@ -86,7 +90,11 @@ const NavBar = () => {
             {token ? (
               <ul className={styles.account}>
                 <li className={styles.login}>
-                  {/* <img src={user?.photoURL} alt="프로필 이미지" /> */}
+                  <img
+                    className={styles.profile}
+                    src={user?.photoURL}
+                    alt="프로필 이미지"
+                  />
                   <span>{user?.displayName}</span>
                 </li>
 
