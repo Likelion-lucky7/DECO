@@ -35,10 +35,12 @@ const DetailPage = () => {
   let [updateTitle,setUpdateTitle] = useState("");
   let updateContent = useRef("");
   let userData =useRecoilValue(authUser)
-
+  
   let questionData = useRecoilValue(getQuestion);
   let data = questionData.filter((item) => item.id === id.id)[0];
-
+  // let confirm = questionData.find(item=>item.id ==id.id)
+  // console.log(confirm)
+  
   let { title, content, image, user, category, hashTag, like, hits } = data;
 
   // 게시글 수정
