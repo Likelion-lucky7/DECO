@@ -35,7 +35,6 @@ const DetailPage = () => {
   let [updateTitle, setUpdateTitle] = useState("");
   let updateContent = useRef("");
   let userData = useRecoilValue(authUser);
-  console.log(userData);
   let questionData = useRecoilValue(getQuestion);
   let data = questionData.filter((item) => item.id === id.id)[0];
   // let confirm = questionData.find(item=>item.id ==id.id)
