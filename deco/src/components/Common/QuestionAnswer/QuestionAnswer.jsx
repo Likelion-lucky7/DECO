@@ -6,6 +6,7 @@ import { commentState } from "@/@store/commentState";
 import { useCreateData } from "@/firebase/firestore";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAuthState } from "@/firebase/auth";
 
 /* 텍스트 지우는 함수 */
 function clearText(target) {
@@ -13,6 +14,7 @@ function clearText(target) {
 }
 
 const QuestionAnswer = ({ title, ...restProps }) => {
+  const { user } = useAuthState();
   const [comment, setComment] = useRecoilState(commentState);
   const { createData } = useCreateData("comments");
   const commentsId = useParams();
@@ -29,9 +31,9 @@ const QuestionAnswer = ({ title, ...restProps }) => {
     // firebase 이용하는 방법
     await createData({
       user: {
-        userId: "임시 아이디",
-        profile: null,
-        nickname: "임시 닉네임",
+        userId: user?.email,
+        profile: user?.photoURL,
+        nickname: user?.displayName,
       },
       date: new Date().getTime(),
       comment: commentWriteField.value,
