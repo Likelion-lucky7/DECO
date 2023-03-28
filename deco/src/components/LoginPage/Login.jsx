@@ -72,8 +72,8 @@ const Login = () => {
         <FormInput
           name="email"
           type="email"
-          label="email 아이디"
-          placeholder="아이디 입력"
+          label="이메일"
+          placeholder="이메일 입력"
           onChange={handleChangeInput}
         />
         <FormInput
