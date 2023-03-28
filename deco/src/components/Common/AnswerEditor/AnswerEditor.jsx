@@ -1,17 +1,15 @@
 import { useState } from "react";
 import styles from "@/components/Common/AnswerEditor/AnswerEditor.module.css";
-import emptyPicture from "@/assets/empty_Picture.png";
 import DotButton from "@/components/Common/DotButton/DotButton";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { useDeleteData, useUpdateData } from "@/firebase/firestore";
 import { commentUpdateState } from "@/@store/commentUpdateState";
 import { useRecoilState } from "recoil";
-import { async } from "@firebase/util";
-import { useAuthState } from "@/firebase/auth";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
+import { useAuthState } from "@/firebase/auth";
 
 const AnswerEditor = ({ item }) => {
-  const { user: authUser } = useAuthState();
+  const { user: authUsers } = useAuthState();
 
   const { user, comment, id } = item;
   const [commentField, setCommentField] = useRecoilState(commentUpdateState);
@@ -102,7 +100,9 @@ const AnswerEditor = ({ item }) => {
             <p className={styles.answer} type="text" name="comment">
               {comment}
             </p>
-            <DotButton onClick={onClickDotButton} />
+            {user.userId == authUsers?.email && updateMode === false ? (
+              <DotButton onClick={onClickDotButton} />
+            ) : null}
           </form>
         </div>
       )}

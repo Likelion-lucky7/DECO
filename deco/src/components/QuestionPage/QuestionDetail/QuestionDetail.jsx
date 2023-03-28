@@ -30,17 +30,16 @@ const {
 
 const DetailPage = () => {
   let id = useParams();
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   let [editMode, setEditMode] = useState(false);
-  let [updateTitle,setUpdateTitle] = useState("");
+  let [updateTitle, setUpdateTitle] = useState("");
   let updateContent = useRef("");
-  let userData =useRecoilValue(authUser)
-  
+  let userData = useRecoilValue(authUser);
   let questionData = useRecoilValue(getQuestion);
   let data = questionData.filter((item) => item.id === id.id)[0];
   // let confirm = questionData.find(item=>item.id ==id.id)
   // console.log(confirm)
-  
+
   let { title, content, image, user, category, hashTag, like, hits } = data;
 
   // 게시글 수정
@@ -58,22 +57,21 @@ const DetailPage = () => {
       console.log("취소");
     }
   };
-//게시글 삭제
-const onDelete = async (e) => {
-  let ok = window.confirm("삭제하시나요?");
-  try {
-    if (ok) {
-      await deleteDoc(doc(dbService, "question", id.id));
-      navigate("/question")
-      location.reload()
-    } else {
-      console.log("삭제x");
+  //게시글 삭제
+  const onDelete = async (e) => {
+    let ok = window.confirm("삭제하시나요?");
+    try {
+      if (ok) {
+        await deleteDoc(doc(dbService, "question", id.id));
+        navigate("/question");
+        location.reload();
+      } else {
+        console.log("삭제x");
+      }
+    } catch (error) {
+      console.log(error);
     }
-    
-  } catch (error) {
-    console.log(error);
-  }
-};
+  };
 
   const onClickDotButton = (e) => {
     e.preventDefault();
@@ -83,7 +81,7 @@ const onDelete = async (e) => {
     }
 
     if (e.target.name == "deleteButton") {
-      onDelete()
+      onDelete();
     }
   };
 
@@ -100,9 +98,13 @@ const onDelete = async (e) => {
               className={styles2.title}
               maxLength="99"
               required
-              onChange={(e)=>{setUpdateTitle(e.target.value)}}
+              onChange={(e) => {
+                setUpdateTitle(e.target.value);
+              }}
             />
-            <span className={styles2.totalNumber}>{updateTitle.length}/ 100</span>
+            <span className={styles2.totalNumber}>
+              {updateTitle.length}/ 100
+            </span>
 
             <textarea
               name="content"
@@ -122,7 +124,7 @@ const onDelete = async (e) => {
                 <SubmitButton
                   onClick={() => {
                     setEditMode(false);
-                    setUpdateTitle("")
+                    setUpdateTitle("");
                   }}
                   title="취소"
                   writeButton={true}
@@ -154,7 +156,7 @@ const onDelete = async (e) => {
                 })
               : null}
           </div>
-          {userData== user?.userId && editMode === false ? (
+          {userData == user?.userId && editMode === false ? (
             <div className={dotButton}>
               <DotButton onClick={onClickDotButton} />
             </div>
