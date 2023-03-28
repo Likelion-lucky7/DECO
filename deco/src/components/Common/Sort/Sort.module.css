@@ -1,0 +1,28 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: end;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.container button {
+  border: none;
+  background-color: transparent;
+  padding: 0 12px;
+  font-size: var(--text-sm);
+  display: flex;
+  align-items: center;
+  height: 16px;
+}
+
+.container .sortNew {
+  border-right: 1px solid var(--gray-300);
+  font-size: var(--text-sm);
+}
+
+.sortRecommendation {
+  font-size: var(--text-sm); 
+  margin-right: 5px;
+}

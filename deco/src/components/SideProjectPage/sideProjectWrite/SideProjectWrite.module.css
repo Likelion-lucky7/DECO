@@ -1,0 +1,188 @@
+.container {
+  width: 1200px;
+  min-width: 1000px;
+  margin: 0 auto;
+}
+.a11yhidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.titleBox {
+  position: relative;
+}
+.titleInput {
+  margin-top: 45px;
+  width: 1024px;
+  height: 53px;
+  border: 1px solid #888888;
+  border-radius: 8px;
+  padding: 0px 78px 0 33px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+}
+.titleInput::placeholder {
+  color: #a6a6a6;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.titleCount {
+  position: absolute;
+  top: 60%;
+  right: 90px;
+  color: #888888;
+  width: 45px;
+  height: 35px;
+}
+
+.descriptionInput {
+  width: 1069px;
+  height: 356px;
+  padding: 26px 33px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  resize: none;
+  border-radius: 8px;
+  margin-top: 23px;
+}
+.descriptionInput::placeholder {
+  color: #a6a6a6;
+  font-weight: 500;
+font-size: 20px;
+line-height: 24px;
+}
+.inputButton {
+  display: inline-block;
+  width: auto;
+  margin: 57px 0 0 0;
+}
+
+.date,
+.people,
+.status,
+.period,
+.role,
+.skill,
+.email {
+  margin: 57px 0 30px 0;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.container input[type="date"] {
+  position: relative;
+  background: url("@/assets/sideproject/calendar_icon.png") no-repeat right
+    16px center / 25px auto;
+  padding-left: 16px;
+}
+
+.container input[type="date"]::-webkit-clear-button,
+.container input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+.container input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+}
+
+.container input[type="date"]::before {
+  content: attr(data-placeholder);
+  width: 100%;
+}
+.container input[type="date"]:valid::before {
+  display: none;
+}
+
+.dateInput {
+  width: 291px;
+  height: 53px;
+  background: #ffffff;
+  border: 1px solid #888888;
+  border-radius: 8px;
+}
+
+.container select::-ms-expand {
+  display: none;
+}
+.member {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.member {
+  width: 92px;
+  height: 53px;
+  background: #ffffff url("@/assets/sideproject/down_arrow_icon.png")
+    no-repeat;
+  background-position: 80% 50%;
+  border: 1px solid #888888;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+}
+.member option {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.container input[type="checkbox"],
+.container input[type="radio"] {
+  display: none;
+}
+
+.container input[type="checkbox"] + label,
+.container input[type="radio"] + label {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  text-indent: 28px;
+  cursor: pointer;
+  background: url("@/assets/sideproject/nonecheck.png") no-repeat;
+  background-position: 0% 50%;
+  width: 142px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.container input[type="checkbox"]:checked + label,
+.container input[type="radio"]:checked + label {
+  background: url("@/assets/sideproject/check.png") no-repeat;
+  background-position: 0% 50%;
+}
+
+.skillIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.submitButton {
+  color: transparent;
+  margin-top: 26px;
+  margin-bottom: 138px;
+  float: right;
+  width: 82px;
+  height: 41px;
+  border: none;
+}

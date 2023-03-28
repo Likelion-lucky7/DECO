@@ -1,0 +1,10 @@
+.hashtag {
+  display: inline-block;
+  border: 1px solid var(--gray-100);
+  padding: 6px 10px;
+  font-size: var(--text-xs);
+  color: var(--primary);
+  border-radius: 5px;
+  line-height: var(--text-xs);
+  margin-right: 6px;
+}

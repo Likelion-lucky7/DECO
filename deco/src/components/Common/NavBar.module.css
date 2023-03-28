@@ -1,0 +1,54 @@
+.header {
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.inner {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo {
+  width: 8.13em;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: calc(1200px - (8.13em));
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+  padding: 0 5rem;
+}
+
+.account {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.account li {
+  padding-left: 2.625rem;
+}
+
+.login {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.profile {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 30px;
+  margin-right: 8px;
+}

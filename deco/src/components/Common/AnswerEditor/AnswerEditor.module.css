@@ -1,0 +1,55 @@
+.editorBox {
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 27px;
+  margin-top: 22px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.nickName {
+  display: inline-block;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  position: relative;
+  bottom: 8px;
+  transform: translateY(-50%);
+}
+
+.profileImege {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-top: 2px;
+  margin-right: 17px;
+}
+
+.answer {
+  text-align: justify;
+  margin: 25px 45px 45px 20px;
+  line-height: 30px;
+  font-size: var(--text-sm);
+  font-weight: 400;
+}
+
+/* updateMode = true */
+.submitButton {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  top: 34px;
+  right: 29px;
+}
+
+.updateAnswer {
+  display: flex;
+  margin-top: 22px;
+  width: 1080px;
+  height: 150px;
+  resize: none;
+  border: 1px soild gray;
+  border-radius: 5px;
+  padding: 30px;
+  line-height: 1.6;
+}
