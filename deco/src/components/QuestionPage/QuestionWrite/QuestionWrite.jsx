@@ -1,80 +1,85 @@
-import WriteInput from "@/components/Common/WriteInput/WriteInput";
-import FileUpload from "@/components/Common/FileUpload/FileUpload";
-import TagInput from "@/components/Common/TagInput/TagInput";
-import styles from "./QuestionWrite.module.css";
-import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
-import { useRecoilValue, useRecoilState, useResetRecoilState } from "recoil";
-import { titleGetState, titleState } from "@/@store/titleState";
-import { collection, addDoc, doc } from "firebase/firestore";
-import { dbService } from "@/firebase/app";
-import { contentState } from "@/@store/contentState";
-import { hashTagListState } from "@/@store/hashTagListState";
 import { useEffect, useId } from "react";
-import { useUploadFiles } from "@/firebase/storage";
-import { fileImageState } from "@/@store/fileImageState";
-import { selectState } from "@/@store/selectState";
 import { useNavigate } from "react-router-dom";
+import styles from "./QuestionWrite.module.css";
+import TagInput from "@/components/Common/TagInput/TagInput";
+import FileUpload from "@/components/Common/FileUpload/FileUpload";
+import WriteInput from "@/components/Common/WriteInput/WriteInput";
+import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
+import { dbService } from "@/firebase/app";
+import { useAuthState } from "@/firebase/auth";
+import { useUploadFiles } from "@/firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
 import { useReadData } from "@/firebase/firestore/useReadData";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { authUser } from "@/@store/user";
+import { titleState } from "@/@store/titleState";
+import { selectState } from "@/@store/selectState";
+import { contentState } from "@/@store/contentState";
+import { fileImageState } from "@/@store/fileImageState";
+import { hashTagListState } from "@/@store/hashTagListState";
 
 const QuestionWrite = () => {
-  const { readData, data } = useReadData("question");
+  const navigate = useNavigate();
+  const { user } = useAuthState();
+  const userData = useRecoilValue(authUser);
   const inputTitle = useRecoilValue(titleState);
   const inputContent = useRecoilValue(contentState);
-  const inputHashTagList = useRecoilValue(hashTagListState);
+  const { readData, data } = useReadData("question");
   const inputFileImage = useRecoilValue(fileImageState);
+  const inputHashTagList = useRecoilValue(hashTagListState);
   const [selected, setSelected] = useRecoilState(selectState);
-  const resetTitle = useResetRecoilState(titleState);
-  const navigate = useNavigate();
 
-  const getTitle = useRecoilValue(titleGetState);
-
-  //파일 업로드
+  // 파일 업로드
   const id = useId();
   const { fileInputRef, uploadFiles } = useUploadFiles();
 
+  // doc.id값 추출위해 useEffect 사용
   useEffect(() => {
     if (data) {
       console.log("result입니다. ", data.id);
       console.log(`/question/${data.id}로 이동합니다.`);
-      // navigate(`/question/${data.id}`);
+      // navigate(`/question/`);
     }
   }, [data, navigate]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const confirmMessage = confirm("글을 작성하시겠습니까?");
 
-    try {
-      // 1. 파일 업로드 요청 (업로드 할 파일 개수가 1개 이상인 경우만)
-      if (fileInputRef.current.files.length > 0) {
-        await uploadFiles();
+    if (confirmMessage) {
+      try {
+        // 1. 파일 업로드 요청 (업로드 할 파일 개수가 1개 이상인 경우만)
+        if (fileInputRef.current.files.length > 0) {
+          await uploadFiles();
+        }
+
+        // 2. 도큐멘트 추가 요청
+        const docRef = await addDoc(collection(dbService, "question"), {
+          category: selected,
+          title: inputTitle,
+          content: inputContent,
+          hashTag: inputHashTagList,
+          image: inputFileImage,
+          createdAt: Date.now(),
+          hits: 0,
+          like: 0,
+          user: {
+            email: user.email,
+            nickname: user.displayName,
+            profile: user.photoURL,
+            userId: userData,
+          },
+        });
+
+        // 3. 도큐멘트 추가 이후, 추가된 도큐멘트 ID 값으로 도큐멘트 읽기 요청
+        await readData(docRef.id);
+        navigate(`/question/`);
+        window.location.reload();
+      } catch (e) {
+        console.error("error");
       }
-
-      // 2. 도큐멘트 추가 요청
-      const docRef = await addDoc(collection(dbService, "question"), {
-        category: selected,
-        title: inputTitle,
-        content: inputContent,
-        hashtag: inputHashTagList,
-        image: inputFileImage,
-        id: "",
-        date: "",
-        hits: 0,
-        like: 0,
-        user: {
-          email: "",
-          nickname: "",
-          profile: "",
-          userId: "",
-        },
-      });
-
-      // 3. 도큐멘트 추가 이후, 추가된 도큐멘트 ID 값으로 도큐멘트 읽기 요청
-      await readData(docRef.id);
-    } catch (e) {
-      console.error("error");
     }
   };
-  // window.location.reload();
 
   // select box
   const selectList = [

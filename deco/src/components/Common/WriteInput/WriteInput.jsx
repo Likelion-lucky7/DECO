@@ -3,6 +3,7 @@ import styles from "./WriteInput.module.css";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { inputCountState, titleState } from "@/@store/titleState";
 import { contentState } from "@/@store/contentState";
+import { bool, string } from "prop-types";
 
 const WriteInput = ({ isQuestion, ...restProps }) => {
   const id = useId();
@@ -18,7 +19,6 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
 
   const onChangeContent = (e) => {
     setContent(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
@@ -47,7 +47,7 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
           ></textarea>
         </>
       ) : (
-        <>
+        <form>
           <input
             id={id}
             type="text"
@@ -64,7 +64,7 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
             placeholder="궁금한 내용을 적어주세요.&#10;질문하는 내용이 구체적일수록 더 정확한 답변을 받을 수 있어요."
             className={styles.content}
           ></textarea>
-        </>
+        </form>
       )}
     </div>
   );

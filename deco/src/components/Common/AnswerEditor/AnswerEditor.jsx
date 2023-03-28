@@ -76,7 +76,6 @@ const AnswerEditor = ({ item }) => {
                 onClick={onClickCancelButton}
               />
             </div>
-
             <textarea
               className={styles.updateAnswer}
               type="text"
@@ -99,13 +98,10 @@ const AnswerEditor = ({ item }) => {
                 alt="exampleImage1"
               />
             )}
-
-            <span className={styles?.nickName}>{user.nickname}</span>
-
+            <span className={styles.nickName}>{user?.nickname}</span>
             <p className={styles.answer} type="text" name="comment">
               {comment}
             </p>
-
             <DotButton onClick={onClickDotButton} />
           </form>
         </div>
