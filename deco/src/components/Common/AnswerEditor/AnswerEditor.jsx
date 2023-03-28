@@ -93,7 +93,7 @@ const AnswerEditor = ({ item }) => {
               alt="exampleImage1"
             />
 
-            <span className={styles.nickName}>{user.nickname}</span>
+            <span className={styles.nickName}>{user?.nickname}</span>
 
             <p className={styles.answer} type="text" name="comment">
               {comment}

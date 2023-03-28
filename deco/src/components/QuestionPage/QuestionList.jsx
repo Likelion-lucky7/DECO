@@ -1,4 +1,4 @@
-import { getQuestion} from "@/@store/getQuestionData";
+import { getQuestion } from "@/@store/getQuestionData";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import Article from "../Common/Article/Article";
@@ -12,10 +12,13 @@ import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
   let questionData = useRecoilState(getQuestion);
-  let originalData = questionData[0].filter((item) => item.id !== undefined)
+  let originalData = questionData[0]
+    .filter((item) => item.id !== undefined)
+    .sort(function (a, b) {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
   let [filteredData, setFilteredData] = useState([...originalData]);
   let [category, setCategory] = useState("전체");
-
 
   const onClickCategory = async (e) => {
     e.preventDefault();
@@ -41,12 +44,7 @@ const QuestionList = () => {
       setFilteredData(newArr);
     }
     if (e.target.name == "new") {
-      let arr = [...originalData];
-      let newArr = arr
-        .sort(function (a, b) {
-          return new Date(b.date).getTime() - new Date(a.date).getTime();
-        })
-        setFilteredData(newArr);
+      setFilteredData(originalData);
     }
   };
   return (

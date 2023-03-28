@@ -7,11 +7,16 @@ import { ReactComponent as LoveIcon } from "@/assets/loveIcon.svg";
 import { Link, useNavigate } from "react-router-dom";
 
 const Article = ({ item }) => {
-  const { title, date, user, category, hashTag, like, hits, id } = item;
-  const navigate = useNavigate();
-  const navigation = () => {
-    navigate(`/question/${id}`);
-  };
+  const { title, createdAt, user, category, hashTag, like, hits, id } = item;
+  function dateFormat(date) {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    month = month >= 10 ? month : '0' + month;
+    day = day >= 10 ? day : '0' + day;
+    return `${date.getFullYear() + '-' + month + '-' + day }`;
+}
+  let date =  dateFormat(new Date(createdAt))
+  
   return (
     <article className={styles.container}>
       <div className={styles.userAndDate}>
