@@ -5,6 +5,7 @@ import styles from "@/components/Common/Comment/Comment.module.css";
 import { db } from "@/firebase/firestore";
 import { collection, onSnapshot, query, getDocs } from "firebase/firestore";
 import { useParams } from "react-router-dom";
+import { useAuthState } from "@/firebase/auth";
 
 const Comment = ({ id }) => {
   let [timeData, setTimeData] = useState([]);

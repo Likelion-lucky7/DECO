@@ -7,10 +7,13 @@ import { useDeleteData, useUpdateData } from "@/firebase/firestore";
 import { commentUpdateState } from "@/@store/commentUpdateState";
 import { useRecoilState } from "recoil";
 import { async } from "@firebase/util";
+import { useAuthState } from "@/firebase/auth";
+import { ReactComponent as Profile } from "@/assets/profile.svg";
 
 const AnswerEditor = ({ item }) => {
-  const { user, comment, id } = item;
+  const { user: authUser } = useAuthState();
 
+  const { user, comment, id } = item;
   const [commentField, setCommentField] = useRecoilState(commentUpdateState);
 
   const [updateMode, setUpdateMode] = useState(false);
@@ -57,7 +60,7 @@ const AnswerEditor = ({ item }) => {
         <div className={styles.editorBox}>
           <form onSubmit={onClickUpdateButton}>
             <img
-              src={emptyPicture}
+              src={user.profile}
               className={styles.profileImege}
               alt="exampleImage1"
             />
@@ -87,13 +90,17 @@ const AnswerEditor = ({ item }) => {
       ) : (
         <div className={styles.editorBox}>
           <form>
-            <img
-              src={emptyPicture}
-              className={styles.profileImege}
-              alt="exampleImage1"
-            />
+            {!user.profile ? (
+              <Profile className={styles.profileImege} />
+            ) : (
+              <img
+                src={user.profile}
+                className={styles.profileImege}
+                alt="exampleImage1"
+              />
+            )}
 
-            <span className={styles.nickName}>{user.nickname}</span>
+            <span className={styles?.nickName}>{user.nickname}</span>
 
             <p className={styles.answer} type="text" name="comment">
               {comment}
