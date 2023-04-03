@@ -21,7 +21,7 @@
   width: 100px;
   height: 100px;
   border-radius: 5px;
-  border: 1px dashed var(--gray-400);
+  border: 1px dashed var(--gray-500);
   position: relative;
 }
 
@@ -29,7 +29,7 @@
   display: block;
   line-height: 100px;
   text-align: center;
-  color: var(--gray-400);
+  color: var(--gray-500);
   font-size: 14px;
 }
 
