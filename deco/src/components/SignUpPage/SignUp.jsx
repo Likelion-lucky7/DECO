@@ -209,6 +209,7 @@ const SignUp = () => {
           isSignUp={true}
           ref={fileInputRef}
           onChange={handleChangeUploadInput}
+          tabIndex={0}
         />
 
         <div className={styles.formbox}>

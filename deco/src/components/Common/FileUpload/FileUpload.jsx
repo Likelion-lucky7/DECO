@@ -30,7 +30,8 @@ const FileUpload = forwardRef(function FileUpload(
       {isSignUp ? (
         <div>
           <label htmlFor={id} className={styles.profile_label_isSignUp}>
-            <Upload className={styles.profile_image_isSignUp} /> 파일 업로드
+            <Upload className={styles.profile_image_isSignUp} />
+            파일 업로드
           </label>
 
           <input

@@ -43,7 +43,7 @@
 
 /* isSignUp = true */
 .profile_label_isSignUp {
-  background-color: var(--secondary);
+  background-color: var(--primary);
   color: white;
   border: none;
   width: 185px;
