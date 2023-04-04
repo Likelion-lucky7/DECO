@@ -2,7 +2,7 @@
   width: 1200px;
   margin: 0 auto;
   padding: 31px 0;
-  border-bottom: 1px solid var(--gray-300);
+  border-bottom: 1px solid var(--gray-500);
   display: flex;
   justify-content: center;
 }

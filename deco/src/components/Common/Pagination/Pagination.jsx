@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Pagination.module.css";
 import { ReactComponent as LeftPage } from "@/assets/leftPage.svg";
@@ -10,11 +9,13 @@ const Pagination = () => {
       <Link to="">
         <LeftPage />
       </Link>
+
       <Link to="">1</Link>
       <Link to="">2</Link>
       <Link to="">3</Link>
       <Link to="">4</Link>
       <Link to="">5</Link>
+
       <Link to="">
         <RightPage />
       </Link>
