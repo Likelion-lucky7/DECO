@@ -39,10 +39,6 @@
   font-weight: 400;
 }
 
-.select:focus {
-  outline: none;
-}
-
 .rowButton {
   display: flex;
   flex-flow: row nowrap;

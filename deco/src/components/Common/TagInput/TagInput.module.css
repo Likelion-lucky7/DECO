@@ -49,10 +49,6 @@
   border: none;
 }
 
-input:focus {
-  outline: none;
-}
-
 .hashButton {
   border: 0;
   background-color: transparent;
