@@ -21,7 +21,7 @@ const MainPage = ({ list, ...restProps }) => {
         {list.map((item) => (
           <li key={item.id} className={styles.listWrap}>
             {renderIcon(item)}
-            <h3 className={styles.title}>{item.title}</h3>
+            <p className={styles.title}>{item.title}</p>
             <p className={styles.description}>{item.description}</p>
             <ShortcutButton to={item.to} />
           </li>
