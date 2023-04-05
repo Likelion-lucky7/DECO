@@ -45,7 +45,7 @@ const FileUpload = forwardRef(function FileUpload(
         </div>
       ) : (
         <div className={styles.box}>
-          <div role="button" className={styles.imgBox} tabIndex={0}>
+          <div className={styles.imgBox}>
             <label htmlFor={id} className={styles.profile_label}>
               <span className={styles.profile_image}>파일업로드</span>
               {imgFile && <img src={imgFile} alt="프로필 이미지" />}
