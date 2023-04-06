@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { getCommunity } from "@/@store/getCommunityData";
 import { useRecoilState } from "recoil";
 import Article from "@/components/Common/Article/Article";
@@ -10,7 +11,30 @@ import styles from "./CommunityList.module.css";
 
 const CommunityList = () => {
   const communityData = useRecoilState(getCommunity);
-  const filteredData = communityData[0].filter((item) => item.id !== undefined);
+  const originalData = communityData[0]
+    .filter((item) => item.id !== undefined)
+    .sort(function (a, b) {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+
+  const [sortData, setSortData] = useState([...originalData]);
+
+  const onClickSort = (e) => {
+    e.preventDefault();
+
+    if (e.target.name === "like") {
+      const arr = [...originalData];
+      const sortArr = arr.sort(function (a, b) {
+        return b.like - a.like;
+      });
+
+      setSortData(sortArr);
+    }
+
+    if (e.target.name === "new") {
+      setSortData(originalData);
+    }
+  };
 
   return (
     <>
@@ -29,9 +53,9 @@ const CommunityList = () => {
         <Hashtag content="면접" />
       </div>
 
-      <Sort />
+      <Sort onClick={onClickSort} />
 
-      {filteredData.map((item) => {
+      {sortData.map((item) => {
         return <Article key={item.id} item={item} kind="community" />;
       })}
 
