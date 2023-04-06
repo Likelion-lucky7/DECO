@@ -5,7 +5,7 @@ import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { ReactComponent as LoveIcon } from "@/assets/loveIcon.svg";
 import { Link } from "react-router-dom";
 
-const Article = ({ item }) => {
+const Article = ({ item, kind }) => {
   const { title, createdAt, user, category, hashTag, like, hits, id } = item;
 
   function dateFormat(date) {
@@ -32,9 +32,15 @@ const Article = ({ item }) => {
         <div className={styles.date}>작성일 {date}</div>
       </div>
 
-      <Link to={`/question/${id}`} className={styles.linkToDetail}>
-        <h2>{title}</h2>
-      </Link>
+      {kind === "question" ? (
+        <Link to={`/question/${id}`} className={styles.linkToDetail}>
+          <h2>{title}</h2>
+        </Link>
+      ) : (
+        <Link to={`/community/${id}`} className={styles.linkToDetail}>
+          <h2>{title}</h2>
+        </Link>
+      )}
 
       <div className={styles.hashAndAdditionalInfo}>
         <div className={styles.hash} tabIndex={-1}>
