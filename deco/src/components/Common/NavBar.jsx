@@ -1,15 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { ReactComponent as Logo } from "@/assets/logo_big.svg";
-import A11yHidden from "./A11yHidden/A11yHidden";
 import { useAuthState, useSignOut } from "@/firebase/auth";
-import { tokenState } from "@/@store/authUserState";
 
 const NavBar = () => {
   const { isLoading, error, user } = useAuthState();
-
-  // token을 이용한 로그인 여부에 따라 NavBar 디자인이 바뀌게 함
-  // 뭔가 필요 없는 거 같음..
   const navigate = useNavigate();
   const { signOut } = useSignOut();
 
