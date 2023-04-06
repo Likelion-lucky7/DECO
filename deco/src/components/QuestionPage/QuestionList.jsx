@@ -73,12 +73,12 @@ const QuestionList = () => {
 
       {category == "전체"
         ? filteredData.map((item) => {
-            return <Article key={item?.id} item={item} />;
+            return <Article key={item?.id} item={item} kind="question" />;
           })
         : filteredData
             .filter((item) => item.category === category)
             .map((item) => {
-              return <Article key={item?.id} item={item} />;
+              return <Article key={item?.id} item={item} kind="question" />;
             })}
 
       <Pagination />

@@ -15,6 +15,7 @@ export const getCommunity = selector({
     const querySnapShot = await getDocs(collection(dbService, "community"));
     const newData = await querySnapShot.docs.map((doc) => ({
       ...doc.data(),
+      id: doc.id,
     }));
     data = await newData;
 
