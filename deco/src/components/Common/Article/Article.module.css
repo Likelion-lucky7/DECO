@@ -22,17 +22,21 @@
 .userInfo {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 10px;
 }
 
 .userInfo svg {
   width: 36px;
   height: 36px;
+  object-fit: cover;
+  border-radius: 30px;
 }
 
 .userInfo img {
   width: 36px;
   height: 36px;
+  object-fit: cover;
+  border-radius: 30px;
 }
 
 .linkToDetail {
