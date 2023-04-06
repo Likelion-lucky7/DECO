@@ -34,11 +34,11 @@ const Article = ({ item, kind }) => {
 
       {kind === "question" ? (
         <Link to={`/question/${id}`} className={styles.linkToDetail}>
-          <h2>{title}</h2>
+          <h2 className={styles.accentTitle}>{title}</h2>
         </Link>
       ) : (
         <Link to={`/community/${id}`} className={styles.linkToDetail}>
-          <h2>{title}</h2>
+          <h2 className={styles.accentTitle}>{title}</h2>
         </Link>
       )}
 

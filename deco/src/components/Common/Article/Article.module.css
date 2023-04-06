@@ -39,6 +39,10 @@
   cursor: pointer;
 }
 
+.accentTitle:hover {
+  color: var(--secondary);
+}
+
 .container h2 {
   font-size: var(--text-lg);
   font-weight: 600;
