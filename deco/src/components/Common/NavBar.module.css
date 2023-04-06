@@ -14,6 +14,10 @@
   width: 8.13em;
 }
 
+.link {
+  display:block;
+}
+
 .container {
   display: flex;
   flex-direction: row;

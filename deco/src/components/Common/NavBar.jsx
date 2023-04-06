@@ -26,11 +26,17 @@ const NavBar = () => {
     return (
       <>
         <header className={styles.header}>
-          <div className={styles.inner}>
-            <A11yHidden as="h1">로고</A11yHidden>
-            <Link to="/" aria-label="메인페이지로 이동">
-              <Logo className={styles.logo} />
-            </Link>
+          <nav className={styles.inner}>
+            <h1>
+              <Link
+                to="/"
+                title="메인페이지로 이동"
+                aria-label="메인페이지로 이동"
+                className={styles.link}
+              >
+                <Logo className={styles.logo} />
+              </Link>
+            </h1>
             <div className={styles.container}>
               <ul className={styles.navigation}>
                 <li className={styles.question}>
@@ -60,7 +66,7 @@ const NavBar = () => {
                 </li>
               </ul>
             </div>
-          </div>
+          </nav>
         </header>
       </>
     );
@@ -69,11 +75,17 @@ const NavBar = () => {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.inner}>
-          <A11yHidden as="h1">로고</A11yHidden>
-          <Link to="/">
-            <Logo className={styles.logo} />
-          </Link>
+        <nav className={styles.inner}>
+          <h1>
+            <Link
+              to="/"
+              title="메인페이지로 이동"
+              aria-label="메인페이지로 이동"
+              className={styles.link}
+            >
+              <Logo className={styles.logo} />
+            </Link>
+          </h1>
 
           <div className={styles.container}>
             <ul className={styles.navigation}>
@@ -97,7 +109,7 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-        </div>
+        </nav>
       </header>
     </>
   );

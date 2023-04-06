@@ -42,6 +42,10 @@
 }
 
 /* isSignUp = true */
+.profile_container {
+  position: relative;
+}
+
 .profile_label_isSignUp {
   background-color: var(--primary);
   color: white;
@@ -61,13 +65,23 @@
 }
 
 .profile_form_isSignUp {
-  margin-bottom: 20px;
-  border: 0;
-  color: white;
-  cursor: pointer;
-  display: none;
+  /* color: white;
+  cursor: pointer; */
+  position: absolute;
+  appearance: none;
+  width: 185px;
+  height: 44px;
+  margin: 0 auto;
+  top: 0px;
+  left: 50%;
+  margin-left: -92.5px;
+  z-index: -1;
+}
+
+.profile_form_isSignUp:focus {
+  outline: solid 3px #1c315e;
 }
 
 input[type="file"] {
-  display: none;
+  appearance: none;
 }
