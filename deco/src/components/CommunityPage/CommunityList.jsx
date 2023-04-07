@@ -17,7 +17,7 @@ const CommunityList = () => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 
-  const [sortData, setSortData] = useState([...originalData]);
+  const [posts, setPosts] = useState([...originalData]);
 
   const onClickSort = (e) => {
     e.preventDefault();
@@ -28,11 +28,11 @@ const CommunityList = () => {
         return b.like - a.like;
       });
 
-      setSortData(sortArr);
+      setPosts(sortArr);
     }
 
     if (e.target.name === "new") {
-      setSortData(originalData);
+      setPosts(originalData);
     }
   };
 
@@ -55,7 +55,7 @@ const CommunityList = () => {
 
       <Sort onClick={onClickSort} />
 
-      {sortData.map((item) => {
+      {posts.map((item) => {
         return <Article key={item.id} item={item} kind="community" />;
       })}
 
