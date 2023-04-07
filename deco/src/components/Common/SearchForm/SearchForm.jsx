@@ -1,4 +1,3 @@
-import React, { useId } from "react";
 import styles from "./SearchForm.module.css";
 import { ReactComponent as SearchIcon } from "@/assets/searchIcon.svg";
 

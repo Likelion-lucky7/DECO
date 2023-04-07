@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./BoardBanner.module.css";
 import { ReactComponent as Icon } from "@/assets/writeIcon.svg";
 import { Link } from "react-router-dom";

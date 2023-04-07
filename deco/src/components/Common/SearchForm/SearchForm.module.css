@@ -23,7 +23,7 @@
   width: 339px;
   height: 40px;
   border-radius: 5px;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--gray-500);
   font-size: var(--text-base);
   line-height: 40px;
 }
