@@ -11,15 +11,15 @@ import Sort from "@/components/Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
-  let questionData = useRecoilState(getQuestion);
-  let originalData = questionData[0]
+  const questionData = useRecoilState(getQuestion);
+  const originalData = questionData[0]
     .filter((item) => item.id !== undefined)
     .sort(function (a, b) {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 
-  let [filteredData, setFilteredData] = useState([...originalData]);
-  let [category, setCategory] = useState("전체");
+  const [filteredData, setFilteredData] = useState([...originalData]);
+  const [category, setCategory] = useState("전체");
 
   const onClickCategory = async (e) => {
     e.preventDefault();
@@ -39,8 +39,8 @@ const QuestionList = () => {
     e.preventDefault();
 
     if (e.target.name == "like") {
-      let arr = [...originalData];
-      let newArr = arr.sort(function (a, b) {
+      const arr = [...originalData];
+      const newArr = arr.sort(function (a, b) {
         return b.like - a.like;
       });
       setFilteredData(newArr);
