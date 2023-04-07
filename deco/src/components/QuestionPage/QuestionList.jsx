@@ -26,9 +26,9 @@ const QuestionList = () => {
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
 
-  const currentPosts = (filteredData) => {
+  const currentPosts = (posts) => {
     let currentPosts = 0;
-    currentPosts = filteredData.slice(indexOfFirst, indexOfLast);
+    currentPosts = posts.slice(indexOfFirst, indexOfLast);
     return currentPosts;
   };
 

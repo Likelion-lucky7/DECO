@@ -1,6 +1,18 @@
 .container {
-  width: 285px;
+  width: 20%;
   margin: 105px auto 120px auto;
   display: flex;
   justify-content: space-between;
+}
+
+.paginate {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 13px;
+  cursor: pointer;
+}
+
+.pageSpan:hover,
+.pageSpan:focus {
+  color: var(--secondary);
 }
