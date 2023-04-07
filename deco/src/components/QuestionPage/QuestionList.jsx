@@ -19,7 +19,18 @@ const QuestionList = () => {
     });
 
   const [filteredData, setFilteredData] = useState([...originalData]);
+  const [currentPage, setCurrentPage] = useState(1); // 페이지
+  const [postsPerPage, setPostsPerPage] = useState(2); // 한 페이지에 보일 게시글 갯수
   const [category, setCategory] = useState("전체");
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  const currentPosts = (filteredData) => {
+    let currentPosts = 0;
+    currentPosts = filteredData.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
 
   const onClickCategory = async (e) => {
     e.preventDefault();
@@ -39,7 +50,7 @@ const QuestionList = () => {
     e.preventDefault();
 
     if (e.target.name == "like") {
-      const arr = [...originalData];
+      const arr = currentPosts(filteredData);
       const newArr = arr.sort(function (a, b) {
         return b.like - a.like;
       });
@@ -50,6 +61,7 @@ const QuestionList = () => {
       setFilteredData(originalData);
     }
   };
+
   return (
     <>
       <BoardBanner
@@ -72,16 +84,20 @@ const QuestionList = () => {
       <Sort onClick={onClickSort} />
 
       {category == "전체"
-        ? filteredData.map((item) => {
+        ? currentPosts(filteredData).map((item) => {
             return <Article key={item?.id} item={item} kind="question" />;
           })
-        : filteredData
+        : currentPosts(filteredData)
             .filter((item) => item.category === category)
             .map((item) => {
               return <Article key={item?.id} item={item} kind="question" />;
             })}
 
-      <Pagination />
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={filteredData.length}
+        paginate={setCurrentPage}
+      />
     </>
   );
 };
