@@ -4,12 +4,14 @@ import React, { useEffect, useState } from "react";
 import styles from "@/components/Common/Comment/Comment.module.css";
 import { db } from "@/firebase/firestore";
 import { collection, onSnapshot, query, getDocs } from "firebase/firestore";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useAuthState } from "@/firebase/auth";
 
 const Comment = ({ id }) => {
   let [timeData, setTimeData] = useState([]);
   const questionId = useParams();
+  const {pathname} = useLocation();
+  const category = pathname.split("/")[1]
 
   useEffect(() => {
     const getData = async () => {
@@ -19,7 +21,7 @@ const Comment = ({ id }) => {
         const data = querySnapShot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-        }));
+        })).filter((item)=>item.category == category);
         setTimeData(data);
       });
     };
