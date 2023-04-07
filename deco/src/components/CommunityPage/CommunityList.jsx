@@ -49,7 +49,7 @@ const CommunityList = () => {
 
       <div className={styles.hashtagContainer}>
         <Hashtag content="부트캠프" />
-        <Hashtag content="포르폴리오" />
+        <Hashtag content="포트폴리오" />
         <Hashtag content="면접" />
       </div>
 
