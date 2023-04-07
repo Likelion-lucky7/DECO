@@ -126,9 +126,6 @@ const SignUp = () => {
   const [profileImage, setProfileImage] = useState(null);
   const { fileInputRef, uploadFiles } = useUploadFiles();
 
-  const { imageIsLoading, imageError, downloadURL } = useDownloadURL();
-  console.log({ imageIsLoading, imageError, downloadURL });
-
   const handleChangeUploadInput = (e) => {
     const { files } = e.target;
     const willUploadFile = files[0];
@@ -209,12 +206,14 @@ const SignUp = () => {
           isSignUp={true}
           ref={fileInputRef}
           onChange={handleChangeUploadInput}
+          aria-label="프로필 이미지 업로드"
         />
 
         <div className={styles.formbox}>
           <FormInput
             name="email"
             type="email"
+            autoComplete="email"
             label="이메일"
             placeholder="이메일 입력"
             onChange={onChangeEmail}
@@ -228,7 +227,9 @@ const SignUp = () => {
           <FormInput
             name="password"
             type="password"
+            autoComplete="new-password"
             label="비밀번호"
+            aria-label="비밀번호. 숫자 영문자 특수문자 조합 총 8자 이상"
             placeholder="비밀번호 입력"
             onChange={onChangePassword}
           />
@@ -241,6 +242,7 @@ const SignUp = () => {
           <FormInput
             name="passwordConfirm"
             type="password"
+            autoComplete="new-password"
             label="비밀번호 확인"
             placeholder="비밀번호 확인 입력"
             onChange={onChangePasswordConfirm}
@@ -254,6 +256,7 @@ const SignUp = () => {
           <FormInput
             name="nickname"
             label="닉네임"
+            aria-label="닉네임. 2글자 이상 10글자 미만"
             placeholder="닉네임 입력"
             onChange={onChangeName}
           />
@@ -265,7 +268,12 @@ const SignUp = () => {
         {/* <div>로그인한 유저: {user?.email}</div> */}
 
         {isActive ? (
-          <SubmitButton type="submit" title="회원가입" writeButton={false} />
+          <SubmitButton
+            type="submit"
+            title="회원가입"
+            writeButton={false}
+            className={styles.submitButton}
+          />
         ) : (
           <SubmitButton
             type="submit"

@@ -47,3 +47,7 @@
   align-items: center;
   margin: 40px;
 }
+
+.submitButton:focus {
+  outline: solid 3px #1c315e;
+}
