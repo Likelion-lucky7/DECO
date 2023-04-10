@@ -1,7 +1,7 @@
 .container {
   width: 1200px;
   min-width: 1000px;
-  margin: 0 auto;
+  margin: 72px auto;
 }
 
 .textTitle {
@@ -38,33 +38,32 @@
 }
 
 .likeIcon img {
-/* margin: auto 0px; */
-vertical-align:middle;
-margin: 0px;
+  /* margin: auto 0px; */
+  vertical-align: middle;
+  margin: 0px;
 }
-
 
 .likeIcon span {
   vertical-align: middle;
 }
 
 .likeIcon {
-display: block;
-margin: 0 auto;
-margin-top: 49px;
-width: 120px;
-height: 56px;
-border: 1px solid var(--primary);
-background-color: var(--white);
-border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 49px;
+  width: 120px;
+  height: 56px;
+  border: 1px solid var(--primary);
+  background-color: var(--white);
+  border-radius: 5px;
 }
 
-.uploadImage{
-margin-top: 35px;
-margin-right: 20px;
-width: 120px;
-height: 120px;
-object-fit: cover;
+.uploadImage {
+  margin-top: 35px;
+  margin-right: 20px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
 }
 
 .tagBox {
