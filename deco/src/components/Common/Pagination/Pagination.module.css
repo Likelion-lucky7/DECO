@@ -7,14 +7,26 @@
 .paginate {
   display: flex;
   flex-flow: row nowrap;
-  gap: 13px;
+  gap: 5px;
   cursor: pointer;
-  margin: 0 15px 0 15px;
+  margin: 0 10px 0 10px;
 }
 
-.pageSpan:hover,
-.pageSpan:focus {
-  color: var(--secondary);
+.pageNumber {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.pageNumber:hover,
+.pageNumber:focus {
+  color: white;
+  background-color: var(--secondary);
 }
 
 .paginationButton {

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styles from "./Pagination.module.css";
 import { ReactComponent as LeftPage } from "@/assets/leftPage.svg";
 import { ReactComponent as RightPage } from "@/assets/rightPage.svg";
@@ -32,9 +31,12 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
       <ul className={styles.paginate}>
         {pageNumbers.map((number) => (
           <li key={number}>
-            <span onClick={() => paginate(number)} className={styles.pageSpan}>
+            <button
+              onClick={() => paginate(number)}
+              className={styles.pageNumber}
+            >
               {number}
-            </span>
+            </button>
           </li>
         ))}
       </ul>
