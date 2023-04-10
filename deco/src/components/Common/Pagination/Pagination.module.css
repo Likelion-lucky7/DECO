@@ -1,8 +1,7 @@
 .container {
-  width: 20%;
   margin: 105px auto 120px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .paginate {
@@ -10,9 +9,15 @@
   flex-flow: row nowrap;
   gap: 13px;
   cursor: pointer;
+  margin: 0 15px 0 15px;
 }
 
 .pageSpan:hover,
 .pageSpan:focus {
   color: var(--secondary);
+}
+
+.paginationButton {
+  border: none;
+  background: transparent;
 }
