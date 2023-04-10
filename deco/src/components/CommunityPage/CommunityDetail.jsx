@@ -18,7 +18,7 @@ const CommunityDetail = () => {
   let data = communityData.filter((item) => item.id === id.id)[0];
   console.log("나는 필터했지롱.", data);
 
-  let { title, content, image, user } = data;
+  let { title, content, image, user, hashTag } = data;
 
   return (
     <div className={styles.container}>
@@ -34,7 +34,13 @@ const CommunityDetail = () => {
         {image ? (
           <img src={image} className={styles.uploadImage} alt="" />
         ) : null}
-        <div className={styles.tagBox}></div>
+        <div className={styles.tagBox}>
+          {hashTag?.length > 1
+            ? hashTag?.map((item, index) => {
+                return <span key={index}>#{item}</span>;
+              })
+            : null}
+        </div>
       </div>
       <button className={styles.likeIcon}>
         <img src={Like} alt="하트" />
