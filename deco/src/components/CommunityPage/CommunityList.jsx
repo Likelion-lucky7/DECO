@@ -19,7 +19,7 @@ const CommunityList = () => {
 
   const [posts, setPosts] = useState([...originalData]);
   const [currentPage, setCurrentPage] = useState(1); // 페이지
-  const [postsPerPage, setPostsPerPage] = useState(1); // 한 페이지에 보일 게시글 갯수
+  const [postsPerPage, setPostsPerPage] = useState(1); // 한 페이지에 보일 게시글 갯수 (수정해서 테스트 하면 됨)
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
