@@ -3,10 +3,13 @@ import { ReactComponent as LeftPage } from "@/assets/leftPage.svg";
 import { ReactComponent as RightPage } from "@/assets/rightPage.svg";
 
 const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
+  const MAX_PAGE_COUNT = 2;
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
+
+  // const getPaginationArray = (currentPage, )
 
   const previousButton = () => {
     paginate(currentPage - 1);
@@ -33,6 +36,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
           <li key={number}>
             <button
               onClick={() => paginate(number)}
+              aria-current={currentPage === number ? "currentPage" : null}
               className={styles.pageNumber}
             >
               {number}

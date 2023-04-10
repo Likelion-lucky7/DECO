@@ -24,8 +24,12 @@
   height: 30px;
 }
 
-.pageNumber:hover,
-.pageNumber:focus {
+.pageNumber:hover {
+  color: white;
+  background-color: var(--secondary);
+}
+
+.pageNumber[aria-current] {
   color: white;
   background-color: var(--secondary);
 }
