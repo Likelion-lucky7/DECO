@@ -97,6 +97,7 @@ const QuestionList = () => {
         postsPerPage={postsPerPage}
         totalPosts={posts.length}
         paginate={setCurrentPage}
+        currentPage={currentPage}
       />
     </>
   );
