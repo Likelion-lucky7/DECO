@@ -45,6 +45,17 @@ textarea::placeholder {
   line-height: 1.6;
 }
 
+.hidden {
+  overflow: hidden;
+  border: 0;
+  position: absolute;
+  z-index: -1;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+}
+
 /* isQuestion = true */
 .title_question {
   width: 760px;
@@ -82,4 +93,15 @@ textarea::placeholder {
   font-weight: 400;
   color: var(--gray-300);
   line-height: 1.6;
+}
+
+.hidden {
+  overflow: hidden;
+  border: 0;
+  position: absolute;
+  z-index: -1;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
 }

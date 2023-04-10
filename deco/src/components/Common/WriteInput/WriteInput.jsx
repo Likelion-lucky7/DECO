@@ -25,6 +25,9 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
     <div className={styles.container}>
       {isQuestion ? (
         <>
+          <label htmlFor={id} className={styles.hidden}>
+            제목 입력란
+          </label>
           <input
             id={id}
             type="text"
@@ -48,6 +51,9 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
         </>
       ) : (
         <form>
+          <label htmlFor={id} className={styles.hidden}>
+            제목 입력란
+          </label>
           <input
             id={id}
             type="text"
