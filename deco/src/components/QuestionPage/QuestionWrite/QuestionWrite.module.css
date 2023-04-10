@@ -31,16 +31,12 @@
   width: 95px;
   height: 36px;
   padding: 8px;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--gray-500);
   border-radius: 5px;
   margin-top: 39px;
   color: #333;
   font-size: 12px;
   font-weight: 400;
-}
-
-.select:focus {
-  outline: none;
 }
 
 .rowButton {
