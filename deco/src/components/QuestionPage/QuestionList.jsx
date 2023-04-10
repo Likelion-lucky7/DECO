@@ -50,7 +50,7 @@ const QuestionList = () => {
     e.preventDefault();
 
     if (e.target.name == "like") {
-      const arr = currentPosts(posts);
+      const arr = [...originalData];
       const newArr = arr.sort(function (a, b) {
         return b.like - a.like;
       });
