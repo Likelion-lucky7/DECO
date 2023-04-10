@@ -10,14 +10,8 @@ console.log(getCommunity);
 
 const CommunityDetail = () => {
   let id = useParams();
-  console.log("나는 useParams 아이디여", id);
-
   let communityData = useRecoilValue(getCommunity);
-  console.log("나는 커뮤니티 데이터!", communityData);
-
   let data = communityData.filter((item) => item.id === id.id)[0];
-  console.log("나는 필터했지롱.", data);
-
   let { title, content, image, user, hashTag } = data;
 
   return (
