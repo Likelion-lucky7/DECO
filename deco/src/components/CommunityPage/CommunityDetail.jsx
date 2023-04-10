@@ -4,6 +4,7 @@ import Comment from "@/components/Common/Comment/Comment";
 import { getCommunity } from "@/@store/getCommunityData";
 import { useRecoilValue } from "recoil";
 import { useParams } from "react-router-dom";
+import { ReactComponent as Profile } from "@/assets/profile.svg";
 
 console.log(getCommunity);
 
@@ -17,13 +18,18 @@ const CommunityDetail = () => {
   let data = communityData.filter((item) => item.id === id.id)[0];
   console.log("나는 필터했지롱.", data);
 
-  let { title, content, image } = data;
+  let { title, content, image, user } = data;
 
   return (
     <div className={styles.container}>
       <div>
         <h2 className={styles.textTitle}>{title}</h2>
-        <span className={styles.nickname}>{"user"?.nickname}</span>
+        {user?.profile === "" ? (
+          <Profile className={styles.profileImege} />
+        ) : (
+          <img src={user?.profile} className={styles.profileImege} alt="" />
+        )}
+        <span className={styles.nickName}>{user?.nickname}</span>
         <p className={styles.mainText}>{content}</p>
         {image ? (
           <img src={image} className={styles.uploadImage} alt="" />
