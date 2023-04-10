@@ -14,11 +14,12 @@
 
 .pageNumber {
   display: flex;
+  justify-content: center;
   align-items: center;
   border: none;
   background: transparent;
   border-radius: 50%;
-  padding: 10px;
+  padding: 5px;
   width: 30px;
   height: 30px;
 }
