@@ -28,9 +28,10 @@ const FileUpload = forwardRef(function FileUpload(
   return (
     <div>
       {isSignUp ? (
-        <div>
+        <div className={styles.profile_container}>
           <label htmlFor={id} className={styles.profile_label_isSignUp}>
-            <Upload className={styles.profile_image_isSignUp} /> 파일 업로드
+            <Upload className={styles.profile_image_isSignUp} />
+            파일 업로드
           </label>
 
           <input
@@ -48,7 +49,7 @@ const FileUpload = forwardRef(function FileUpload(
           <div className={styles.imgBox}>
             <label htmlFor={id} className={styles.profile_label}>
               <span className={styles.profile_image}>파일업로드</span>
-              {imgFile && <img src={imgFile} alt="프로필 이미지" />}
+              {imgFile && <img src={imgFile} alt="" />}
             </label>
             <input
               id={id}

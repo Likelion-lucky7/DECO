@@ -1,24 +1,36 @@
-import { getQuestion } from "@/@store/getQuestionData";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
-import Article from "../Common/Article/Article";
-import BoardBanner from "../Common/BoardBanner/BoardBanner";
-import Category from "../Common/Category/Category";
-import Hashtag from "../Common/Hashtag/Hashtag";
-import Pagination from "../Common/Pagination/Pagination";
-import SearchForm from "../Common/SearchForm/SearchForm";
-import Sort from "../Common/Sort/Sort";
+import { getQuestion } from "@/@store/getQuestionData";
+import Article from "@/components/Common/Article/Article";
+import BoardBanner from "@/components/Common/BoardBanner/BoardBanner";
+import Category from "@/components/Common/Category/Category";
+import Hashtag from "@/components/Common/Hashtag/Hashtag";
+import Pagination from "@/components/Common/Pagination/Pagination";
+import SearchForm from "@/components/Common/SearchForm/SearchForm";
+import Sort from "@/components/Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
-  let questionData = useRecoilState(getQuestion);
-  let originalData = questionData[0]
+  const questionData = useRecoilState(getQuestion);
+  const originalData = questionData[0]
     .filter((item) => item.id !== undefined)
     .sort(function (a, b) {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
-  let [filteredData, setFilteredData] = useState([...originalData]);
-  let [category, setCategory] = useState("전체");
+
+  const [posts, setPosts] = useState([...originalData]);
+  const [currentPage, setCurrentPage] = useState(1); // 페이지
+  const [postsPerPage, setPostsPerPage] = useState(2); // 한 페이지에 보일 게시글 갯수
+  const [category, setCategory] = useState("전체");
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  const currentPosts = (posts) => {
+    let currentPosts = 0;
+    currentPosts = posts.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
 
   const onClickCategory = async (e) => {
     e.preventDefault();
@@ -36,17 +48,20 @@ const QuestionList = () => {
 
   const onClickSort = async (e) => {
     e.preventDefault();
+
     if (e.target.name == "like") {
-      let arr = [...originalData];
-      let newArr = arr.sort(function (a, b) {
+      const arr = [...originalData];
+      const newArr = arr.sort(function (a, b) {
         return b.like - a.like;
       });
-      setFilteredData(newArr);
+      setPosts(newArr);
     }
+
     if (e.target.name == "new") {
-      setFilteredData(originalData);
+      setPosts(originalData);
     }
   };
+
   return (
     <>
       <BoardBanner
@@ -55,25 +70,35 @@ const QuestionList = () => {
         write="질문하기"
         path="/question/write"
       />
+
       <Category category1="기술" category2="커리어" onClick={onClickCategory} />
+
       <SearchForm />
+
       <div className={styles.hashtagContainer}>
         <Hashtag content="React" />
         <Hashtag content="JavaScript" />
         <Hashtag content="HTML " />
       </div>
+
       <Sort onClick={onClickSort} />
 
       {category == "전체"
-        ? filteredData.map((item) => {
-            return <Article key={item?.id} item={item} />;
+        ? currentPosts(posts).map((item) => {
+            return <Article key={item?.id} item={item} kind="question" />;
           })
-        : filteredData
+        : currentPosts(posts)
             .filter((item) => item.category === category)
             .map((item) => {
-              return <Article key={item?.id} item={item} />;
+              return <Article key={item?.id} item={item} kind="question" />;
             })}
-      <Pagination />
+
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={setCurrentPage}
+        currentPage={currentPage}
+      />
     </>
   );
 };

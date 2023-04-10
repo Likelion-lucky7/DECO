@@ -4,7 +4,7 @@
   display: flex;
   justify-content: end;
   padding-bottom: 15px;
-  border-bottom: 1px solid var(--gray-300);
+  border-bottom: 1px solid var(--gray-500);
 }
 
 .container button {
@@ -18,11 +18,11 @@
 }
 
 .container .sortNew {
-  border-right: 1px solid var(--gray-300);
+  border-right: 1px solid var(--gray-500);
   font-size: var(--text-sm);
 }
 
 .sortRecommendation {
-  font-size: var(--text-sm); 
+  font-size: var(--text-sm);
   margin-right: 5px;
 }

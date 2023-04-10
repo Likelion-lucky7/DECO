@@ -18,12 +18,22 @@
   left: 12px;
 }
 
+.hidden {
+    overflow: hidden;
+    border: 0;
+    position: absolute;
+    z-index: -1;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+}
 .container input {
   padding: 0 0 0 40px;
   width: 339px;
   height: 40px;
   border-radius: 5px;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--gray-500);
   font-size: var(--text-base);
   line-height: 40px;
 }

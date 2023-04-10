@@ -1,7 +1,7 @@
 .category {
   display: inline-block;
   /* height: 24px; */
-  background-color: #368ac7;
+  background-color: var(--secondary);
   color: var(--white);
   padding: 4px 15px;
   border-radius: 5px;
