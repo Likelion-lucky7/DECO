@@ -10,15 +10,14 @@ export const questionInitialData = atom({
 export const getQuestion = selector({
   key: "getQuestion",
   get: async ({ get }) => {
-
     // getQuestionData를 구독하고 있습니다.
     let data = await get(questionInitialData);
     const querySnapShot = await getDocs(collection(dbService, "question"));
     const newData = await querySnapShot.docs.map((doc) => ({
       ...doc.data(),
-      id:doc.id
+      id: doc.id,
     }));
-    data = await newData
+    data = await newData;
 
     return data;
   },

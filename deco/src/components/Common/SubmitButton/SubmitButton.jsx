@@ -1,6 +1,7 @@
 import styles from "./SubmitButton.module.css";
 
-const SubmitButton = ({ writeButton, title, ...restProps }) => {
+const SubmitButton = ({ writeButton, title, className = "", ...restProps }) => {
+  const combinedClassNames = `${styles.button} ${className}`.trim();
   return (
     <>
       {writeButton ? (
@@ -11,7 +12,7 @@ const SubmitButton = ({ writeButton, title, ...restProps }) => {
         </div>
       ) : (
         <div className={styles.container}>
-          <button className={styles.button} {...restProps}>
+          <button className={combinedClassNames} {...restProps}>
             {title}
           </button>
         </div>

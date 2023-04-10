@@ -72,6 +72,7 @@ const Login = () => {
         <FormInput
           name="email"
           type="email"
+          autoComplete="email"
           label="이메일"
           placeholder="이메일 입력"
           onChange={handleChangeInput}
@@ -79,11 +80,17 @@ const Login = () => {
         <FormInput
           name="password"
           type="password"
+          autoComplete="current-password"
           label="비밀번호"
           placeholder="비밀번호 입력"
           onChange={handleChangeInput}
         />
-        <SubmitButton title="로그인" writeButton={false} type="submit" />
+        <SubmitButton
+          title="로그인"
+          writeButton={false}
+          type="submit"
+          className={styles.submitButton}
+        />
       </form>
 
       <p className={styles.info}>
