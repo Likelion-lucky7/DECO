@@ -68,6 +68,7 @@
 
 .tagBox {
   margin-top: 35px;
+  cursor: pointer;
 }
 
 .tagBox span {
