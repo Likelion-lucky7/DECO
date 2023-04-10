@@ -17,7 +17,18 @@ const CommunityList = () => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 
-  const [sortData, setSortData] = useState([...originalData]);
+  const [posts, setPosts] = useState([...originalData]);
+  const [currentPage, setCurrentPage] = useState(1); // 페이지
+  const [postsPerPage, setPostsPerPage] = useState(1); // 한 페이지에 보일 게시글 갯수 (수정해서 테스트 하면 됨)
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  const currentPosts = (posts) => {
+    let currentPosts = 0;
+    currentPosts = posts.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
 
   const onClickSort = (e) => {
     e.preventDefault();
@@ -28,11 +39,11 @@ const CommunityList = () => {
         return b.like - a.like;
       });
 
-      setSortData(sortArr);
+      setPosts(sortArr);
     }
 
     if (e.target.name === "new") {
-      setSortData(originalData);
+      setPosts(originalData);
     }
   };
 
@@ -55,11 +66,16 @@ const CommunityList = () => {
 
       <Sort onClick={onClickSort} />
 
-      {sortData.map((item) => {
+      {currentPosts(posts).map((item) => {
         return <Article key={item.id} item={item} kind="community" />;
       })}
 
-      <Pagination />
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={setCurrentPage}
+        currentPage={currentPage}
+      />
     </>
   );
 };

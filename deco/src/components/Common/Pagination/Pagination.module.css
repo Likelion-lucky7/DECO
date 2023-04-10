@@ -1,6 +1,38 @@
 .container {
-  width: 285px;
   margin: 105px auto 120px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.paginate {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 5px;
+  cursor: pointer;
+  margin: 0 10px 0 10px;
+}
+
+.pageNumber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+.pageNumber:hover {
+  color: var(--secondary);
+}
+
+.pageNumber[aria-current] {
+  color: white;
+  background-color: var(--secondary);
+}
+
+.paginationButton {
+  border: none;
+  background: transparent;
 }
