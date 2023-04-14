@@ -71,7 +71,7 @@ const DetailPage = () => {
   const onUpdate = async (e) => {
     e.preventDefault();
     const ok = window.confirm("수정하시겠습니까");
-    if (오케이) {
+    if (ok) {
       await updateDoc(doc(dbService, "question", id.id), {
         title: updateTitle,
         content: updateContent.current.value,
@@ -86,7 +86,7 @@ const DetailPage = () => {
   const onDelete = async (e) => {
     let ok = window.confirm("삭제하시나요?");
     try {
-      if (오케이) {
+      if (ok) {
         await deleteDoc(doc(dbService, "question", id.id));
         navigate("/question");
         location.reload();
