@@ -53,7 +53,6 @@ const DetailPage = () => {
   let isLikeuserTrue = likeUser?.indexOf(userData) > -1;
   useEffect(()=>{getData()},[])
   let likeCount = likeUser?.length;
-  console.log(likeCount);
   
   const getData = async () => {
     const q = await collection(db, "question");
@@ -64,7 +63,6 @@ const DetailPage = () => {
           id:doc.id
         }))
         .filter((item) => item.id == params);
-        console.log(data)
       setLikeUser(data[0].like);
     });
   };
