@@ -1,17 +1,24 @@
-import React, { useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styles from "./QuestionDetail.module.css";
 import Like from "@/assets/heartActivate.svg";
 import Comment from "@/components/Common/Comment/Comment";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { dbService } from "@/firebase/app";
-import { updateDoc, doc, deleteDoc } from "firebase/firestore";
+import {
+  updateDoc,
+  doc,
+  deleteDoc,
+  collection,
+  onSnapshot,
+} from "firebase/firestore";
 import styles2 from "@/components/Common/WriteInput/WriteInput.module.css";
 import { useRecoilValue } from "recoil";
 import { getQuestion } from "@/@store/getQuestionData";
 import DotButton from "@/components/Common/DotButton/DotButton";
 import SubmitButton from "./../../Common/SubmitButton/SubmitButton";
 import { authUser } from "@/@store/user";
+import { db } from "@/firebase/firestore";
 
 const {
   container,
@@ -33,20 +40,38 @@ const DetailPage = () => {
   let navigate = useNavigate();
   let [editMode, setEditMode] = useState(false);
   let [updateTitle, setUpdateTitle] = useState("");
+  const {pathname} = useLocation();
+  const params = pathname.split("/")[2]
   let updateContent = useRef("");
   let userData = useRecoilValue(authUser);
   let questionData = useRecoilValue(getQuestion);
   let data = questionData.filter((item) => item.id === id.id)[0];
   // let confirm = questionData.find(item=>item.id ==id.id)
   // console.log(confirm)
-
   let { title, content, image, user, category, hashTag, like, hits } = data;
-
-  // 게시글 수정
+  let [likeUser, setLikeUser] = useState("");
+  let isLikeuserTrue = likeUser?.indexOf(userData) > -1;
+  useEffect(()=>{getData()},[])
+  let likeCount = likeUser?.length;
+  console.log(likeCount);
+  
+  const getData = async () => {
+    const q = await collection(db, "question");
+    onSnapshot(q, (querySnapShot) => {
+      const data = querySnapShot.docs
+        .map((doc) => ({
+          ...doc.data(),
+          id:doc.id
+        }))
+        .filter((item) => item.id == params);
+        console.log(data)
+      setLikeUser(data[0].like);
+    });
+  };
   const onUpdate = async (e) => {
     e.preventDefault();
     const ok = window.confirm("수정하시겠습니까");
-    if (ok) {
+    if (오케이) {
       await updateDoc(doc(dbService, "question", id.id), {
         title: updateTitle,
         content: updateContent.current.value,
@@ -61,7 +86,7 @@ const DetailPage = () => {
   const onDelete = async (e) => {
     let ok = window.confirm("삭제하시나요?");
     try {
-      if (ok) {
+      if (오케이) {
         await deleteDoc(doc(dbService, "question", id.id));
         navigate("/question");
         location.reload();
@@ -83,6 +108,19 @@ const DetailPage = () => {
     if (e.target.name == "deleteButton") {
       onDelete();
     }
+  };
+
+  const onSubmitLike = async (e) => {
+    e.preventDefault()
+    await updateDoc(doc(dbService, "question", id.id), {
+      like: [...likeUser,userData]
+    });
+  };
+  const onDeleteLike = async (e) => {
+    e.preventDefault();
+    await updateDoc(doc(dbService, "question", id.id), {
+      like: likeUser.filter((item) => item !== userData),
+    });
   };
 
   return (
@@ -156,18 +194,33 @@ const DetailPage = () => {
                 })
               : null}
           </div>
-          {userData == user?.userId && editMode === false ? (
+          {userData === user?.userId &&
+          editMode === false &&
+          user?.userId !== "" ? (
             <div className={dotButton}>
               <DotButton onClick={onClickDotButton} />
             </div>
           ) : null}
         </div>
       )}
-
-      <button className={styles.likeIcon}>
+      {
+      userData == 0 ? (
+        <button className={styles.likeIcon} >
         <img src={Like} alt="하트" />
-        <span>좋아요</span>
+        <span>로그인X</span>
       </button>
+      ) : 
+      isLikeuserTrue === false ? (
+        <button className={styles.likeIcon} onClick={onSubmitLike}>
+          <img src={Like} alt="하트" />
+          <span>좋아요 {likeCount}</span>
+        </button>
+      ) : (
+        <button className={styles.likeIcon} onClick={onDeleteLike}>
+          <img src={Like} alt="하트" />
+          <span>취소 {likeCount}</span>
+        </button>
+      )}
       <Comment id={id.id} />
     </div>
   );
