@@ -23,12 +23,7 @@ const NavBar = () => {
         <header className={styles.header}>
           <nav className={styles.inner}>
             <h1>
-              <Link
-                to="/"
-                title="메인페이지로 이동"
-                aria-label="메인페이지로 이동"
-                className={styles.link}
-              >
+              <Link to="/" title="메인페이지로 이동" className={styles.link}>
                 <Logo className={styles.logo} />
               </Link>
             </h1>

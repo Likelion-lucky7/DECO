@@ -123,6 +123,7 @@ const SignUp = () => {
   // 프로필 사진 업로드
   const id = useId();
 
+  // 파일 업로드 이미지 URL 상태
   const [profileImage, setProfileImage] = useState(null);
   const { fileInputRef, uploadFiles } = useUploadFiles();
 
@@ -279,6 +280,7 @@ const SignUp = () => {
             type="submit"
             title="회원가입"
             writeButton={false}
+            className={styles.disabledButton}
             disabled
           />
         )}

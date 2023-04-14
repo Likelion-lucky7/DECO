@@ -37,10 +37,12 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
             value={title}
           />
           <span className={styles.totalNumber_question}>{count} / 100</span>
-
+          <label htmlFor={id} className={styles.hidden}>
+            내용 입력란
+          </label>
           <textarea
             name="content"
-            id="content"
+            id={id}
             cols="30"
             rows="10"
             placeholder="궁금한 내용을 적어주세요.&#10;질문하는 내용이 구체적일수록 더 정확한 답변을 받을 수 있어요."
@@ -61,10 +63,12 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
             className={styles.title}
           />
           <span className={styles.totalNumber}>{count} / 100</span>
-
+          <label htmlFor={id} className={styles.hidden}>
+            내용 입력란
+          </label>
           <textarea
             name="content"
-            id="content"
+            id={id}
             cols="30"
             rows="10"
             placeholder="궁금한 내용을 적어주세요.&#10;질문하는 내용이 구체적일수록 더 정확한 답변을 받을 수 있어요."

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { getQuestion } from "@/@store/getQuestionData";
 import Article from "@/components/Common/Article/Article";
 import BoardBanner from "@/components/Common/BoardBanner/BoardBanner";
@@ -11,8 +11,8 @@ import Sort from "@/components/Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
 
 const QuestionList = () => {
-  const questionData = useRecoilState(getQuestion);
-  const originalData = questionData[0]
+  const questionData = useRecoilValue(getQuestion);
+  const originalData = questionData
     .filter((item) => item.id !== undefined)
     .sort(function (a, b) {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
@@ -92,7 +92,6 @@ const QuestionList = () => {
             .map((item) => {
               return <Article key={item?.id} item={item} kind="question" />;
             })}
-
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={posts.length}

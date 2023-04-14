@@ -29,11 +29,11 @@ const Login = () => {
 
     await signIn(email, password);
 
-    setToken("access_token");
-
-    alert("로그인 되었습니다 !");
-
-    navigate(-1, { replace: true });
+    if (user) {
+      setToken("access_token");
+      alert("로그인 되었습니다 !");
+      navigate(-1, { replace: true });
+    }
   };
 
   const handleSignOut = async () => {
@@ -72,7 +72,7 @@ const Login = () => {
         <FormInput
           name="email"
           type="email"
-          autoComplete="email"
+          // autoComplete="on"
           label="이메일"
           placeholder="이메일 입력"
           onChange={handleChangeInput}
@@ -80,7 +80,7 @@ const Login = () => {
         <FormInput
           name="password"
           type="password"
-          autoComplete="current-password"
+          // autoComplete="current-password"
           label="비밀번호"
           placeholder="비밀번호 입력"
           onChange={handleChangeInput}
