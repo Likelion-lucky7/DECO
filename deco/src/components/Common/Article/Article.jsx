@@ -4,9 +4,17 @@ import QuestionCategory from "@/components/QuestionPage/QuestionCategory";
 import { ReactComponent as Profile } from "@/assets/profile.svg";
 import { ReactComponent as LoveIcon } from "@/assets/loveIcon.svg";
 import { Link } from "react-router-dom";
+import { doc, updateDoc } from "firebase/firestore";
+import { dbService } from "@/firebase/app";
 
 const Article = ({ item, kind }) => {
   const { title, createdAt, user, category, hashTag, like, hits, id } = item;
+
+  const updateHits = () =>{
+    updateDoc(doc(dbService, "question", item.id), {
+      hits: hits+1
+        })
+  }
 
   function dateFormat(date) {
     let month = date.getMonth() + 1;
@@ -33,7 +41,7 @@ const Article = ({ item, kind }) => {
       </div>
 
       {kind === "question" ? (
-        <Link to={`/question/${id}`} className={styles.linkToDetail}>
+        <Link to={`/question/${id}`} className={styles.linkToDetail} onClick={updateHits}>
           <h2 className={styles.accentTitle}>{title}</h2>
         </Link>
       ) : (
