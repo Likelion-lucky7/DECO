@@ -62,7 +62,7 @@ const QuestionWrite = () => {
           image: inputFileImage,
           createdAt: Date.now(),
           hits: 0,
-          like: 0,
+          like: [],
           user: {
             email: user.email,
             nickname: user.displayName,
