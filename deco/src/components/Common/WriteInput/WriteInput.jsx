@@ -5,7 +5,7 @@ import { inputCountState, titleState } from "@/@store/titleState";
 import { contentState } from "@/@store/contentState";
 import { bool, string } from "prop-types";
 
-const WriteInput = ({ isQuestion, ...restProps }) => {
+const WriteInput = ({ isWrite, ...restProps }) => {
   const id = useId();
 
   const [title, setTitle] = useRecoilState(titleState);
@@ -23,7 +23,7 @@ const WriteInput = ({ isQuestion, ...restProps }) => {
 
   return (
     <div className={styles.container}>
-      {isQuestion ? (
+      {isWrite ? (
         <>
           <label htmlFor={id} className={styles.hidden}>
             제목 입력란

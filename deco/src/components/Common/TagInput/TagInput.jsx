@@ -6,7 +6,7 @@ import { hashTagState } from "@/@store/hashTagState";
 import { hashTagListState } from "../../../@store/hashTagListState";
 import { useId } from "react";
 
-const TagInput = ({ isQuestion }) => {
+const TagInput = ({ isWrite }) => {
   const id = useId();
   const [inputHashTag, setInputHashTag] = useRecoilState(hashTagState);
   const [hashTags, setHashTags] = useRecoilState(hashTagListState);
@@ -68,7 +68,7 @@ const TagInput = ({ isQuestion }) => {
 
       <div className={styles.inputWrapper}>
         <span>#</span>
-        {isQuestion ? (
+        {isWrite ? (
           <>
             <label htmlFor={id} className={styles.hidden}>
               해쉬태그 입력란

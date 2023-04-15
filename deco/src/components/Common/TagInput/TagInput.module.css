@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   min-height: 3.125rem;
   margin: 10px 0;
+  width: 760px;
 }
 
 .tagItem {
@@ -41,7 +42,7 @@
   clip-path: inset(50%);
 }
 
-/* isQuestion = false */
+/* isWrite = false */
 .tag {
   width: 1170px;
   height: 50px;
@@ -53,7 +54,7 @@
   color: #333333;
 }
 
-/* isQuestion = true */
+/* isWrite = true */
 .tag_question {
   width: 700px;
   height: 48px;
