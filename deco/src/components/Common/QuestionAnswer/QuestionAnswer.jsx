@@ -5,13 +5,8 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { commentState } from "@/@store/commentState";
 import { useCreateData } from "@/firebase/firestore";
 import { useId, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuthState } from "@/firebase/auth";
-
-/* 텍스트 지우는 함수 */
-function clearText(target) {
-  target.value = "";
-}
 
 const QuestionAnswer = ({ title, ...restProps }) => {
   const { user } = useAuthState();
@@ -20,8 +15,13 @@ const QuestionAnswer = ({ title, ...restProps }) => {
   const commentsId = useParams();
   const id = useId();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const category = pathname.split("/")[1];
 
-  console.log(commentsId);
+  /* 텍스트 지우는 함수 */
+  function clearText() {
+    document.getElementById("comment").value = "";
+  }
   // 로그인 되어있지 않으면 로그인 페이지로 이동
   const checkUser = () => {
     if (!user) {
@@ -48,11 +48,10 @@ const QuestionAnswer = ({ title, ...restProps }) => {
       date: new Date().getTime(),
       comment: commentWriteField,
       commentId: commentsId.id,
+      category: category,
     });
     // indexData.current += 1;
-    await clearText(commentWriteField);
-
-    console.log("comments 콜렉션에 comments 데이터 생성");
+    await clearText();
 
     // axios 목업 데이터 이용하는 방법
     /* await axios
@@ -77,11 +76,11 @@ const QuestionAnswer = ({ title, ...restProps }) => {
       <h2>{title}</h2>
 
       <form onSubmit={submitData}>
-        <label htmlFor={id} className={styles.hidden}>
+        <label htmlFor="comment" className={styles.hidden}>
           답변 입력란
         </label>
         <textarea
-          id={id}
+          id="comment"
           name="comment"
           placeholder="질문에 대한 답변을 하려면 로그인을 해주세요"
           onChange={onChange}
