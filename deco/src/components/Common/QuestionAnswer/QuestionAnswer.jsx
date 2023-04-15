@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import Styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css";
+import styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { commentState } from "@/@store/commentState";
 import { useCreateData } from "@/firebase/firestore";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useId, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuthState } from "@/firebase/auth";
 
 /* 텍스트 지우는 함수 */
@@ -18,13 +18,23 @@ const QuestionAnswer = ({ title, ...restProps }) => {
   const [comment, setComment] = useRecoilState(commentState);
   const { createData } = useCreateData("comments");
   const commentsId = useParams();
+  const id = useId();
+  const navigate = useNavigate();
+
+  console.log(commentsId);
+  // 로그인 되어있지 않으면 로그인 페이지로 이동
+  const checkUser = () => {
+    if (!user) {
+      navigate("/login");
+    }
+  };
 
   function onChange(e) {
     setComment(e.target.value);
   }
 
   const submitData = async (e) => {
-    const commentWriteField = document.getElementById("comment");
+    const commentWriteField = comment;
 
     e.preventDefault();
 
@@ -36,11 +46,11 @@ const QuestionAnswer = ({ title, ...restProps }) => {
         nickname: user?.displayName,
       },
       date: new Date().getTime(),
-      comment: commentWriteField.value,
+      comment: commentWriteField,
       commentId: commentsId.id,
     });
     // indexData.current += 1;
-    clearText(commentWriteField);
+    await clearText(commentWriteField);
 
     console.log("comments 콜렉션에 comments 데이터 생성");
 
@@ -63,20 +73,29 @@ const QuestionAnswer = ({ title, ...restProps }) => {
   };
 
   return (
-    <div className={Styles.answerWrite}>
+    <div className={styles.answerWrite}>
       <h2>{title}</h2>
 
       <form onSubmit={submitData}>
+        <label htmlFor={id} className={styles.hidden}>
+          답변 입력란
+        </label>
         <textarea
-          id="comment"
+          id={id}
           name="comment"
           placeholder="질문에 대한 답변을 하려면 로그인을 해주세요"
           onChange={onChange}
+          onClick={checkUser}
           {...restProps}
         ></textarea>
 
-        <div className={Styles.submitButton}>
-          <SubmitButton type="submit" title="등록" writeButton={true} />
+        <div className={styles.submitButton}>
+          <SubmitButton
+            type="submit"
+            title="등록"
+            writeButton={true}
+            onClick={checkUser}
+          />
         </div>
       </form>
     </div>

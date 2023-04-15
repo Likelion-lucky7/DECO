@@ -11,7 +11,6 @@ const NavBar = () => {
   const handleSignOut = async () => {
     alert("로그아웃 되었습니다.");
     signOut();
-
     // replace : 뒤로가기 방지
     navigate("/", { replace: true });
   };

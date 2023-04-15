@@ -39,7 +39,7 @@ const Login = () => {
   const handleSignOut = async () => {
     alert("로그아웃 되었습니다.");
     setToken("");
-    signOut();
+    await signOut();
   };
 
   const handleChangeInput = (e) => {

@@ -9,6 +9,7 @@ import Pagination from "@/components/Common/Pagination/Pagination";
 import SearchForm from "@/components/Common/SearchForm/SearchForm";
 import Sort from "@/components/Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
+import { authUser } from "@/@store/user";
 
 const QuestionList = () => {
   const questionData = useRecoilValue(getQuestion);
@@ -18,6 +19,7 @@ const QuestionList = () => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 
+  const [isUser, setIsUser] = useRecoilState(authUser);
   const [posts, setPosts] = useState([...originalData]);
   const [currentPage, setCurrentPage] = useState(1); // 페이지
   const [postsPerPage, setPostsPerPage] = useState(2); // 한 페이지에 보일 게시글 갯수
@@ -68,7 +70,7 @@ const QuestionList = () => {
         boardName="묻고 답하기"
         boardGuide="좋은 질문과 답변을 통해 함께 성장해요."
         write="질문하기"
-        path="/question/write"
+        path={!isUser ? "/login" : "/question/write"}
       />
 
       <Category category1="기술" category2="커리어" onClick={onClickCategory} />

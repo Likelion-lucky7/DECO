@@ -4,22 +4,15 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import styles from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
-import { useCallback, useRef, useState, useId } from "react";
+import { useCallback, useState, useId, useEffect } from "react";
 import { useSignUp } from "@/firebase/auth/useSignUp";
 import { useCreateAuthUser } from "@/firebase/firestore";
 import { useAuthState } from "@/firebase/auth/useAuthState";
 import { useNavigate } from "react-router-dom";
-import { useDownloadURL, useUploadFiles } from "@/firebase/storage";
+import { useUploadFiles } from "@/firebase/storage";
 import { useSignOut } from "@/firebase/auth";
 import { useRecoilState } from "recoil";
 import { tokenState } from "@/@store/authUserState";
-
-const initialFormState = {
-  email: "",
-  password: "",
-  passwordConfirm: "",
-  nickname: "",
-};
 
 const SignUp = () => {
   const { signUp } = useSignUp();
@@ -114,11 +107,13 @@ const SignUp = () => {
     [password],
   );
 
-  const isCheckError = () => {
+  const isCheckError = useEffect(() => {
     if (isEmail && isPassword && isNickname && isPasswordConfirm === true) {
       setIsActive(true);
+    } else {
+      setIsActive(false);
     }
-  };
+  }, [isEmail, isPassword, isNickname, isPasswordConfirm]);
 
   // 프로필 사진 업로드
   const id = useId();
