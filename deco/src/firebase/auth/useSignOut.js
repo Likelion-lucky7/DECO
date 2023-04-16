@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from "react";
 import { signOut as firebaseSignOut } from "firebase/auth";
 import { auth } from "./index";
-import { authUser } from '@/@store/user';
+import { authUser } from "@/@store/user";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 /* -------------------------------------------------------------------------- */
@@ -22,15 +22,16 @@ export function useSignOut() {
   const signOut = useCallback(async () => {
     setIsLoading(true);
     try {
-      await setData("")
-      await localStorage.removeItem("recoil-persist")
+      await setData("");
+      await localStorage.removeItem("recoil-persist");
       return await firebaseSignOut(auth);
     } catch (error) {
       setError(error);
     } finally {
       setIsLoading(false);
+      location.reload();
     }
-  }, []);
+  }, [setData]);
 
   return useMemo(
     () => ({

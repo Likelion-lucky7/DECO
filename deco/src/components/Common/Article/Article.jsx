@@ -25,7 +25,7 @@ const Article = ({ item, kind }) => {
           {user?.profile === "" || user?.profile === undefined ? (
             <Profile />
           ) : (
-            <img src={user?.profile} alt="유저 프로필 사진입니다" />
+            <img src={user?.profile} alt="" />
           )}
           <span>{user?.nickname}</span>
         </div>

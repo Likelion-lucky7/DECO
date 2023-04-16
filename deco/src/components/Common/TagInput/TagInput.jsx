@@ -4,8 +4,10 @@ import styles from "./TagInput.module.css";
 import { useRecoilState } from "recoil";
 import { hashTagState } from "@/@store/hashTagState";
 import { hashTagListState } from "../../../@store/hashTagListState";
+import { useId } from "react";
 
-const TagInput = ({ isQuestion }) => {
+const TagInput = ({ isWrite }) => {
+  const id = useId();
   const [inputHashTag, setInputHashTag] = useRecoilState(hashTagState);
   const [hashTags, setHashTags] = useRecoilState(hashTagListState);
 
@@ -66,21 +68,33 @@ const TagInput = ({ isQuestion }) => {
 
       <div className={styles.inputWrapper}>
         <span>#</span>
-        {isQuestion ? (
-          <input
-            type="text"
-            placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 최대 5개까지)"
-            className={styles.tag_question}
-            onChange={(e) => setInputHashTag(e.target.value)}
-            value={inputHashTag}
-            onKeyUp={addHashTag}
-          />
+        {isWrite ? (
+          <>
+            <label htmlFor={id} className={styles.hidden}>
+              해쉬태그 입력란
+            </label>
+            <input
+              type="text"
+              placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 최대 5개까지)"
+              className={styles.tag_question}
+              onChange={(e) => setInputHashTag(e.target.value)}
+              value={inputHashTag}
+              onKeyUp={addHashTag}
+              id={id}
+            />
+          </>
         ) : (
-          <input
-            type="text"
-            placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 최대 5개까지)"
-            className={styles.tag}
-          />
+          <>
+            <label htmlFor={id} className={styles.hidden}>
+              해쉬태그 입력란
+            </label>
+            <input
+              type="text"
+              placeholder="태그 1개 이상 필수 입력 (예: #react, #javascript 등 최대 5개까지)"
+              className={styles.tag}
+              id={id}
+            />
+          </>
         )}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { getQuestion } from "@/@store/getQuestionData";
 import Article from "@/components/Common/Article/Article";
 import BoardBanner from "@/components/Common/BoardBanner/BoardBanner";
@@ -9,15 +9,17 @@ import Pagination from "@/components/Common/Pagination/Pagination";
 import SearchForm from "@/components/Common/SearchForm/SearchForm";
 import Sort from "@/components/Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
+import { authUser } from "@/@store/user";
 
 const QuestionList = () => {
-  const questionData = useRecoilState(getQuestion);
-  const originalData = questionData[0]
+  const questionData = useRecoilValue(getQuestion);
+  const originalData = questionData
     .filter((item) => item.id !== undefined)
     .sort(function (a, b) {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 
+  const [isUser, setIsUser] = useRecoilState(authUser);
   const [posts, setPosts] = useState([...originalData]);
   const [currentPage, setCurrentPage] = useState(1); // 페이지
   const [postsPerPage, setPostsPerPage] = useState(2); // 한 페이지에 보일 게시글 갯수
@@ -68,7 +70,7 @@ const QuestionList = () => {
         boardName="묻고 답하기"
         boardGuide="좋은 질문과 답변을 통해 함께 성장해요."
         write="질문하기"
-        path="/question/write"
+        path={!isUser ? "/login" : "/question/write"}
       />
 
       <Category category1="기술" category2="커리어" onClick={onClickCategory} />
@@ -92,7 +94,6 @@ const QuestionList = () => {
             .map((item) => {
               return <Article key={item?.id} item={item} kind="question" />;
             })}
-
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={posts.length}
