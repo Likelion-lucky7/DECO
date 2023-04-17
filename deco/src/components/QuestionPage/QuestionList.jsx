@@ -31,20 +31,38 @@ const QuestionList = () => {
   const currentPosts = (posts) => {
     let currentPosts = 0;
     currentPosts = posts.slice(indexOfFirst, indexOfLast);
+
     return currentPosts;
   };
 
   const onClickCategory = async (e) => {
     e.preventDefault();
-    if (e.target.name == "all") {
+    if (e.target.name === "all") {
       setCategory("전체");
-    }
-    if (e.target.name == "기술") {
-      setCategory("기술");
+      setPosts(originalData);
+      setCurrentPage(1);
     }
 
-    if (e.target.name == "커리어") {
+    if (e.target.name === "기술") {
+      setCategory("기술");
+
+      const categoryList = originalData.filter(
+        (item) => item.category === "기술",
+      );
+
+      setPosts(categoryList);
+      setCurrentPage(1);
+    }
+
+    if (e.target.name === "커리어") {
       setCategory("커리어");
+
+      const categoryList = originalData.filter(
+        (item) => item.category === "커리어",
+      );
+
+      setPosts(categoryList);
+      setCurrentPage(1);
     }
   };
 
@@ -94,6 +112,7 @@ const QuestionList = () => {
             .map((item) => {
               return <Article key={item?.id} item={item} kind="question" />;
             })}
+
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={posts.length}
