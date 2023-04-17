@@ -54,7 +54,7 @@ const Article = ({ item, kind }) => {
         <div className={styles.AdditionalInfo}>
           <LoveIcon />
 
-          <span>{like}</span>
+          <span>{like.length}</span>
           <span className={styles.midpoint}>&#183;</span>
           <span>조회</span>
           <span>{hits}</span>

@@ -54,7 +54,7 @@ const QuestionList = () => {
     if (e.target.name == "like") {
       const arr = [...originalData];
       const newArr = arr.sort(function (a, b) {
-        return b.like - a.like;
+        return b.like.length - a.like.length;
       });
       setPosts(newArr);
     }
