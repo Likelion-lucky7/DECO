@@ -26,9 +26,11 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/question" element={<QuestionPage />} />
+          <Route path="/question/:category" element={<QuestionPage />} />
           <Route path="/question/:id" element={<QuestionDetail />} />
           <Route path="/question/write" element={<QuestionWrite />} />
           <Route path="/community" element={<CommunityPage />} />
+          <Route path="/community/:category" element={<CommunityPage />} />
           <Route path="/community/:id" element={<CommunityDetail />} />
           <Route path="/community/write" element={<CommunityWrite />} />
           <Route path="/sideproject" element={<SideProjectPage />} />
