@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import NavBar from "@/components/Common/NavBar";
 import styles from "./App.module.css";
 import LoginPage from "@/pages/LoginPage";
@@ -25,17 +25,21 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/" element={<MainPage />} />
+
           <Route path="/question" element={<QuestionPage />} />
-          <Route path="/question/:category" element={<QuestionPage />} />
+          <Route path="/question/tech" element={<QuestionPage />} />
+          <Route path="/question/career" element={<QuestionPage />} />
           <Route path="/question/:id" element={<QuestionDetail />} />
           <Route path="/question/write" element={<QuestionWrite />} />
+
           <Route path="/community" element={<CommunityPage />} />
-          <Route path="/community/:category" element={<CommunityPage />} />
           <Route path="/community/:id" element={<CommunityDetail />} />
           <Route path="/community/write" element={<CommunityWrite />} />
+
           <Route path="/sideproject" element={<SideProjectPage />} />
           <Route path="/sideproject/:id" element={<SideProjectDetail />} />
           <Route path="/sideproject/write" element={<SideProjectWrite />} />
+
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
