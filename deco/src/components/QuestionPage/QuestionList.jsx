@@ -10,7 +10,7 @@ import SearchForm from "@/components/Common/SearchForm/SearchForm";
 import Sort from "@/components/Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
 import { authUser } from "@/@store/user";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const QuestionList = () => {
   const questionData = useRecoilValue(getQuestion);
@@ -36,7 +36,6 @@ const QuestionList = () => {
     return currentPosts;
   };
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   const onClickCategory = async (e) => {

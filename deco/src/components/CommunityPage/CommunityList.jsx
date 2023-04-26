@@ -9,6 +9,7 @@ import SearchForm from "@/components/Common/SearchForm/SearchForm";
 import Sort from "@/components/Common/Sort/Sort";
 import styles from "./CommunityList.module.css";
 import { authUser } from "@/@store/user";
+import { useNavigate } from "react-router-dom";
 
 const CommunityList = () => {
   const communityData = useRecoilState(getCommunity);
@@ -32,6 +33,8 @@ const CommunityList = () => {
     return currentPosts;
   };
 
+  const navigate = useNavigate();
+
   const onClickSort = (e) => {
     e.preventDefault();
 
@@ -42,10 +45,12 @@ const CommunityList = () => {
       });
 
       setPosts(sortArr);
+      navigate("?sort=like");
     }
 
     if (e.target.name === "new") {
       setPosts(originalData);
+      navigate("?sort=new");
     }
   };
 
