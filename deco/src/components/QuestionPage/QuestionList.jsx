@@ -10,6 +10,7 @@ import SearchForm from "@/components/Common/SearchForm/SearchForm";
 import Sort from "@/components/Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
 import { authUser } from "@/@store/user";
+import { useNavigate } from "react-router-dom";
 
 const QuestionList = () => {
   const questionData = useRecoilValue(getQuestion);
@@ -31,20 +32,43 @@ const QuestionList = () => {
   const currentPosts = (posts) => {
     let currentPosts = 0;
     currentPosts = posts.slice(indexOfFirst, indexOfLast);
+
     return currentPosts;
   };
 
+  const navigate = useNavigate();
+
   const onClickCategory = async (e) => {
     e.preventDefault();
-    if (e.target.name == "all") {
+
+    setCurrentPage(1);
+
+    if (e.target.name === "all") {
       setCategory("전체");
-    }
-    if (e.target.name == "기술") {
-      setCategory("기술");
+      setPosts(originalData);
+      navigate("/question");
     }
 
-    if (e.target.name == "커리어") {
+    if (e.target.name === "기술") {
+      setCategory("기술");
+
+      const categoryList = originalData.filter(
+        (item) => item.category === "기술",
+      );
+
+      setPosts(categoryList);
+      navigate("/question/tech");
+    }
+
+    if (e.target.name === "커리어") {
       setCategory("커리어");
+
+      const categoryList = originalData.filter(
+        (item) => item.category === "커리어",
+      );
+
+      setPosts(categoryList);
+      navigate("/question/career");
     }
   };
 
@@ -52,15 +76,65 @@ const QuestionList = () => {
     e.preventDefault();
 
     if (e.target.name == "like") {
-      const arr = [...originalData];
-      const newArr = arr.sort(function (a, b) {
-        return b.like - a.like;
-      });
-      setPosts(newArr);
+      if (category === "전체") {
+        const newArr = originalData.sort(function (a, b) {
+          return b.like.length - a.like.length;
+        });
+
+        setPosts(newArr);
+      }
+
+      if (category === "기술") {
+        const categoryList = originalData.filter(
+          (item) => item.category === "기술",
+        );
+
+        const arr = categoryList;
+        const newArr = arr.sort(function (a, b) {
+          return b.like.length - a.like.length;
+        });
+
+        setPosts(newArr);
+      }
+
+      if (category === "커리어") {
+        const categoryList = originalData.filter(
+          (item) => item.category === "커리어",
+        );
+
+        const arr = categoryList;
+        const newArr = arr.sort(function (a, b) {
+          return b.like.length - a.like.length;
+        });
+
+        setPosts(newArr);
+      }
+
+      navigate("?sort=like");
     }
 
     if (e.target.name == "new") {
-      setPosts(originalData);
+      if (category === "전체") {
+        setPosts(originalData);
+      }
+
+      if (category === "기술") {
+        const categoryList = originalData.filter(
+          (item) => item.category === "기술",
+        );
+
+        setPosts(categoryList);
+      }
+
+      if (category === "커리어") {
+        const categoryList = originalData.filter(
+          (item) => item.category === "커리어",
+        );
+
+        setPosts(categoryList);
+      }
+
+      navigate("?sort=new");
     }
   };
 
@@ -94,6 +168,7 @@ const QuestionList = () => {
             .map((item) => {
               return <Article key={item?.id} item={item} kind="question" />;
             })}
+
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={posts.length}
