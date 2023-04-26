@@ -11,8 +11,7 @@ const Comment = ({ id }) => {
   let [timeData, setTimeData] = useState([]);
   const questionId = useParams();
   const {pathname} = useLocation();
-  const category = pathname.split("/")[1]
-
+  const category = pathname.split("/")[1];
   useEffect(() => {
     const getData = async () => {
       const q = await query(collection(db, "comments"));

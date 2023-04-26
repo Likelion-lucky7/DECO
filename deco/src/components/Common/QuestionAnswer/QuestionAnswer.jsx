@@ -5,7 +5,7 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { commentState } from "@/@store/commentState";
 import { useCreateData } from "@/firebase/firestore";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useAuthState } from "@/firebase/auth";
 
 /* 텍스트 지우는 함수 */
@@ -18,6 +18,8 @@ const QuestionAnswer = ({ title, ...restProps }) => {
   const [comment, setComment] = useRecoilState(commentState);
   const { createData } = useCreateData("comments");
   const commentsId = useParams();
+  const { pathname } = useLocation();
+  const category = pathname.split("/")[1];
 
   function onChange(e) {
     setComment(e.target.value);
@@ -35,6 +37,7 @@ const QuestionAnswer = ({ title, ...restProps }) => {
         profile: user?.photoURL,
         nickname: user?.displayName,
       },
+      category: category,
       date: new Date().getTime(),
       comment: commentWriteField.value,
       commentId: commentsId.id,
