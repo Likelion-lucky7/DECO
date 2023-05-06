@@ -115,10 +115,14 @@ const QuestionWrite = () => {
       </div>
 
       <div>
+        <label htmlFor={id} className={styles.a11yHidden}>
+          카테고리 선택
+        </label>
         <select
           className={styles.select}
           onChange={handleSelect}
           value={selected}
+          id={id}
         >
           {selectList.map((item) => {
             return (
@@ -133,8 +137,8 @@ const QuestionWrite = () => {
           })}
         </select>
 
-        <WriteInput isQuestion={true} />
-        <TagInput isQuestion={true} />
+        <WriteInput isWrite={true} />
+        <TagInput isWrite={true} />
         <div className={styles.rowButton}>
           <FileUpload isSignUp={false} id={id} ref={fileInputRef} />
           <SubmitButton onClick={onSubmit} title="등록" writeButton={true} />

@@ -25,7 +25,7 @@ const Article = ({ item, kind }) => {
           {user?.profile === "" || user?.profile === undefined ? (
             <Profile />
           ) : (
-            <img src={user?.profile} alt="유저 프로필 사진입니다" />
+            <img src={user?.profile} alt="" />
           )}
           <span>{user?.nickname}</span>
         </div>
@@ -54,7 +54,7 @@ const Article = ({ item, kind }) => {
         <div className={styles.AdditionalInfo}>
           <LoveIcon />
 
-          <span>{like}</span>
+          <span>{like.length}</span>
           <span className={styles.midpoint}>&#183;</span>
           <span>조회</span>
           <span>{hits}</span>

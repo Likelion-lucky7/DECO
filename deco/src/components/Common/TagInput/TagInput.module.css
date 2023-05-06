@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   min-height: 3.125rem;
   margin: 10px 0;
+  width: 760px;
 }
 
 .tagItem {
@@ -30,7 +31,18 @@
   position: relative;
 }
 
-/* isQuestion = false */
+.hidden {
+  overflow: hidden;
+  border: 0;
+  position: absolute;
+  z-index: -1;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+}
+
+/* isWrite = false */
 .tag {
   width: 1170px;
   height: 50px;
@@ -42,7 +54,7 @@
   color: #333333;
 }
 
-/* isQuestion = true */
+/* isWrite = true */
 .tag_question {
   width: 700px;
   height: 48px;
