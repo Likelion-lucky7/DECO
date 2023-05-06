@@ -1,24 +1,22 @@
 import styles from "./Pagination.module.css";
 import { ReactComponent as LeftPage } from "@/assets/leftPage.svg";
 import { ReactComponent as RightPage } from "@/assets/rightPage.svg";
-import { useNavigate } from "react-router-dom";
 
 const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
+  const MAX_PAGE_COUNT = 2;
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
 
-  const navigator = useNavigate();
+  // const getPaginationArray = (currentPage, )
 
   const previousButton = () => {
     paginate(currentPage - 1);
-    navigator(`?page=${currentPage - 1}`);
   };
 
   const nextButton = () => {
     paginate(currentPage + 1);
-    navigator(`?page=${currentPage + 1}`);
   };
 
   return (
@@ -37,10 +35,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
         {pageNumbers.map((number) => (
           <li key={number}>
             <button
-              onClick={() => {
-                paginate(number);
-                navigator(`?page=${number}`);
-              }}
+              onClick={() => paginate(number)}
               aria-current={currentPage === number ? "currentPage" : null}
               className={styles.pageNumber}
             >

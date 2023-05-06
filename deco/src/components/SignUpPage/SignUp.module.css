@@ -51,8 +51,3 @@
 .submitButton:focus {
   outline: solid 3px #1c315e;
 }
-
-.disabledButton {
-  cursor: not-allowed;
-  background-color: var(--gray-500);
-}

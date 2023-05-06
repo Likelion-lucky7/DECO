@@ -1,40 +1,30 @@
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css";
+import Styles from "@/components/Common/QuestionAnswer/QuestionAnswer.module.css";
 import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import { commentState } from "@/@store/commentState";
 import { useCreateData } from "@/firebase/firestore";
-import { useId, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useAuthState } from "@/firebase/auth";
+
+/* 텍스트 지우는 함수 */
+function clearText(target) {
+  target.value = "";
+}
 
 const QuestionAnswer = ({ title, ...restProps }) => {
   const { user } = useAuthState();
   const [comment, setComment] = useRecoilState(commentState);
   const { createData } = useCreateData("comments");
   const commentsId = useParams();
-  const id = useId();
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const category = pathname.split("/")[1];
-
-  /* 텍스트 지우는 함수 */
-  function clearText() {
-    document.getElementById("comment").value = "";
-  }
-  // 로그인 되어있지 않으면 로그인 페이지로 이동
-  const checkUser = () => {
-    if (!user) {
-      navigate("/login");
-    }
-  };
 
   function onChange(e) {
     setComment(e.target.value);
   }
 
   const submitData = async (e) => {
-    const commentWriteField = comment;
+    const commentWriteField = document.getElementById("comment");
 
     e.preventDefault();
 
@@ -46,12 +36,13 @@ const QuestionAnswer = ({ title, ...restProps }) => {
         nickname: user?.displayName,
       },
       date: new Date().getTime(),
-      comment: commentWriteField,
+      comment: commentWriteField.value,
       commentId: commentsId.id,
-      category: category,
     });
     // indexData.current += 1;
-    await clearText();
+    clearText(commentWriteField);
+
+    console.log("comments 콜렉션에 comments 데이터 생성");
 
     // axios 목업 데이터 이용하는 방법
     /* await axios
@@ -72,29 +63,20 @@ const QuestionAnswer = ({ title, ...restProps }) => {
   };
 
   return (
-    <div className={styles.answerWrite}>
+    <div className={Styles.answerWrite}>
       <h2>{title}</h2>
 
       <form onSubmit={submitData}>
-        <label htmlFor="comment" className={styles.hidden}>
-          답변 입력란
-        </label>
         <textarea
           id="comment"
           name="comment"
           placeholder="질문에 대한 답변을 하려면 로그인을 해주세요"
           onChange={onChange}
-          onClick={checkUser}
           {...restProps}
         ></textarea>
 
-        <div className={styles.submitButton}>
-          <SubmitButton
-            type="submit"
-            title="등록"
-            writeButton={true}
-            onClick={checkUser}
-          />
+        <div className={Styles.submitButton}>
+          <SubmitButton type="submit" title="등록" writeButton={true} />
         </div>
       </form>
     </div>

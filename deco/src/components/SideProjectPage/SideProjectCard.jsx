@@ -18,7 +18,7 @@ const SideProjectCard = ({ item }) => {
   };
 
   const checkHandler = (e) => {
-    console.log(e.key);
+    console.log(e.key)
     if (e.key === "Enter") {
       navigation();
     } else {
@@ -59,15 +59,19 @@ const SideProjectCard = ({ item }) => {
         )}
       </ul>
       <div className={styles.user}>
-        {user?.image == "" ? (
-          <Profile className={styles.profile} />
-        ) : (
-          <img alt="" width={20} src={user?.image} />
-        )}
+       
+        {user?.image == ""?<Profile className={styles.profile}/>
+            :
+            <img
+          alt="유저 프로필 사진입니다"
+          width={20}
+          src={user?.image}
+        />
+            }
         <p>{user?.nickname}</p>
       </div>
       <div className={styles.like}>
-        <Like className={styles.likeIcon} /> <span>2</span>
+        <Like className={styles.likeIcon}/> <span>2</span>
       </div>
       <div className={styles.date}>
         <p>마감일</p>
@@ -75,29 +79,27 @@ const SideProjectCard = ({ item }) => {
       </div>
       <ul className={styles.field}>
         <li>{status}</li>
-        {role.indexOf("프론트엔드") == -1 ||
-        role.indexOf("프론트엔드") == undefined ? (
+        {role.indexOf("프론트엔드") == -1 ||role.indexOf("프론트엔드") == undefined ? (
           <li style={{ display: "none" }}></li>
         ) : (
           <li>프론트엔드</li>
         )}
-        {role.indexOf("백엔드") == -1 || role.indexOf("백엔드") == undefined ? (
+        {role.indexOf("백엔드") == -1 ||role.indexOf("백엔드") == undefined ? (
           <li style={{ display: "none" }}></li>
         ) : (
           <li>백엔드</li>
         )}
-        {role.indexOf("디자이너") == -1 ||
-        role.indexOf("디자이너") == undefined ? (
+        {role.indexOf("디자이너") == -1 ||role.indexOf("디자이너") == undefined ? (
           <li style={{ display: "none" }}></li>
         ) : (
           <li>디자이너</li>
         )}
-        {role.indexOf("기획") == -1 || role.indexOf("기획") == undefined ? (
+        {role.indexOf("기획") == -1 ||role.indexOf("기획") == undefined ? (
           <li style={{ display: "none" }}></li>
         ) : (
           <li>기획</li>
         )}
-        {role.indexOf("기타") == -1 || role.indexOf("기타") == undefined ? (
+        {role.indexOf("기타") == -1 ||role.indexOf("기타") == undefined ? (
           <li style={{ display: "none" }}></li>
         ) : (
           <li>기타</li>

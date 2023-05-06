@@ -5,7 +5,3 @@
   color: var(--white);
   padding: 0.625rem 1.125rem;
 }
-
-.button:focus {
-  outline: 2px solid #1c315e;
-}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { getQuestion } from "@/@store/getQuestionData";
 import Article from "@/components/Common/Article/Article";
 import BoardBanner from "@/components/Common/BoardBanner/BoardBanner";
@@ -9,18 +9,15 @@ import Pagination from "@/components/Common/Pagination/Pagination";
 import SearchForm from "@/components/Common/SearchForm/SearchForm";
 import Sort from "@/components/Common/Sort/Sort";
 import styles from "./QuestionList.module.css";
-import { authUser } from "@/@store/user";
-import { useNavigate } from "react-router-dom";
 
 const QuestionList = () => {
-  const questionData = useRecoilValue(getQuestion);
-  const originalData = questionData
+  const questionData = useRecoilState(getQuestion);
+  const originalData = questionData[0]
     .filter((item) => item.id !== undefined)
     .sort(function (a, b) {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 
-  const [isUser, setIsUser] = useRecoilState(authUser);
   const [posts, setPosts] = useState([...originalData]);
   const [currentPage, setCurrentPage] = useState(1); // 페이지
   const [postsPerPage, setPostsPerPage] = useState(2); // 한 페이지에 보일 게시글 갯수
@@ -32,43 +29,20 @@ const QuestionList = () => {
   const currentPosts = (posts) => {
     let currentPosts = 0;
     currentPosts = posts.slice(indexOfFirst, indexOfLast);
-
     return currentPosts;
   };
 
-  const navigate = useNavigate();
-
   const onClickCategory = async (e) => {
     e.preventDefault();
-
-    setCurrentPage(1);
-
-    if (e.target.name === "all") {
+    if (e.target.name == "all") {
       setCategory("전체");
-      setPosts(originalData);
-      navigate("/question");
     }
-
-    if (e.target.name === "기술") {
+    if (e.target.name == "기술") {
       setCategory("기술");
-
-      const categoryList = originalData.filter(
-        (item) => item.category === "기술",
-      );
-
-      setPosts(categoryList);
-      navigate("/question/tech");
     }
 
-    if (e.target.name === "커리어") {
+    if (e.target.name == "커리어") {
       setCategory("커리어");
-
-      const categoryList = originalData.filter(
-        (item) => item.category === "커리어",
-      );
-
-      setPosts(categoryList);
-      navigate("/question/career");
     }
   };
 
@@ -76,65 +50,15 @@ const QuestionList = () => {
     e.preventDefault();
 
     if (e.target.name == "like") {
-      if (category === "전체") {
-        const newArr = originalData.sort(function (a, b) {
-          return b.like.length - a.like.length;
-        });
-
-        setPosts(newArr);
-      }
-
-      if (category === "기술") {
-        const categoryList = originalData.filter(
-          (item) => item.category === "기술",
-        );
-
-        const arr = categoryList;
-        const newArr = arr.sort(function (a, b) {
-          return b.like.length - a.like.length;
-        });
-
-        setPosts(newArr);
-      }
-
-      if (category === "커리어") {
-        const categoryList = originalData.filter(
-          (item) => item.category === "커리어",
-        );
-
-        const arr = categoryList;
-        const newArr = arr.sort(function (a, b) {
-          return b.like.length - a.like.length;
-        });
-
-        setPosts(newArr);
-      }
-
-      navigate("?sort=like");
+      const arr = [...originalData];
+      const newArr = arr.sort(function (a, b) {
+        return b.like - a.like;
+      });
+      setPosts(newArr);
     }
 
     if (e.target.name == "new") {
-      if (category === "전체") {
-        setPosts(originalData);
-      }
-
-      if (category === "기술") {
-        const categoryList = originalData.filter(
-          (item) => item.category === "기술",
-        );
-
-        setPosts(categoryList);
-      }
-
-      if (category === "커리어") {
-        const categoryList = originalData.filter(
-          (item) => item.category === "커리어",
-        );
-
-        setPosts(categoryList);
-      }
-
-      navigate("?sort=new");
+      setPosts(originalData);
     }
   };
 
@@ -144,7 +68,7 @@ const QuestionList = () => {
         boardName="묻고 답하기"
         boardGuide="좋은 질문과 답변을 통해 함께 성장해요."
         write="질문하기"
-        path={!isUser ? "/login" : "/question/write"}
+        path="/question/write"
       />
 
       <Category category1="기술" category2="커리어" onClick={onClickCategory} />

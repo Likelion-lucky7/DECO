@@ -4,15 +4,22 @@ import SubmitButton from "@/components/Common/SubmitButton/SubmitButton";
 import FileUpload from "@/components/Common/FileUpload/FileUpload";
 import styles from "./SignUp.module.css";
 import { ReactComponent as Profile } from "../../assets/profile.svg";
-import { useCallback, useState, useId, useEffect } from "react";
+import { useCallback, useRef, useState, useId } from "react";
 import { useSignUp } from "@/firebase/auth/useSignUp";
 import { useCreateAuthUser } from "@/firebase/firestore";
 import { useAuthState } from "@/firebase/auth/useAuthState";
 import { useNavigate } from "react-router-dom";
-import { useUploadFiles } from "@/firebase/storage";
+import { useDownloadURL, useUploadFiles } from "@/firebase/storage";
 import { useSignOut } from "@/firebase/auth";
 import { useRecoilState } from "recoil";
 import { tokenState } from "@/@store/authUserState";
+
+const initialFormState = {
+  email: "",
+  password: "",
+  passwordConfirm: "",
+  nickname: "",
+};
 
 const SignUp = () => {
   const { signUp } = useSignUp();
@@ -107,18 +114,15 @@ const SignUp = () => {
     [password],
   );
 
-  const isCheckError = useEffect(() => {
+  const isCheckError = () => {
     if (isEmail && isPassword && isNickname && isPasswordConfirm === true) {
       setIsActive(true);
-    } else {
-      setIsActive(false);
     }
-  }, [isEmail, isPassword, isNickname, isPasswordConfirm]);
+  };
 
   // 프로필 사진 업로드
   const id = useId();
 
-  // 파일 업로드 이미지 URL 상태
   const [profileImage, setProfileImage] = useState(null);
   const { fileInputRef, uploadFiles } = useUploadFiles();
 
@@ -275,7 +279,6 @@ const SignUp = () => {
             type="submit"
             title="회원가입"
             writeButton={false}
-            className={styles.disabledButton}
             disabled
           />
         )}
