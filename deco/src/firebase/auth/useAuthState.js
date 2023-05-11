@@ -22,13 +22,8 @@ export function useAuthState() {
     return onAuthStateChanged(
       auth,
       (currentUser) => {
-        if (currentUser) {
-          setUser(currentUser);
-          setIsLoading(false);
-        } else {
-          setUser(null);
-          setIsLoading(false);
-        }
+        setUser(currentUser);
+        setIsLoading(false);
       },
       (error) => {
         setError(error);

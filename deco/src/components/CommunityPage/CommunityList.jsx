@@ -8,8 +8,6 @@ import Pagination from "@/components/Common/Pagination/Pagination";
 import SearchForm from "@/components/Common/SearchForm/SearchForm";
 import Sort from "@/components/Common/Sort/Sort";
 import styles from "./CommunityList.module.css";
-import { authUser } from "@/@store/user";
-import { useNavigate } from "react-router-dom";
 
 const CommunityList = () => {
   const communityData = useRecoilState(getCommunity);
@@ -19,10 +17,9 @@ const CommunityList = () => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 
-  const [isUser, setIsUser] = useRecoilState(authUser);
   const [posts, setPosts] = useState([...originalData]);
   const [currentPage, setCurrentPage] = useState(1); // 페이지
-  const [postsPerPage, setPostsPerPage] = useState(2); // 한 페이지에 보일 게시글 갯수 (수정해서 테스트 하면 됨)
+  const [postsPerPage, setPostsPerPage] = useState(1); // 한 페이지에 보일 게시글 갯수 (수정해서 테스트 하면 됨)
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
@@ -32,8 +29,6 @@ const CommunityList = () => {
     currentPosts = posts.slice(indexOfFirst, indexOfLast);
     return currentPosts;
   };
-
-  const navigate = useNavigate();
 
   const onClickSort = (e) => {
     e.preventDefault();
@@ -45,12 +40,10 @@ const CommunityList = () => {
       });
 
       setPosts(sortArr);
-      navigate("?sort=like");
     }
 
     if (e.target.name === "new") {
       setPosts(originalData);
-      navigate("?sort=new");
     }
   };
 
@@ -60,7 +53,7 @@ const CommunityList = () => {
         boardName="커뮤니티"
         boardGuide="다양한 사람을 만나고 생각의 폭을 넓혀 보세요."
         write="작성하기"
-        path={!isUser ? "/login" : "/community/write"}
+        path="/community/write"
       />
 
       <SearchForm />
@@ -74,7 +67,7 @@ const CommunityList = () => {
       <Sort onClick={onClickSort} />
 
       {currentPosts(posts).map((item) => {
-        return <Article key={item?.id} item={item} kind="community" />;
+        return <Article key={item.id} item={item} kind="community" />;
       })}
 
       <Pagination
